@@ -60,10 +60,11 @@ header.top { border-bottom: 1px solid var(--border); }
   font-size: 0.875rem;
   letter-spacing: 0.02em;
   text-decoration: none;
-  color: var(--text);
+  color: var(--accent);
+  font-weight: 400;
 }
 
-.brand strong { color: var(--accent); }
+.brand .tld { color: var(--text); }
 
 .wrap {
   max-width: 640px;
