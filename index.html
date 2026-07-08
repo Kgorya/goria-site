@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Goria — AI-powered customer communication service</title>
+<meta name="description" content="Goria builds AI-powered communication systems for service businesses: automated response, booking, reminders, and customer reactivation." />
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --text: #F2F2F0;
+    --text-dim: #8C8C88;
+    --accent: #FF5A1F;
+    --border: rgba(255,255,255,0.10);
+    --font-display: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+
+  :root[data-theme="light"] {
+    --bg: #FAFAF8;
+    --text: #16160F;
+    --text-dim: #6B6B64;
+    --accent: #D9440E;
+    --border: rgba(0,0,0,0.10);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #FAFAF8;
+      --text: #16160F;
+      --text-dim: #6B6B64;
+      --accent: #D9440E;
+      --border: rgba(0,0,0,0.10);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.5;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+
+  a {
+    color: inherit;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  header.top {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .top-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .brand strong {
+    color: var(--accent);
+  }
+
+  nav.top-nav {
+    display: flex;
+    gap: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  nav.top-nav a {
+    text-decoration: none;
+    color: var(--text-dim);
+  }
+
+  nav.top-nav a:hover {
+    color: var(--text);
+  }
+
+  section {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type {
+    border-bottom: none;
+  }
+
+  .hero {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 6vw, 3.75rem);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0 0 1.5rem;
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: 1.125rem;
+    color: var(--text-dim);
+    max-width: 34rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0 0 2rem;
+    text-wrap: balance;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+  }
+
+  .body-copy {
+    max-width: 38rem;
+  }
+
+  .body-copy p {
+    font-size: 1.0625rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+  }
+
+  .body-copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .body-copy strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .pricing-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .price-row:last-child {
+    border-bottom: none;
+  }
+
+  .price-name {
+    font-size: 0.9375rem;
+  }
+
+  .price-desc {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+  }
+
+  .price-value {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 1rem;
+    white-space: nowrap;
+    color: var(--accent);
+  }
+
+  .price-note {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    margin: 1.25rem 0 0;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-link {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    text-decoration: none;
+    color: var(--text);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  .contact-link:hover {
+    color: var(--accent);
+  }
+
+  footer {
+    padding: 3rem 0;
+  }
+
+  .footer-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+  }
+
+  .footer-inner a {
+    text-decoration: none;
+    color: var(--text-dim);
+  }
+
+  .footer-inner a:hover {
+    color: var(--text);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    section { padding: 4rem 0; }
+    .hero { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+    .top-inner { padding: 1.25rem 1.5rem; }
+    .price-row { grid-template-columns: 1fr; gap: 0.375rem; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#top">GOR<strong>IA</strong></a>
+    <nav class="top-nav">
+      <a href="#what-i-do">What I do</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" id="top">
+    <p class="eyebrow">AI-powered customer communication</p>
+    <h1>No incoming inquiry goes unanswered.</h1>
+    <p class="lede">Automated response within a minute, around the clock — qualification, booking, reminders, and reactivation of your existing customer base, with a monthly report in business terms.</p>
+  </section>
+
+  <section class="wrap" id="what-i-do">
+    <p class="section-label">What I do</p>
+    <h2>Every inquiry gets answered, tracked, and followed up.</h2>
+    <div class="body-copy">
+      <p>I build and operate AI-driven communication systems for service businesses that lose revenue when inquiries go unanswered outside business hours. The system responds to incoming messages in real time, qualifies the request, and books it into your calendar.</p>
+      <p><strong>Confirmations and reminders</strong> reduce no-shows. <strong>Opt-in reactivation</strong> reconnects with customers already in your database — no cold outreach, no new ad spend.</p>
+      <p>Every dialogue is logged and reported monthly in revenue terms, not just message counts.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="pricing">
+    <p class="section-label">Pricing</p>
+    <h2>Straightforward, tiered by scope.</h2>
+    <div class="pricing-table">
+      <div class="price-row">
+        <div>
+          <div class="price-name">Pilot</div>
+          <span class="price-desc">2 weeks, one channel, measured before/after</span>
+        </div>
+        <div class="price-value">$300–500</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="price-name">Implementation</div>
+          <span class="price-desc">Full setup across channels, scenarios, reminders</span>
+        </div>
+        <div class="price-value">$1,200–2,000</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="price-name">Monthly service plan</div>
+          <span class="price-desc">Ongoing operation, monitoring, monthly report</span>
+        </div>
+        <div class="price-value">from $250/mo</div>
+      </div>
+    </div>
+    <p class="price-note">Pilot fee is credited toward the first month of service.</p>
+  </section>
+
+  <section class="wrap" id="about">
+    <p class="section-label">About</p>
+    <h2>Kostiantyn Goria</h2>
+    <div class="body-copy">
+      <p>I'm an independent consultant designing and operating AI-driven communication systems for service businesses.</p>
+      <p>I work end to end — from the first automated response through ongoing monthly reporting — and deliver remotely, based in Ukraine.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <p class="section-label">Contact</p>
+    <h2>Get in touch</h2>
+    <div class="contact-row">
+      <a class="contact-link" href="mailto:kostya.gorya@gmail.com">kostya.gorya@gmail.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span>Service provided by Kostiantyn Goria, sole proprietor / independent contractor, Ukraine.</span>
+    <div class="footer-links">
+      <a href="terms.html">Terms</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
