@@ -81,6 +81,11 @@
 
   html {
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: 2rem;
   }
 
   body {
@@ -94,6 +99,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
     * { transition: none !important; animation: none !important; }
   }
 
