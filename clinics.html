@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Швидка відповідь на звернення пацієнтів — Goria</title>
-<meta name="description" content="Реклама приводить пацієнта, а відповісти йому вчасно нікому. Як швидкість відповіді впливає на записи в клініку та як це вирішити.">
+<title>Аналіз ринку стоматологій Києва — Goria</title>
+<meta name="description" content="Дослідження ринку стоматологій Києва: як швидкість відповіді на звернення впливає на записи та скільки коштує повільна відповідь.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Реклама приводить пацієнта. А відповісти йому вчасно нікому.">
-<meta property="og:description" content="Що показала перевірка клінік Києва та скільки коштує повільна відповідь на звернення.">
+<meta property="og:title" content="Аналіз ринку стоматологій Києва: реклама приводить пацієнта, а відповісти йому вчасно нікому">
+<meta property="og:description" content="Що показала перевірка стоматологій Києва та скільки коштує повільна відповідь на звернення.">
 <meta property="og:locale" content="uk_UA">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
 <style>
@@ -41,6 +41,18 @@
       --accent-neutral: #3A4C53;
       --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 32px rgba(0,0,0,.35);
     }
+  }
+  :root[data-theme="light"] {
+    --ground: #F7F9FA; --panel: #FFFFFF; --ink: #1A2B33; --ink-soft: #52646D;
+    --line: #DCE4E7; --loss: #E8654F; --loss-bg: #FCEBE7; --heal: #1F9C7E;
+    --heal-bg: #E4F4EF; --accent-neutral: #B8C4C9;
+    --shadow: 0 1px 2px rgba(26,43,51,.05), 0 8px 28px rgba(26,43,51,.06);
+  }
+  :root[data-theme="dark"] {
+    --ground: #101A1F; --panel: #16232A; --ink: #EAF1F3; --ink-soft: #9DB0B8;
+    --line: #26383F; --loss: #FF7A63; --loss-bg: #2C1B18; --heal: #3FC7A3;
+    --heal-bg: #12271F; --accent-neutral: #3A4C53;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 32px rgba(0,0,0,.35);
   }
 
   * { box-sizing: border-box; }
@@ -218,6 +230,46 @@
   }
   .cost-note strong { color: var(--loss); font-weight: 600; }
 
+  /* --- fact table --- */
+  .table-wrap { overflow-x: auto; margin: 26px 0 0; }
+  table.market {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+    min-width: 460px;
+  }
+  table.market th, table.market td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    font-variant-numeric: tabular-nums;
+  }
+  table.market thead th {
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  table.market td.wait { font-weight: 600; }
+  table.market tr.slow td.wait { color: var(--loss); }
+  table.market tr.silent td { color: var(--loss); }
+  table.market .tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .tag.yes { background: var(--heal-bg); color: var(--heal); }
+  .tag.no { background: var(--loss-bg); color: var(--loss); }
+  .tag.wait-t { background: var(--ground); color: var(--ink-soft); border: 1px solid var(--line); }
+  table.market tr.you td {
+    background: var(--loss-bg);
+  }
+  table.market tr.you td:first-child { font-weight: 700; color: var(--ink); }
+
   .stat-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -244,6 +296,38 @@
     margin-top: 9px;
     line-height: 1.4;
   }
+
+  /* --- money calc --- */
+  .calc {
+    margin: 26px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .calc .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .calc .row:last-child { border-bottom: none; }
+  .calc .row .k { color: var(--ink-soft); }
+  .calc .row .v { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .calc .row.total {
+    background: var(--loss-bg);
+    font-family: var(--serif);
+  }
+  .calc .row.total .k { color: var(--ink); font-weight: 600; }
+  .calc .row.total .v { color: var(--loss); font-size: clamp(19px, 3vw, 24px); }
+  .calc .row.pay { background: var(--heal-bg); font-family: var(--serif); }
+  .calc .row.pay .k { color: var(--ink); font-weight: 600; }
+  .calc .row.pay .v { color: var(--heal); font-size: clamp(19px, 3vw, 24px); }
 
   /* --- payoff highlight --- */
   .payoff {
@@ -324,6 +408,39 @@
     padding: 8px 0 0;
   }
 
+  /* --- final offer / contact --- */
+  .offer {
+    text-align: center;
+    background:
+      radial-gradient(130% 120% at 50% 0%, var(--heal-bg) 0%, transparent 55%),
+      var(--panel);
+  }
+  .offer h2 { margin: 0 auto 16px; max-width: 20ch; }
+  .offer .lead { margin: 0 auto; text-align: center; }
+  .offer .cta {
+    margin: 30px auto 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    background: var(--heal);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 15px 26px;
+    border-radius: 12px;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .offer .cta:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(31,156,126,.32); }
+  .offer .cta:focus-visible { outline: 3px solid var(--heal); outline-offset: 3px; }
+  .offer .cta svg { width: 20px; height: 20px; flex: none; }
+  .offer .signed {
+    margin: 22px 0 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .offer .signed b { color: var(--ink); font-weight: 600; }
+
   @media (max-width: 560px) {
     .slide { border-radius: 11px; }
     .stat-row { grid-template-columns: 1fr; }
@@ -332,27 +449,27 @@
 </head>
 <body>
 
-<main class="deck">
+<div class="deck">
 
   <!-- COVER -->
   <section class="slide cover">
-    <p class="kicker">Аналіз ринку стоматологій Києва</p>
+    <p class="kicker">Аналіз ринку стоматологій Києва · 2026</p>
     <h1>Реклама приводить пацієнта. А відповісти йому <em>вчасно</em> нікому.</h1>
-    <p>Людина бачить рекламу ввечері та одразу пише в клініку. Але о цій порі адміністратора вже немає на місці, і відповідь приходить лише наступного ранку. За ніч запал згасає, а гроші за рекламу вже витрачені.</p>
+    <p>Людина бачить рекламу ввечері та одразу пише в стоматологію. Але о цій порі адміністратора вже немає на місці, і відповідь приходить лише наступного ранку. За ніч запал згасає, а гроші за рекламу вже витрачені. Ми перевірили, як це працює на ринку стоматологій Києва.</p>
   </section>
 
   <!-- 1. SITUATION -->
   <section class="slide pain">
     <p class="eyebrow"><span class="step">1</span> Ситуація</p>
     <h2>Людина побачила рекламу ввечері та одразу написала</h2>
-    <p class="lead">Вона зацікавлена саме зараз. Я перевірив це особисто: надіслав однакове питання клінікам міста о 22:40, у той канал, куди веде їхня власна реклама.</p>
+    <p class="lead">Вона зацікавлена саме зараз. Ми перевірили це особисто: надіслали однакове питання стоматологіям міста о 22:40, у той канал, куди веде їхня власна реклама.</p>
 
     <div class="chat">
       <div class="bubble out">
         Добрий вечір! Підкажіть, будь ласка, чи є вільний час на консультацію цього тижня?
         <span class="meta">надіслано о 22:40</span>
       </div>
-      <div class="no-reply"><span class="dot"></span> Того ж вечора не відповіла жодна клініка</div>
+      <div class="no-reply"><span class="dot"></span> Того ж вечора не відповіла жодна стоматологія</div>
     </div>
 
     <p class="punch">Відповідь приходить лише наступного ранку. За ніч інтерес згасає: людину відволікли справи, вона передумала або вже записалася деінде. <b>Найгарячіший момент згаяно.</b></p>
@@ -375,7 +492,7 @@
       <div class="stat"><div class="n neutral">42 год</div><div class="l">середній час першої відповіді на ринку. Пацієнт стільки не чекає</div></div>
     </div>
 
-    <p class="calc-note">Джерела: дослідження Lead Response Management, MIT Sloan (Dr. James Oldroyd, InsideSales), 100 000+ звернень · Harvard Business Review, 2011, аудит 2 241 компанії. Дані закордонні, але поведінка людини, яка обирає клініку, скрізь однакова: чекати вона не любить.</p>
+    <p class="calc-note">Джерела: дослідження Lead Response Management, MIT Sloan (Dr. James Oldroyd, InsideSales), 100 000+ звернень · Harvard Business Review, 2011, аудит 2 241 компанії. Дані закордонні, але поведінка людини, яка обирає стоматологію, скрізь однакова: чекати вона не любить.</p>
   </section>
 
   <!-- 3. SOLUTION -->
@@ -403,14 +520,14 @@
       </div>
     </div>
 
-    <p class="close">Річ не в тому, що адміністратор погано працює. Річ у тому, що <b>ввечері та у вихідні відповідати нікому</b>, а саме тоді пише багато людей. Виграє та клініка, яка закриє цю прогалину першою.</p>
+    <p class="close">Річ не в тому, що адміністратор погано працює. Річ у тому, що <b>ввечері та у вихідні відповідати нікому</b>, а саме тоді пише багато людей. Виграє та стоматологія, яка закриє цю прогалину першою.</p>
   </section>
 
   <!-- 4. PRICE / PAYOFF -->
   <section class="slide solution">
     <p class="eyebrow"><span class="step">4</span> Скільки це коштує вам</p>
     <h2>Достатньо врятувати кілька звернень на місяць, щоб асистент окупився</h2>
-    <p class="lead">Асистент коштує близько 12 500 грн на місяць. Середній чек першого візиту в приватних клініках Києва становить 2 000–4 500 грн. Порахуймо, скільки звернень треба повернути.</p>
+    <p class="lead">Асистент коштує близько 12 500 грн на місяць. Середній чек першого візиту у приватних стоматологіях Києва становить 2 000–4 500 грн. Порахуймо, скільки звернень треба повернути.</p>
 
     <div class="payoff">
       <div class="card">
@@ -426,11 +543,24 @@
     </div>
 
     <p class="close">І це рахунок лише за перший візит. Якщо врятоване звернення переросте в імплантацію чи брекети, <b>один такий пацієнт окупає асистента на місяці вперед.</b></p>
-    <p class="calc-note">Середній чек: приватні клініки Києва, бізнес-сегмент, 2026 (власне дослідження ринку). Повний цикл імплантації або ортодонтії сягає від 40 000 грн на одного пацієнта. На зустрічі підставимо ваш реальний потік і середній чек.</p>
+    <p class="calc-note">Середній чек: приватні стоматології Києва, бізнес-сегмент, 2026 (власне дослідження ринку). Повний цикл імплантації або ортодонтії сягає від 40 000 грн на одного пацієнта. На зустрічі підставимо ваш реальний потік і середній чек.</p>
+  </section>
+
+  <!-- 5. OFFER / CONTACT -->
+  <section class="slide solution offer">
+    <p class="eyebrow" style="justify-content:center"><span class="step">→</span> Далі</p>
+    <h2>Хочете таку саму картину по вашій стоматології?</h2>
+    <p class="lead">Я можу перевірити саме вашу клініку так само, як перевірив ринок: покажу час відповіді, скільки звернень губиться ввечері та скільки це коштує в грошах саме у вашому випадку. Без зобов'язань.</p>
+
+    <a class="cta" href="https://t.me/___">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.47-2.27 2.19c-.25.25-.46.46-.94.46l.33-4.78 8.7-7.86c.38-.34-.08-.53-.59-.19L6.98 13.2l-4.63-1.45c-1.01-.32-1.03-1.01.21-1.5l18.1-6.98c.84-.31 1.58.2 1.28 1.53z"/></svg>
+      Написати в Telegram
+    </a>
+
+    <p class="signed"><b>Костянтин Горя</b> · Goria · goria.co</p>
   </section>
 
 
-</main>
-
+</div>
 </body>
 </html>
