@@ -7,9 +7,14 @@
 <meta name="description" content="Дослідження ринку стоматологій Києва: як швидкість відповіді на звернення впливає на записи та скільки коштує повільна відповідь.">
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://goria.co/clinics.html">
 <meta property="og:title" content="Аналіз ринку стоматологій Києва: реклама приводить пацієнта, а відповісти йому вчасно нікому">
 <meta property="og:description" content="Що показала перевірка стоматологій Києва та скільки коштує повільна відповідь на звернення.">
+<meta property="og:image" content="https://goria.co/og-clinics.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦷</text></svg>">
 <style>
   :root {
@@ -390,6 +395,55 @@
   .step-item .body strong { display: block; font-size: 15.5px; margin-bottom: 3px; }
   .step-item .body span { font-size: 14px; color: var(--ink-soft); }
 
+  /* --- assistant demo dialog --- */
+  .demo {
+    margin: 26px 0 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--ground);
+    padding: 20px clamp(16px, 3vw, 22px) 22px;
+  }
+  .demo .demo-head {
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-soft); font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
+    margin: 0 0 18px;
+  }
+  .demo .demo-head .live {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--heal);
+    box-shadow: 0 0 0 3px var(--heal-bg);
+  }
+  .dialog { display: flex; flex-direction: column; gap: 10px; }
+  .msg {
+    max-width: 82%;
+    padding: 11px 15px;
+    border-radius: 15px;
+    font-size: 15px;
+    line-height: 1.42;
+  }
+  .msg.in {
+    align-self: flex-start;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-bottom-left-radius: 5px;
+    color: var(--ink);
+  }
+  .msg.bot {
+    align-self: flex-end;
+    background: var(--heal);
+    color: #fff;
+    border-bottom-right-radius: 5px;
+  }
+  .msg .t {
+    display: block;
+    font-size: 11px;
+    margin-top: 5px;
+    opacity: .7;
+    font-variant-numeric: tabular-nums;
+  }
+  .msg.bot .t { display: flex; align-items: center; gap: 5px; justify-content: flex-end; }
+  .msg.bot .t::before { content: "⚡"; font-size: 10px; }
+
   .close {
     margin: 30px 0 0;
     font-family: var(--serif);
@@ -526,6 +580,18 @@
       </div>
     </div>
 
+    <div class="demo">
+      <p class="demo-head"><span class="live"></span> Ось як це виглядає для пацієнта</p>
+      <div class="dialog">
+        <div class="msg in">Доброго вечора! Скільки коштує імплант? Хочу поставити один зуб<span class="t">субота, 22:14</span></div>
+        <div class="msg bot">Доброго вечора! Дякую за звернення 🙌 Вартість імпланта залежить від системи та стану кістки. У нас консультація з КТ безкоштовна, лікар одразу скаже точну ціну саме для вас. Підкажіть, вам зручніше в будні чи у вихідні?<span class="t">за хвилину</span></div>
+        <div class="msg in">У вихідні краще</div>
+        <div class="msg bot">Чудово. Є вільний час у неділю об 11:00 або 13:30. Який слот записати за вами?<span class="t">за хвилину</span></div>
+        <div class="msg in">Давайте об 11</div>
+        <div class="msg bot">Записав вас на неділю, 11:00 ✅ За день нагадаю. До зустрічі!<span class="t">за хвилину</span></div>
+      </div>
+    </div>
+
     <p class="close">Річ не в тому, що адміністратор погано працює. Річ у тому, що <b>ввечері та у вихідні відповідати нікому</b>, а саме тоді пише багато людей. Виграє та стоматологія, яка закриє цю прогалину першою.</p>
   </section>
 
@@ -558,7 +624,7 @@
     <h2>Хочете таку саму картину по вашій стоматології?</h2>
     <p class="lead">Я можу перевірити саме вашу клініку так само, як перевірив ринок: покажу час відповіді, скільки звернень губиться ввечері та скільки це коштує в грошах саме у вашому випадку. Без зобов'язань.</p>
 
-    <a class="cta" href="https://t.me/___">
+    <a class="cta" href="https://t.me/Goria_Konstantin">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.3 18.9 19.1c-.23 1.02-.84 1.27-1.7.79l-4.7-3.47-2.27 2.19c-.25.25-.46.46-.94.46l.33-4.78 8.7-7.86c.38-.34-.08-.53-.59-.19L6.98 13.2l-4.63-1.45c-1.01-.32-1.03-1.01.21-1.5l18.1-6.98c.84-.31 1.58.2 1.28 1.53z"/></svg>
       Написати в Telegram
     </a>
