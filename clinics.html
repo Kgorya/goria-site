@@ -190,6 +190,34 @@
   }
   .punch b { color: var(--loss); font-weight: 600; }
 
+  .cost-note {
+    margin: 24px 0 0;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    background: var(--loss-bg);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .cost-note .cost-ic {
+    flex: none;
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: var(--loss);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 700;
+  }
+  .cost-note p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .cost-note strong { color: var(--loss); font-weight: 600; }
+
   .stat-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -328,6 +356,11 @@
     </div>
 
     <p class="punch">Відповідь приходить лише наступного ранку. За ніч інтерес згасає: людину відволікли справи, вона передумала або вже записалася деінде. <b>Найгарячіший момент згаяно.</b></p>
+
+    <div class="cost-note">
+      <span class="cost-ic">₴</span>
+      <p>А за кожне таке звернення ви <strong>вже заплатили Facebook</strong>. Клік коштує грошей, реклама коштує грошей. Але коли відповідь запізнюється, оплачене звернення так і не стає записом. Гроші за рекламу згоряють, а пацієнт іде до конкурента.</p>
+    </div>
   </section>
 
   <!-- 2. FACT (international data) -->
