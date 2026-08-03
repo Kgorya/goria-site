@@ -1,447 +1,517 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="uk">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Goria — Lead response &amp; customer communication for service businesses</title>
-<meta name="description" content="Goria provides lead response and customer communication services for service businesses: automated response, follow-up, booking support, reminders, and customer reactivation, with monthly performance reporting." />
-<link rel="canonical" href="https://goria.co/" />
-<meta name="robots" content="index, follow" />
-<meta name="author" content="Kostiantyn Goria" />
-<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
-<meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)" />
-
-<!-- Open Graph (link previews in messengers / social) -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Goria" />
-<meta property="og:title" content="Goria — Lead response &amp; customer communication for service businesses" />
-<meta property="og:description" content="No incoming inquiry goes unanswered — with automated response, follow-up, reminders, and customer reactivation, and monthly performance reporting." />
-<meta property="og:url" content="https://goria.co/" />
-<meta property="og:locale" content="en_US" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Goria — Lead response &amp; customer communication for service businesses" />
-<meta name="twitter:description" content="No incoming inquiry goes unanswered — automated response, follow-up, reminders, and customer reactivation, with monthly performance reporting." />
-
-<!-- Favicon: "G" with accent dot, inline SVG -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0A0A'/%3E%3Ctext x='32' y='44' font-family='-apple-system,Helvetica,Arial,sans-serif' font-size='40' font-weight='600' text-anchor='middle' fill='%23F2F2F0'%3EG%3C/text%3E%3Ccircle cx='50' cy='16' r='5' fill='%23FF5A1F'/%3E%3C/svg%3E" />
-
-<!-- Structured data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Goria",
-  "url": "https://goria.co/",
-  "description": "Lead response and customer communication services for service businesses: automated response, follow-up, booking support, reminders, and customer reactivation, with monthly performance reporting.",
-  "areaServed": "UA",
-  "serviceType": "Customer communication and lead response",
-  "founder": {
-    "@type": "Person",
-    "name": "Kostiantyn Goria"
-  },
-  "provider": {
-    "@type": "Person",
-    "name": "Kostiantyn Goria",
-    "email": "kostya.gorya@gmail.com"
-  }
-}
-</script>
-<style>
-  :root {
-    --bg: #0A0A0A;
-    --text: #F2F2F0;
-    --text-dim: #8C8C88;
-    --accent: #FF5A1F;
-    --border: rgba(255,255,255,0.10);
-    --font-display: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    --font-mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
-  }
-
-  :root[data-theme="light"] {
-    --bg: #FAFAF8;
-    --text: #16160F;
-    --text-dim: #6B6B64;
-    --accent: #D9440E;
-    --border: rgba(0,0,0,0.10);
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --bg: #FAFAF8;
-      --text: #16160F;
-      --text-dim: #6B6B64;
-      --accent: #D9440E;
-      --border: rgba(0,0,0,0.10);
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ШІ-агенти для бізнес-процесів | goria.</title>
+  <meta name="description" content="Впроваджую ШІ-агентів для повторюваних бізнес-завдань: від першої задачі до запуску, контролю та покращення.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="canonical" href="https://goria.co/">
+  <link rel="alternate" hreflang="uk" href="https://goria.co/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="goria.">
+  <meta property="og:locale" content="uk_UA">
+  <meta property="og:url" content="https://goria.co/">
+  <meta property="og:title" content="ШІ-агенти для бізнес-процесів | goria.">
+  <meta property="og:description" content="Впроваджую ШІ-агентів для повторюваних бізнес-завдань: від першої задачі до запуску, контролю та покращення.">
+  <meta property="og:image" content="https://goria.co/assets/img/hero-1672.webp">
+  <meta property="og:image:width" content="1672">
+  <meta property="og:image:height" content="941">
+  <meta property="og:image:alt" content="Костянтин Горя">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101114'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial,sans-serif' font-size='40' font-weight='700' fill='%23ffffff'%3EG%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="site.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://goria.co/#person",
+          "name": "Костянтин Горя",
+          "url": "https://goria.co/",
+          "sameAs": ["https://t.me/Goria_Konstantin"]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://goria.co/#service",
+          "name": "goria.",
+          "url": "https://goria.co/",
+          "description": "Впроваджую ШІ-агентів для повторюваних бізнес-завдань: від першої задачі до запуску, контролю та покращення.",
+          "founder": { "@id": "https://goria.co/#person" },
+          "areaServed": "UA"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://goria.co/#website",
+          "url": "https://goria.co/",
+          "name": "goria.",
+          "inLanguage": "uk",
+          "publisher": { "@id": "https://goria.co/#person" }
+        }
+      ]
     }
-  }
-
-  * { box-sizing: border-box; }
-
-  html {
-    -webkit-font-smoothing: antialiased;
-    scroll-behavior: smooth;
-  }
-
-  section[id] {
-    scroll-margin-top: 2rem;
-  }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-display);
-    font-weight: 400;
-    line-height: 1.5;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; animation: none !important; }
-  }
-
-  a {
-    color: inherit;
-  }
-
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  header.top {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .top-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .brand {
-    font-family: var(--font-mono);
-    font-size: 0.875rem;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    color: var(--accent);
-    font-weight: 400;
-  }
-
-  .brand .tld {
-    color: var(--text);
-  }
-
-  nav.top-nav {
-    display: flex;
-    gap: 1.5rem;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-  }
-
-  nav.top-nav a {
-    text-decoration: none;
-    color: var(--text-dim);
-  }
-
-  nav.top-nav a:hover {
-    color: var(--text);
-  }
-
-  section {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  section:last-of-type {
-    border-bottom: none;
-  }
-
-  .hero {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin: 0 0 1.25rem;
-  }
-
-  h1 {
-    font-size: clamp(2.25rem, 6vw, 3.75rem);
-    font-weight: 600;
-    letter-spacing: -0.025em;
-    line-height: 1.05;
-    margin: 0 0 1.5rem;
-    text-wrap: balance;
-  }
-
-  .lede {
-    font-size: 1.125rem;
-    color: var(--text-dim);
-    max-width: 34rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .lede-support {
-    font-size: 1rem;
-    color: var(--text-dim);
-    max-width: 36rem;
-    line-height: 1.65;
-    margin: 1.5rem 0 0;
-    opacity: 0.85;
-  }
-
-  h2 {
-    font-size: clamp(1.5rem, 3vw, 1.875rem);
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    margin: 0 0 2rem;
-    text-wrap: balance;
-  }
-
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin: 0 0 1.25rem;
-  }
-
-  .body-copy {
-    max-width: 38rem;
-  }
-
-  .body-copy p {
-    font-size: 1.0625rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-    margin: 0 0 1.25rem;
-  }
-
-  .body-copy p:last-child {
-    margin-bottom: 0;
-  }
-
-  .body-copy strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .pricing-table {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .price-row {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-    align-items: baseline;
-    padding: 1.25rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .price-row:last-child {
-    border-bottom: none;
-  }
-
-  .price-name {
-    font-size: 0.9375rem;
-  }
-
-  .price-desc {
-    display: block;
-    font-size: 0.8125rem;
-    color: var(--text-dim);
-    margin-top: 0.25rem;
-  }
-
-  .price-value {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 1rem;
-    white-space: nowrap;
-    color: var(--accent);
-  }
-
-  .price-note {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    color: var(--text-dim);
-    margin: 1.25rem 0 0;
-  }
-
-  .contact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 2rem;
-    margin-top: 1.5rem;
-  }
-
-  .contact-link {
-    font-family: var(--font-mono);
-    font-size: 0.9375rem;
-    text-decoration: none;
-    color: var(--text);
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-  }
-
-  .contact-link:hover {
-    color: var(--accent);
-  }
-
-  footer {
-    padding: 3rem 0;
-  }
-
-  .footer-inner {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    color: var(--text-dim);
-  }
-
-  .footer-inner a {
-    text-decoration: none;
-    color: var(--text-dim);
-  }
-
-  .footer-inner a:hover {
-    color: var(--text);
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 640px) {
-    section { padding: 4rem 0; }
-    .hero { padding-top: 4.5rem; padding-bottom: 4.5rem; }
-    .top-inner { padding: 1.25rem 1.5rem; }
-    .price-row { grid-template-columns: 1fr; gap: 0.375rem; }
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-  }
-</style>
+  </script>
 </head>
-<body>
+<body class="page-main">
+  <a class="skip-link" href="#main">До основного змісту</a>
 
-<header class="top">
-  <div class="top-inner">
-    <a class="brand" href="#top">GORIA<span class="tld">.CO</span></a>
-    <nav class="top-nav">
-      <a href="#what-i-do">What I do</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
+  <header class="hd" id="top">
+    <div class="shell hd__inner">
+      <a class="logo" href="/" aria-label="goria, на головну">goria.</a>
+
+      <nav class="hd__nav" aria-label="Основна навігація">
+        <a href="#how">Як це працює</a>
+        <a href="#tasks">Задачі для агента</a>
+        <a href="#about">Про мене</a>
+        <a href="#faq">Відповіді</a>
+      </nav>
+
+      <a class="hd__tg" href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Telegram</a>
+
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="mobile-nav" aria-label="Меню">
+        <span class="burger__bar" aria-hidden="true"></span>
+        <span class="burger__bar" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="mnav" id="mobile-nav" aria-label="Мобільна навігація" hidden>
+      <a href="#how">Як це працює</a>
+      <a href="#tasks">Задачі для агента</a>
+      <a href="#about">Про мене</a>
+      <a href="#faq">Відповіді</a>
+      <a href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Telegram</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main>
-  <section class="hero wrap" id="top">
-    <h1>AI-powered lead response for service businesses</h1>
-    <p class="lede">No incoming inquiry goes unanswered — with automated response, follow-up, reminders, and customer reactivation.</p>
-    <p class="lede-support">I help service businesses improve lead response, follow-up, booking, and customer reactivation through automated communication workflows, with monthly performance reporting.</p>
-  </section>
-
-  <section class="wrap" id="what-i-do">
-    <p class="section-label">What I do</p>
-    <h2>Every inquiry gets answered, tracked, and followed up.</h2>
-    <div class="body-copy">
-      <p>I provide customer communication and lead response services for service businesses. I design and operate automated workflows that respond to incoming inquiries, qualify requests, help manage bookings, send reminders, and reconnect with existing customers through opt-in channels.</p>
-      <p>The goal is to improve response speed, reduce missed inquiries, lower no-shows, and support conversion from message to booked customer. Each workflow is adapted to the client's communication process and provided remotely.</p>
-    </div>
-  </section>
-
-  <section class="wrap" id="pricing">
-    <p class="section-label">Pricing</p>
-    <h2>Straightforward, tiered by scope.</h2>
-    <div class="pricing-table">
-      <div class="price-row">
-        <div>
-          <div class="price-name">Pilot setup</div>
-          <span class="price-desc">2 weeks, one communication channel, baseline review and measured before/after results</span>
-        </div>
-        <div class="price-value">$300–500</div>
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="shell hero__copy">
+        <h1>Впроваджую ШІ-агентів<br>у бізнес-процеси</h1>
+        <p class="hero__lead">Для повторюваних завдань, які забирають час у команди</p>
+        <a class="btn" href="#tasks">Подивитися приклади</a>
       </div>
-      <div class="price-row">
-        <div>
-          <div class="price-name">Implementation and workflow setup</div>
-          <span class="price-desc">Configuration across selected channels, response flows, reminders, and reporting</span>
-        </div>
-        <div class="price-value">$1,200–2,000</div>
+
+      <div class="hero__media">
+        <img
+          src="assets/img/hero-1672.webp"
+          srcset="assets/img/hero-750.webp 750w, assets/img/hero-1100.webp 1100w, assets/img/hero-1672.webp 1672w"
+          sizes="100vw"
+          alt="Костянтин Горя" width="1672" height="941" fetchpriority="high">
       </div>
-      <div class="price-row">
-        <div>
-          <div class="price-name">Ongoing monthly support</div>
-          <span class="price-desc">Operation, monitoring, updates, and monthly performance reporting</span>
+    </section>
+
+    <!-- ============ 1. ЧАТ vs ШІ-АГЕНТ ============ -->
+    <section class="sec sec--how" id="how">
+      <div class="shell">
+        <div class="sec__head">
+          <h2>ШІ-агент не просто чат</h2>
+          <p>Чат відповідає на запитання.<br>Агент запускається від події та виконує дію.</p>
         </div>
-        <div class="price-value">from $250/mo</div>
+
+        <div class="cmp">
+          <div class="cmp__row">
+            <div class="cmp__chat">
+              <p class="eyebrow eyebrow--dim">Чат</p>
+              <p class="cmp__chat-text">Чекає на запит</p>
+            </div>
+            <div class="cmp__arrow" aria-hidden="true"><span class="dot">→</span></div>
+            <div class="cmp__agent">
+              <p class="eyebrow">ШІ-агент</p>
+              <p class="cmp__agent-title">Запускається від події</p>
+              <p class="cmp__agent-text">Коли надходить заявка, повідомлення або документ.</p>
+            </div>
+          </div>
+
+          <div class="cmp__row">
+            <div class="cmp__chat">
+              <p class="eyebrow eyebrow--dim">Чат</p>
+              <p class="cmp__chat-text">Дає відповідь</p>
+            </div>
+            <div class="cmp__arrow" aria-hidden="true"><span class="dot">→</span></div>
+            <div class="cmp__agent">
+              <p class="eyebrow">ШІ-агент</p>
+              <p class="cmp__agent-title">Виконує дію</p>
+              <p class="cmp__agent-text">Збирає дані, передає заявку або надсилає повідомлення.</p>
+            </div>
+          </div>
+
+          <div class="cmp__row cmp__row--last">
+            <div class="cmp__chat">
+              <p class="eyebrow eyebrow--dim">Чат</p>
+              <p class="cmp__chat-text">Залишається в діалозі</p>
+            </div>
+            <div class="cmp__arrow" aria-hidden="true"><span class="dot">→</span></div>
+            <div class="cmp__agent">
+              <p class="eyebrow">ШІ-агент</p>
+              <p class="cmp__agent-title">Діє самостійно</p>
+              <p class="cmp__agent-text">Працює за правилами. Передає команді лише те, що потребує рішення.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. ТРИ АГЕНТИ ============ -->
+    <section class="sec sec--tasks" id="tasks">
+      <div class="shell">
+        <div class="sec__head">
+          <h2>Які завдання можна передати ШІ-агентам</h2>
+          <p>Покажу на трьох прикладах: звернення, документи й аналітика.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <p class="tag tag--blue">Агент 1</p>
+            <h3>Працює зі зверненнями клієнтів</h3>
+            <ol class="steps">
+              <li><span class="steps__n">01</span><span class="steps__t">Клієнт бачить рекламу й питає про ціну</span></li>
+              <li><span class="steps__n">02</span><span class="steps__t">Агент відповідає й уточнює, що саме потрібно</span></li>
+              <li><span class="steps__n">03</span><span class="steps__t">Допомагає обрати послугу та залишити заявку</span></li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <p class="tag tag--green">Агент 2</p>
+            <h3>Опрацьовує документи</h3>
+            <ol class="steps">
+              <li><span class="steps__n">01</span><span class="steps__t">Постачальник надсилає рахунок</span></li>
+              <li><span class="steps__n">02</span><span class="steps__t">Агент витягує суму, дату й реквізити</span></li>
+              <li><span class="steps__n">03</span><span class="steps__t">Переносить дані в таблицю для перевірки</span></li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <p class="tag tag--yellow">Агент 3</p>
+            <h3>Пояснює аналітику</h3>
+            <ol class="steps">
+              <li><span class="steps__n">01</span><span class="steps__t">Дані зберігаються в різних системах</span></li>
+              <li><span class="steps__n">02</span><span class="steps__t">Агент збирає їх і порівнює показники</span></li>
+              <li><span class="steps__n">03</span><span class="steps__t">Власник отримує один зрозумілий звіт</span></li>
+            </ol>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. СУПРОВІД ============ -->
+    <section class="sec sec--care">
+      <div class="shell">
+        <div class="sec__head">
+          <h2>Я відповідаю за роботу агента</h2>
+          <p>Налаштовую і тестую перед запуском. Супроводжую та покращую під час роботи.</p>
+        </div>
+
+        <div class="care">
+          <div class="care__aside">
+            <p class="care__claim">Я поруч<br>від запуску<br>і в щоденній роботі</p>
+          </div>
+          <div class="care__list">
+            <div class="care__item">
+              <span class="care__n">01</span>
+              <div>
+                <p class="care__title">Запускаю</p>
+                <p class="care__text">Налаштовую агента, підключаю потрібні системи та тестую сценарії.</p>
+              </div>
+            </div>
+            <div class="care__item">
+              <span class="care__n">02</span>
+              <div>
+                <p class="care__title">Супроводжую</p>
+                <p class="care__text">Стежу за роботою, перевіряю результат і швидко виправляю помилки.</p>
+              </div>
+            </div>
+            <div class="care__item">
+              <span class="care__n">03</span>
+              <div>
+                <p class="care__title">Покращую</p>
+                <p class="care__text">Оновлюю правила й адаптую агента, коли змінюються ваші процеси.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. КЕЙС СТОМАТОЛОГІЇ ============ -->
+    <section class="sec sec--case">
+      <div class="shell">
+        <div class="sec__head">
+          <p class="eyebrow eyebrow--dim">Приклад ШІ-асистента для стоматології</p>
+          <h2>Коли реклама працює, а відповісти нікому</h2>
+          <p>Перевірив, як стоматології з активною рекламою відповідають на звернення після завершення робочого дня.</p>
+        </div>
+
+        <div class="case">
+          <div class="case__top">
+            <div class="case__what">
+              <p class="eyebrow eyebrow--dim">Що я перевірив</p>
+              <p class="case__what-text">Увечері я написав 10 стоматологіям з активною рекламою у Facebook та Instagram.</p>
+            </div>
+            <div class="case__stats">
+              <div class="stat">
+                <p class="stat__n">10</p>
+                <p class="stat__l">надісланих повідомлень</p>
+              </div>
+              <div class="stat">
+                <p class="stat__n">0</p>
+                <p class="stat__l">відповідей того ж вечора</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="case__bottom">
+            <p class="eyebrow eyebrow--dim case__how">З ШІ-асистентом це може працювати так</p>
+            <div class="flow">
+              <div class="flow__col">
+                <p class="eyebrow eyebrow--accent">Увечері</p>
+                <p class="flow__title">ШІ-асистент підхоплює звернення</p>
+                <p class="flow__text">Відповідає пацієнту, уточнює запит, показує вільний час і зберігає заявку в онлайн-таблиці.</p>
+              </div>
+              <div class="flow__arrow" aria-hidden="true"><span class="dot">→</span></div>
+              <div class="flow__col">
+                <p class="eyebrow">Вранці</p>
+                <p class="flow__title">Адміністратор продовжує роботу</p>
+                <p class="flow__text">Зв'язується з пацієнтом, підтверджує запис і вручну вносить його в календар та CRM.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case__foot">
+          <p class="case__note">Демо працює на даних вигаданої стоматології Goria Dental.</p>
+          <a class="btn" href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Відкрити демо в Telegram</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. ПРО МЕНЕ ============ -->
+    <section class="sec sec--about" id="about">
+      <div class="shell">
+        <div class="sec__head">
+          <h2>Спочатку вивчаю ваш бізнес. Потім впроваджую ШІ-агента.</h2>
+          <p>Починаю з одного повторюваного процесу, який можна автоматизувати та оцінити за результатом.</p>
+        </div>
+
+        <div class="about">
+          <div class="about__principles">
+            <div class="pr">
+              <span class="pr__ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+              </span>
+              <p class="pr__title">Кожен займається своєю справою</p>
+              <p class="pr__text">Ви керуєте бізнесом і командою. Я відповідаю за впровадження, контроль та роботу агента.</p>
+            </div>
+            <div class="pr">
+              <span class="pr__ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.3 7 10.7 16.3M16.7 7 13.3 16.3M7.5 6h9"/></svg>
+              </span>
+              <p class="pr__title">Починаємо з конкретного завдання</p>
+              <p class="pr__text">Обираємо один повторюваний процес із зрозумілим результатом. Спочатку доводимо його до робочого стану, потім масштабуємо.</p>
+            </div>
+            <div class="pr">
+              <span class="pr__ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M11 20V4M18 20v-7"/><path d="M3 20h18"/></svg>
+              </span>
+              <p class="pr__title">Рішення приймаємо за цифрами</p>
+              <p class="pr__text">Заздалегідь визначаємо, що вимірюємо. Якщо агент не приносить бізнесу користі, змінюємо підхід або зупиняємо роботу.</p>
+            </div>
+          </div>
+
+          <figure class="about__photo">
+            <img
+              src="assets/img/hero-1100.webp"
+              srcset="assets/img/hero-750.webp 750w, assets/img/hero-1100.webp 1100w, assets/img/hero-1672.webp 1672w"
+              sizes="(min-width: 900px) 46vw, 100vw"
+              alt="Костянтин Горя" width="1672" height="941" loading="lazy">
+            <figcaption class="about__card">
+              <p class="about__name">Костянтин Горя</p>
+              <p class="about__bio">Понад 10 років працюю з маркетингом, продажами, залученням клієнтів та аналітикою. Цей досвід допомагає мені перетворювати повторювані процеси на керовану автономну роботу ШІ-агентів.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. FAQ ============ -->
+    <section class="sec sec--faq" id="faq">
+      <div class="shell">
+        <div class="sec__head">
+          <h2>Відповіді на запитання</h2>
+        </div>
+
+        <div class="faq">
+          <div class="faq__item">
+            <h3>У нас уже був бот. Що буде інакше?</h3>
+            <p>ШІ-агент не відповідає на все підряд. Він виконує конкретне завдання за правилами вашого бізнесу, а складні випадки передає людині.</p>
+          </div>
+          <div class="faq__item">
+            <h3>Що, якщо агент напише клієнту щось зайве?</h3>
+            <p>До запуску визначаємо, на що агент відповідає сам, а що одразу передає людині. Усе нестандартне, чутливе або медичне передається людині, а перші діалоги я перевіряю особисто.</p>
+          </div>
+          <div class="faq__item">
+            <h3>ШІ-агент замінить адміністратора?</h3>
+            <p>Ні. Він бере на себе повторювані звернення й дії, а команді передає випадки, де потрібне рішення людини.</p>
+          </div>
+          <div class="faq__item">
+            <h3>З якими каналами може працювати ШІ-асистент?</h3>
+            <p>ШІ-асистент може приймати звернення із сайту, форм і месенджерів. Перед стартом я перевіряю, які саме канали можна підключити у вашому випадку.</p>
+          </div>
+          <div class="faq__item faq__item--last">
+            <h3>Як зрозуміти, чи потрібен нам ШІ-агент?</h3>
+            <p>Якщо команда щодня відповідає на однакові запити, переносить дані вручну або відкладає повторювані завдання, варто перевірити один із цих процесів. Якщо обсяг замалий, я скажу про це до старту.</p>
+          </div>
+
+          <p class="faq__more">Залишилося запитання? <a href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Напишіть мені в Telegram</a></p>
+          <a class="btn faq__btn" href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Напишіть мені в Telegram</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. ФІНАЛЬНА CTA ============ -->
+    <section class="cta-wrap">
+      <div class="cta">
+        <p class="eyebrow eyebrow--dim">Наступний крок</p>
+        <h2>Знайдемо перше завдання<br>для ШІ-агента</h2>
+        <p class="cta__lead">Кілька запитань допоможуть побачити, яку саме рутину варто віддати ШІ-агенту.</p>
+        <a class="btn" href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Отримати безкоштовний розбір</a>
+        <p class="cta__note">Розбір надішлю протягом трьох робочих днів.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="ft">
+    <div class="shell">
+      <div class="ft__top">
+        <p class="logo">goria.</p>
+        <nav class="ft__nav" aria-label="Навігація в підвалі">
+          <a href="#how">Як це працює</a>
+          <a href="#tasks">Задачі для агента</a>
+          <a href="#about">Про мене</a>
+          <a href="#faq">Відповіді</a>
+        </nav>
+        <div class="ft__tg">
+          <a href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+
+      <hr class="ft__rule">
+
+      <div class="ft__bottom">
+        <p class="ft__copy">© 2026 goria.</p>
+        <div class="ft__legal">
+          <a href="privacy.html">Політика конфіденційності</a>
+          <a href="terms.html">Умови користування</a>
+        </div>
+        <div class="ft__up">
+          <a href="#top">Вгору ↑</a>
+        </div>
       </div>
     </div>
-    <p class="price-note">Pilot fee is credited toward the first month of service.</p>
-  </section>
+  </footer>
 
-  <section class="wrap" id="about">
-    <p class="section-label">About</p>
-    <h2>Kostiantyn Goria</h2>
-    <div class="body-copy">
-      <p>I'm an independent consultant helping service businesses improve customer communication, lead response, and follow-up through automated workflows.</p>
-      <p>I work remotely from Ukraine and support clients on a project or monthly service basis.</p>
-    </div>
-  </section>
+  <script>
+    (function () {
+      var burger = document.getElementById('burger');
+      var nav = document.getElementById('mobile-nav');
+      if (!burger || !nav) return;
 
-  <section class="wrap" id="contact">
-    <p class="section-label">Contact</p>
-    <h2>Get in touch</h2>
-    <div class="contact-row">
-      <a class="contact-link" href="mailto:kostya.gorya@gmail.com">kostya.gorya@gmail.com</a>
-      <a class="contact-link" href="https://t.me/Goria_Konstantin">Telegram</a>
-    </div>
-  </section>
-</main>
+      var closeTimer;
+      var openRaf1, openRaf2;
 
-<footer>
-  <div class="footer-inner">
-    <span>Services provided by Kostiantyn Goria, independent consultant based in Ukraine.</span>
-    <div class="footer-links">
-      <a href="terms.html">Terms</a>
-      <a href="privacy.html">Privacy</a>
-    </div>
-  </div>
-</footer>
+      // Реальна тривалість переходу береться з CSS, а не дублюється числом:
+      // у reduced-motion вона стискається до ~0ms, і таймер це враховує.
+      function panelDuration() {
+        var v = getComputedStyle(nav).transitionDuration.split(',')[0].trim();
+        var ms = v.indexOf('ms') > -1 ? parseFloat(v) : parseFloat(v) * 1000;
+        return isNaN(ms) ? 0 : ms;
+      }
 
+      function setOpen(open) {
+        // скасовуємо все відкладене з попереднього перемикання,
+        // інакше швидкий подвійний клік лишає body заблокованим
+        clearTimeout(closeTimer);
+        cancelAnimationFrame(openRaf1);
+        cancelAnimationFrame(openRaf2);
+
+        burger.setAttribute('aria-expanded', String(open));
+
+        // ховаємо від скрінрідера те, що перекрите панеллю
+        var main = document.getElementById('main');
+        var foot = document.querySelector('.ft');
+        [main, foot].forEach(function (el) {
+          if (!el) return;
+          if (open) el.setAttribute('aria-hidden', 'true');
+          else el.removeAttribute('aria-hidden');
+        });
+
+        if (open) {
+          nav.hidden = false;
+          // даємо браузеру намалювати стартовий стан, щоб transition спрацював
+          openRaf1 = requestAnimationFrame(function () {
+            openRaf2 = requestAnimationFrame(function () {
+              document.body.classList.add('is-nav-open');
+            });
+          });
+        } else {
+          document.body.classList.remove('is-nav-open');
+          // ховаємо лише після завершення анімації виїзду назад
+          closeTimer = setTimeout(function () {
+            nav.hidden = true;
+          }, panelDuration());
+        }
+      }
+
+      burger.addEventListener('click', function () {
+        setOpen(burger.getAttribute('aria-expanded') !== 'true');
+      });
+
+      nav.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') setOpen(false);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (burger.getAttribute('aria-expanded') !== 'true') return;
+
+        if (e.key === 'Escape') {
+          setOpen(false);
+          burger.focus();
+          return;
+        }
+
+        // Утримуємо фокус усередині відкритого меню: за панеллю лежить
+        // контент, який візуально закритий, але лишається фокусованим.
+        if (e.key === 'Tab') {
+          var items = [burger].concat(
+            Array.prototype.slice.call(nav.querySelectorAll('a[href]'))
+          );
+          var first = items[0];
+          var last = items[items.length - 1];
+
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          } else if (items.indexOf(document.activeElement) === -1) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      var mq = window.matchMedia('(min-width: 900px)');
+      function sync() { if (mq.matches) setOpen(false); }
+      // addEventListener — сучасні браузери, addListener — Safari до 14
+      if (mq.addEventListener) mq.addEventListener('change', sync);
+      else if (mq.addListener) mq.addListener(sync);
+    })();
+  </script>
 </body>
 </html>
