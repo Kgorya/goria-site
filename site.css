@@ -1005,7 +1005,13 @@ html:has(.page-main) { scroll-behavior: smooth; }
     transition: background 160ms ease-out;
   }
   .ft__nav a:hover { background: var(--c-surface); }
-  .ft__tg { text-align: right; }
+  .ft__tg {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+  }
   .ft__tg a {
     display: inline-flex;
     padding: 0 16px;
