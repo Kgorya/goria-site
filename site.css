@@ -336,7 +336,7 @@ html:has(.page-main) { scroll-behavior: smooth; }
   margin: 0 auto;
   max-width: 300px;
   font-weight: 800;
-  font-size: clamp(32px, 2.4vw + 24px, 44px);
+  font-size: clamp(32px, 2.4vw + 24px, 40px);
   line-height: 1.2;
   letter-spacing: -0.8px;
   text-wrap: balance;
@@ -830,7 +830,7 @@ html:has(.page-main) { scroll-behavior: smooth; }
 
   /* --- HERO --- */
   .hero__copy { padding-top: 56px; }
-  .hero h1 { max-width: 600px; line-height: 1.15; letter-spacing: -1.2px; }
+  .hero h1 { max-width: 600px; font-size: 44px; line-height: 1.15; letter-spacing: -1.2px; }
   .hero__lead { margin-top: 22px; }
   .hero__copy .btn { margin-top: 32px; width: auto; min-height: 56px; padding: 0 36px; }
 
