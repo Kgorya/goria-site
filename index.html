@@ -114,8 +114,8 @@
 
       <nav class="hd__nav" aria-label="Основна навігація">
         <a href="#how">Як це працює</a>
-        <a href="#tasks">Процеси</a>
         <a href="#about">Про мене</a>
+        <a href="#tasks">Процеси</a>
         <a href="#faq">Відповіді</a>
       </nav>
 
@@ -129,8 +129,8 @@
 
     <nav class="mnav" id="mobile-nav" aria-label="Мобільна навігація" hidden>
       <a href="#how">Як це працює</a>
-      <a href="#tasks">Процеси</a>
       <a href="#about">Про мене</a>
+      <a href="#tasks">Процеси</a>
       <a href="#faq">Відповіді</a>
       <a href="https://t.me/Goria_Konstantin" target="_blank" rel="noopener noreferrer">Telegram</a>
     </nav>
@@ -141,7 +141,7 @@
     <section class="hero">
       <div class="shell hero__copy">
         <h1>Автоматизація<br>бізнес-процесів</h1>
-        <p class="hero__lead">Менше ручної роботи, помилок і постійного контролю</p>
+        <p class="hero__lead">Знаходжу рутину, яка забирає час команди, і прибираю її. Де потрібно, працює ШІ. Де ні, звичайний код.</p>
         <a class="btn" href="#tasks">Подивитися процеси</a>
       </div>
 
@@ -205,42 +205,90 @@
       </div>
     </section>
 
+    <!-- ============ 5. ПРО МЕНЕ ============ -->
+    <section class="sec sec--about" id="about">
+      <div class="shell">
+        <div class="sec__head">
+          <h2>Спочатку процес. Потім технологія.</h2>
+          <p>Не кожному процесу потрібен ШІ. Рішення залежить від завдання, правил і ціни помилки.</p>
+        </div>
+
+        <div class="about">
+          <div class="about__principles">
+            <div class="pr">
+              <span class="pr__ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-7.5-4"/><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 7.5 4"/><path d="M19.5 3v4h-4"/><path d="M4.5 21v-4h4"/></svg>
+              </span>
+              <p class="pr__title">Звичайна автоматизація</p>
+              <p class="pr__text">Підходить, коли дії завжди виконуються за однаковими правилами. Наприклад, передати дані, створити задачу або оновити статус.</p>
+            </div>
+            <div class="pr">
+              <span class="pr__ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M4.9 7l2.8 2.8M16.3 14.2l2.8 2.8M3 12h4M17 12h4M4.9 17l2.8-2.8M16.3 9.8l2.8-2.8"/><circle cx="12" cy="12" r="2.5"/></svg>
+              </span>
+              <p class="pr__title">ШІ</p>
+              <p class="pr__text">Потрібен, коли система має зрозуміти зміст, проаналізувати інформацію, класифікувати звернення або підготувати відповідь.</p>
+            </div>
+            <div class="pr">
+              <span class="pr__ico" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+              </span>
+              <p class="pr__title">Людина</p>
+              <p class="pr__text">Залишається в процесі, коли рішення має високу ціну помилки або потребує особистої відповідальності.</p>
+            </div>
+          </div>
+
+          <figure class="about__photo">
+            <img
+              src="assets/img/about-1100.webp"
+              srcset="assets/img/about-750.webp 750w, assets/img/about-1100.webp 1100w, assets/img/about-1672.webp 1672w"
+              sizes="(min-width: 900px) 46vw, 100vw"
+              alt="Портрет Костянтина Горі — засновника goria." width="1672" height="836" loading="lazy">
+            <figcaption class="about__card">
+              <p class="about__name">Костянтин Горя</p>
+              <p class="about__bio">Понад 10 років працюю з маркетингом, продажами, залученням клієнтів та аналітикою. Цей досвід допомагає мені бачити процес цілком, знаходити зайву ручну роботу та створювати системи, якими команда користується щодня.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ 2. ТРИ АГЕНТИ ============ -->
     <section class="sec sec--tasks" id="tasks">
       <div class="shell">
         <div class="sec__head">
-          <h2>Які процеси можна автоматизувати</h2>
-          <p>Починаємо з одного повторюваного процесу, який має зрозумілий початок і результат.</p>
+          <h2>Три приклади рутини і чим її прибрати</h2>
+          <p>Під кожне завдання свій інструмент. Десь потрібен ШІ. Десь вистачає звичайного коду.</p>
         </div>
 
         <div class="cards">
           <article class="card">
-            <p class="tag tag--blue">Процес 1</p>
-            <h3>Обробка звернень клієнтів</h3>
+            <p class="tag tag--blue">ШІ</p>
+            <h3>Заявки після робочого дня</h3>
             <ol class="steps">
-              <li><span class="steps__n">01</span><span class="steps__t">Клієнт залишає звернення</span></li>
-              <li><span class="steps__n">02</span><span class="steps__t">Система збирає потрібну інформацію</span></li>
-              <li><span class="steps__n">03</span><span class="steps__t">Заявка зберігається та передається відповідальній людині</span></li>
+              <li><span class="steps__n">01</span><span class="steps__t">О 22:40 клієнт пише в Instagram або Telegram</span></li>
+              <li><span class="steps__n">02</span><span class="steps__t">Бот розуміє запит, відповідає і пропонує вільний час</span></li>
+              <li><span class="steps__n">03</span><span class="steps__t">Зранку менеджер бачить готову заявку в таблиці</span></li>
             </ol>
           </article>
 
           <article class="card">
-            <p class="tag tag--green">Процес 2</p>
-            <h3>Робота з документами</h3>
+            <p class="tag tag--green">Код + ШІ</p>
+            <h3>Рахунки з пошти в таблицю</h3>
             <ol class="steps">
-              <li><span class="steps__n">01</span><span class="steps__t">Надходить рахунок або інший документ</span></li>
-              <li><span class="steps__n">02</span><span class="steps__t">Система витягує та перевіряє потрібні дані</span></li>
-              <li><span class="steps__n">03</span><span class="steps__t">Інформація потрапляє в таблицю або облікову систему</span></li>
+              <li><span class="steps__n">01</span><span class="steps__t">На пошту приходить рахунок у PDF</span></li>
+              <li><span class="steps__n">02</span><span class="steps__t">ШІ читає документ. Код перевіряє суму та реквізити</span></li>
+              <li><span class="steps__n">03</span><span class="steps__t">Рядок з’являється в таблиці. Сумнівне йде на перевірку людині</span></li>
             </ol>
           </article>
 
           <article class="card">
-            <p class="tag tag--yellow">Процес 3</p>
-            <h3>Підготовка звітів</h3>
+            <p class="tag tag--yellow">Звичайний код</p>
+            <h3>Щоденний звіт власнику</h3>
             <ol class="steps">
-              <li><span class="steps__n">01</span><span class="steps__t">Дані зберігаються в різних системах</span></li>
-              <li><span class="steps__n">02</span><span class="steps__t">Система збирає та порівнює показники</span></li>
-              <li><span class="steps__n">03</span><span class="steps__t">Власник отримує один зрозумілий звіт</span></li>
+              <li><span class="steps__n">01</span><span class="steps__t">Продажі в CRM, реклама в кабінеті, оплати в банку</span></li>
+              <li><span class="steps__n">02</span><span class="steps__t">Щоранку код збирає цифри в одне місце</span></li>
+              <li><span class="steps__n">03</span><span class="steps__t">О 9:00 власник отримує звіт у Telegram. ШІ тут не потрібен</span></li>
             </ol>
           </article>
         </div>
@@ -338,54 +386,6 @@
       </div>
     </section>
 
-    <!-- ============ 5. ПРО МЕНЕ ============ -->
-    <section class="sec sec--about" id="about">
-      <div class="shell">
-        <div class="sec__head">
-          <h2>Спочатку процес. Потім технологія.</h2>
-          <p>Не кожному процесу потрібен ШІ. Рішення залежить від завдання, правил і ціни помилки.</p>
-        </div>
-
-        <div class="about">
-          <div class="about__principles">
-            <div class="pr">
-              <span class="pr__ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9 9 9 0 0 1-7.5-4"/><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 7.5 4"/><path d="M19.5 3v4h-4"/><path d="M4.5 21v-4h4"/></svg>
-              </span>
-              <p class="pr__title">Звичайна автоматизація</p>
-              <p class="pr__text">Підходить, коли дії завжди виконуються за однаковими правилами. Наприклад, передати дані, створити задачу або оновити статус.</p>
-            </div>
-            <div class="pr">
-              <span class="pr__ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M4.9 7l2.8 2.8M16.3 14.2l2.8 2.8M3 12h4M17 12h4M4.9 17l2.8-2.8M16.3 9.8l2.8-2.8"/><circle cx="12" cy="12" r="2.5"/></svg>
-              </span>
-              <p class="pr__title">ШІ</p>
-              <p class="pr__text">Потрібен, коли система має зрозуміти зміст, проаналізувати інформацію, класифікувати звернення або підготувати відповідь.</p>
-            </div>
-            <div class="pr">
-              <span class="pr__ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B3B57" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
-              </span>
-              <p class="pr__title">Людина</p>
-              <p class="pr__text">Залишається в процесі, коли рішення має високу ціну помилки або потребує особистої відповідальності.</p>
-            </div>
-          </div>
-
-          <figure class="about__photo">
-            <img
-              src="assets/img/about-1100.webp"
-              srcset="assets/img/about-750.webp 750w, assets/img/about-1100.webp 1100w, assets/img/about-1672.webp 1672w"
-              sizes="(min-width: 900px) 46vw, 100vw"
-              alt="Портрет Костянтина Горі — засновника goria." width="1672" height="836" loading="lazy">
-            <figcaption class="about__card">
-              <p class="about__name">Костянтин Горя</p>
-              <p class="about__bio">Понад 10 років працюю з маркетингом, продажами, залученням клієнтів та аналітикою. Цей досвід допомагає мені бачити процес цілком, знаходити зайву ручну роботу та створювати системи, якими команда користується щодня.</p>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ 6. FAQ ============ -->
     <section class="sec sec--faq" id="faq">
       <div class="shell">
@@ -440,8 +440,8 @@
         <p class="logo">goria.</p>
         <nav class="ft__nav" aria-label="Навігація в підвалі">
           <a href="#how">Як це працює</a>
-          <a href="#tasks">Процеси</a>
           <a href="#about">Про мене</a>
+          <a href="#tasks">Процеси</a>
           <a href="#faq">Відповіді</a>
         </nav>
         <div class="ft__tg">
