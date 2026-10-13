@@ -1,0 +1,18 @@
+[
+  {
+    "title": "AI-асистент для стоматології",
+    "url": "/products/dental-assistant/",
+    "category": "Стоматології · демо готове",
+    "description": "Відповідає пацієнтам, допомагає обрати час і передає заявку адміністратору.",
+    "image": "/assets/img/clinic-reception.jpg",
+    "order": 2
+  },
+  {
+    "title": "Передзамовлення для Shopify",
+    "url": "/products/shopify-preorder/",
+    "category": "E-commerce · власне впровадження",
+    "description": "Зберігає запит на товар у Shopify та повідомляє команду в Telegram.",
+    "image": "/assets/img/digital-studio.jpg",
+    "order": 1
+  }
+]
