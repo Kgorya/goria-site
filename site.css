@@ -34,8 +34,8 @@ p:last-child{margin-bottom:0}
 .desktop-nav{display:flex;align-items:center;gap:34px}
 .desktop-nav a{font-size:16px;color:var(--body);padding-block:12px}
 .desktop-nav a[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:#b3b3b3}
-.header-contact{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;border-radius:4px;background:var(--surface);border:1px solid var(--line);color:var(--ink);font-size:14px;font-weight:500;line-height:1.4;text-decoration:none;transition:background .16s ease,border-color .16s ease}
-.header-contact:hover{background:#ededec;color:var(--ink);border-color:#ccc}
+.header-contact{display:inline-flex;align-items:center;justify-content:center;padding:9px 18px;border-radius:4px;background:var(--surface);border:none;color:var(--ink);font-size:14px;font-weight:500;line-height:1.4;text-decoration:none;transition:background .16s ease}
+.header-contact:hover{background:#ededec;color:var(--ink)}
 .menu-toggle{display:none;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:46px;height:46px;background:#fff;border:1px solid var(--line);border-radius:5px}
 .menu-toggle span{display:block;width:20px;height:2px;background:var(--ink)}
 .menu-toggle[aria-expanded=true] span:first-child{transform:translateY(4px) rotate(45deg)}
