@@ -9,6 +9,8 @@ const DOMAIN = 'https://goria.co';
 const assetVersion = file => createHash('sha256').update(fs.readFileSync(path.join(ROOT, file))).digest('hex').slice(0, 12);
 const NAVIGATION = [['products', '/products/', 'Рішення'], ['cases', '/cases/', 'Кейси'], ['about', '/about/', 'Про мене'], ['blog', '/blog/', 'Блог']];
 const CONTACT = 'https://t.me/konstantin_goria_bot';
+const PERSONAL_TG = 'https://t.me/Goria_Konstantin';
+const CHANNEL_TG = 'https://t.me/konstantin_goria';
 const botUrl = source => `${CONTACT}?start=test_${source}`;
 const cleanHeading = value => String(value).replace(/[.:—]/g, ' ').replace(/\s+/g, ' ').trim();
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -27,21 +29,21 @@ function footer() {
   return `<footer class="site-footer"><div class="shell"><div class="footer-main">
   <div><a class="logo" href="/">goria.</a><p>Костянтин Горя<br>Швидка обробка заявок та лідів з реклами</p></div>
   <nav aria-label="Навігація в підвалі">${NAVIGATION.map(([,url,label]) => `<a href="${url}">${label}</a>`).join('')}</nav>
-  <div class="footer-contacts"><a href="${botUrl('footer')}" target="_blank" rel="noopener noreferrer">Telegram-бот →</a><a href="https://t.me/konstantin_goria" target="_blank" rel="noopener noreferrer">Telegram-канал →</a><a href="mailto:kostya.gorya@gmail.com" target="_blank" rel="noopener noreferrer">kostya.gorya@gmail.com</a></div>
+  <div class="footer-contacts"><a href="${botUrl('footer')}" target="_blank" rel="noopener noreferrer">Telegram-бот →</a><a href="${CHANNEL_TG}" target="_blank" rel="noopener noreferrer">Telegram-канал →</a><a href="mailto:kostya.gorya@gmail.com" target="_blank" rel="noopener noreferrer">kostya.gorya@gmail.com</a></div>
   </div><div class="footer-bottom"><span>© ${new Date().getFullYear()} Костянтин Горя</span><a href="/privacy.html">Конфіденційність</a><a href="/terms.html">Умови співпраці</a></div></div></footer>
   <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title"><div class="contact-dialog-inner">
     <button class="dialog-close" type="button" aria-label="Закрити">×</button>
     <h2 id="contact-dialog-title">Обговоримо вашу задачу</h2><p>Оберіть зручний формат зв’язку</p>
     <a class="button" id="dialog-test" href="${botUrl('contact')}" target="_blank" rel="noopener noreferrer">Пройти швидкий аудит →</a>
     <p class="note">Вісім запитань про бізнес і рекомендація за відповідями</p>
-    <a class="text-link" href="https://t.me/konstantin_goria" target="_blank" rel="noopener noreferrer">Написати Костянтину напряму →</a>
+    <a class="text-link" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Написати Костянтину напряму →</a>
     <p class="note">Для швидких запитань або особистого обговорення</p>
     <a class="email-fallback" id="dialog-email" href="mailto:kostya.gorya@gmail.com" target="_blank" rel="noopener noreferrer">Без Telegram · написати на email</a>
   </div></dialog><script src="/site.js?v=${assetVersion('site.js')}" defer></script>`;
 }
 function layout({title,description,url,active='',body,image='/assets/img/hero-1100.webp',type='website',schema=null}) {body = body.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>\s*<p class="lead">[\s\S]*?<\/p>)/g, '<div class="intro-copy">$1</div>'); body = body.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/g, (_, open, inner, close) => open + inner.replace(/(^|>)([^<]+)/g, (__, prefix, text) => prefix + cleanHeading(text)) + close).replace(/—/g, ','); body = body.replace(/<a\b([^>]*\bhref="(?:https?:\/\/|mailto:)[^>]+)>/g, (_, attrs) => '<a' + attrs.replace(/\s(?:target|rel)="[^"]*"/g, '') + ' target="_blank" rel="noopener noreferrer">'); return `<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} | Костянтин Горя · Goria</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index, follow"><link rel="canonical" href="${DOMAIN}${url}"><meta property="og:type" content="${type}"><meta property="og:locale" content="uk_UA"><meta property="og:site_name" content="Goria"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${DOMAIN}${url}"><meta property="og:image" content="${DOMAIN}${image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/site.css?v=${assetVersion('site.css')}">${schema ? `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}</head><body>${header(active)}<main id="main">${body}</main>${footer()}</body></html>`;}
 function contactBlock(title = 'З чого почати', text = 'Оберіть зручний формат. Швидка діагностика процесів або пряме обговорення вашої задачі.', source = 'contact') {
- return `<section class="section-surface" id="contact"><div class="section contact-section shell"><div class="cta-layout"><div class="cta-intro"><h2>${title}</h2><p class="lead">${text}</p></div><div class="cta-cards"><div class="cta-card"><div><h3>Швидкий аудит</h3><p>8 запитань про ваш процес. Покаже вузькі місця у відповідях і втрати заявок.</p></div><a class="text-link" href="${botUrl(source)}" target="_blank" rel="noopener noreferrer">Пройти аудит →</a></div><div class="cta-card"><div><h3>Особисте обговорення</h3><p>Прямий діалог зі мною. Розбираємо вашу задачу та оцінюємо доцільність пілоту.</p></div><a class="text-link" href="https://t.me/konstantin_goria" target="_blank" rel="noopener noreferrer">Написати особисто →</a></div></div></div></div></section>`;
+ return `<section class="section-surface" id="contact"><div class="section contact-section shell"><div class="cta-layout"><div class="cta-intro"><h2>${title}</h2><p class="lead">${text}</p></div><div class="cta-cards"><div class="cta-card"><div><h3>Швидкий аудит</h3><p>8 запитань про ваш процес. Покаже вузькі місця у відповідях і втрати заявок.</p></div><a class="text-link" href="${botUrl(source)}" target="_blank" rel="noopener noreferrer">Пройти аудит →</a></div><div class="cta-card"><div><h3>Особисте обговорення</h3><p>Прямий діалог зі мною. Розбираємо вашу задачу та оцінюємо доцільність пілоту.</p></div><a class="text-link" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Написати особисто →</a></div></div></div></div></section>`;
 }
 function card(item) {
   return `<article class="journal-card">
