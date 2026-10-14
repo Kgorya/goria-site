@@ -8,10 +8,10 @@
     "order": 2
   },
   {
-    "title": "Передзамовлення для Shopify",
-    "url": "/products/shopify-preorder/",
+    "title": "AI-агент для інтернет-магазину",
+    "url": "/products/ecommerce-agent/",
     "category": "E-commerce · власне впровадження",
-    "description": "Зберігає запит на товар у Shopify та сповіщає менеджерів у Telegram, не втрачаючи клієнтів.",
+    "description": "Працює з вашою CRM, стежить за обробкою заявок, ставить нагадування та надсилає листи клієнтам.",
     "image": "/assets/img/digital-studio.jpg",
     "order": 1
   }
