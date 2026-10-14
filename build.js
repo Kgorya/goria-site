@@ -19,9 +19,9 @@ function header(active = '') {
   <header class="site-header" id="top"><div class="shell header-inner">
     <a class="logo" href="/" aria-label="Goria, на головну">goria.</a>
     <nav class="desktop-nav" aria-label="Основна навігація">${nav}</nav>
-    <a class="header-contact" href="${botUrl('header')}" target="_blank" rel="noopener noreferrer">Безкоштовний аудит ↗</a>
+    <a class="header-contact" href="${botUrl('header')}" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a>
     <button class="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-nav" hidden><span></span><span></span></button>
-  </div><nav class="mobile-nav shell" id="mobile-nav" aria-label="Мобільна навігація">${nav}<a href="${botUrl('menu')}" target="_blank" rel="noopener noreferrer">Безкоштовний аудит ↗</a></nav></header>`;
+  </div><nav class="mobile-nav shell" id="mobile-nav" aria-label="Мобільна навігація">${nav}<a href="${botUrl('menu')}" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a></nav></header>`;
 }
 function footer() {
   return `<footer class="site-footer"><div class="shell"><div class="footer-main">
