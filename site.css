@@ -44,6 +44,7 @@ p:last-child{margin-bottom:0}
 .skip-link{position:fixed;left:20px;top:12px;z-index:30;background:var(--ink);color:#fff;padding:12px 20px;transform:translateY(-180%);font-size:16px}
 .skip-link:focus{transform:none;color:#fff}
 .hero-block{width:100%;background:var(--surface);border-bottom:1px solid var(--line)}
+.section-surface{width:100%;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(32px,5vw,76px);align-items:center;padding-block:clamp(48px,6vw,80px)}
 .hero-copy h1{max-width:14ch}
 .hero-portrait{display:block;overflow:hidden;border-radius:6px;background:#e8e8e8}
