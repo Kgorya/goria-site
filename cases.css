@@ -1,0 +1,329 @@
+/* ============================================================
+   goria. — Чистий формат статей та каталогів (Workflow style)
+   - Типографіка: EB Garamond (заголовки, легкі) + Inter (текст)
+   - Палітра: чистий білий, м'який графіт, без моно-надзаголовків
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --c-white: #ffffff;
+  --c-surface: #fafafa;
+  --c-surface-2: #f4f4f4;
+  --c-line: #ebebeb;
+  --c-line-dark: #111111;
+
+  --c-ink: #111111;
+  --c-ink-2: #333333;
+  --c-dim: #666666;
+  --c-dim-2: #888888;
+
+  --font-serif: "EB Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --shell-max: 1080px;
+  --prose-max: 760px;
+  --radius-sm: 4px;
+}
+
+body.page-cases-root {
+  margin: 0;
+  min-width: 320px;
+  background: var(--c-white);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.prose-shell {
+  width: 100%;
+  max-width: var(--prose-max);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ============================================================
+   КАТАЛОГИ ТА СТАТТІ
+   ============================================================ */
+
+.catalog-hero {
+  padding: clamp(56px, 7vw, 88px) 0 40px;
+  text-align: center;
+}
+
+.catalog-hero__title {
+  margin: 0 auto 16px;
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.catalog-hero__lead {
+  margin: 0 auto 28px;
+  font-size: 16px;
+  color: var(--c-dim);
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+.sec-catalog {
+  padding: 40px 0 80px;
+}
+
+/* Хідер статті */
+.article-header {
+  padding: clamp(48px, 6vw, 80px) 0 32px;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--c-dim-2);
+  margin-bottom: 20px;
+}
+.breadcrumbs a:hover {
+  color: var(--c-ink);
+}
+
+.article-title {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--c-ink);
+}
+
+.lead {
+  font-size: 17px;
+  color: var(--c-dim);
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.article-meta-clean {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--c-dim-2);
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--c-line);
+}
+
+.article-lead-image {
+  margin: 32px 0 40px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+}
+.article-lead-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   ПРОЗА ТА ВМІСТ СТАТТІ
+   ============================================================ */
+
+.prose {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--c-ink-2);
+}
+
+.prose p {
+  margin: 0 0 22px;
+}
+
+.prose h2 {
+  margin: 48px 0 16px;
+  font-family: var(--font-serif);
+  font-size: clamp(24px, 3vw, 30px);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--c-ink);
+}
+
+.prose h3 {
+  margin: 36px 0 12px;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--c-ink);
+}
+
+.prose hr {
+  border: 0;
+  height: 1px;
+  background: var(--c-line);
+  margin: 44px 0;
+}
+
+.prose ul, .prose ol {
+  margin: 0 0 24px;
+  padding-left: 24px;
+}
+.prose li {
+  margin-bottom: 10px;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--c-ink);
+}
+
+/* Порівняльні блоки */
+.cmp-editorial {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 36px 0;
+}
+@media (min-width: 640px) {
+  .cmp-editorial {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cmp-col {
+  padding: 24px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  background: var(--c-surface);
+}
+
+.cmp-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--c-dim-2);
+  margin-bottom: 10px;
+}
+
+.cmp-col h4 {
+  margin: 0 0 10px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.cmp-col p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--c-dim);
+  line-height: 1.55;
+}
+
+/* Кроки рішення */
+.steps-editorial {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 36px 0;
+}
+
+.step-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  background: var(--c-white);
+}
+
+.step-num {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--c-dim-2);
+}
+
+.step-text h4 {
+  margin: 0 0 8px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+}
+.step-text p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--c-dim);
+}
+
+/* Callout */
+.callout-editorial {
+  padding: 24px 28px;
+  border-left: 2px solid var(--c-ink);
+  background: var(--c-surface);
+  margin: 36px 0;
+}
+.callout-editorial p {
+  margin: 0;
+  font-style: italic;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--c-ink);
+  line-height: 1.6;
+}
+
+/* Автор */
+.author-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+  background: var(--c-surface);
+  margin-top: 48px;
+}
+.author-card__photo {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+.author-card__info h3 {
+  margin: 0 0 4px;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+}
+.author-card__info p {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: var(--c-dim);
+}
+.author-card__info a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+/* Related */
+.related-section {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--c-line);
+}
+.related-heading {
+  margin: 0 0 28px;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+}

@@ -1,6 +1,6 @@
 {
   "name": "goria-site",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "goria.co static site and engineering teardowns",
   "scripts": {
     "build": "node build.js",
