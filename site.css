@@ -329,7 +329,7 @@ h3{font-size:24px}
 .cta-intro p{font-size:16px;line-height:1.65;max-width:40ch;margin:0}
 .cta-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .cta-card{background:#fff;border-radius:6px;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;min-height:160px}
-.cta-card h3{font-family:var(--sans);font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px;line-height:1.35}
+.cta-card h3{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px;line-height:1.4}
 .cta-card p{font-size:14px;line-height:1.55;color:var(--muted);margin:0 0 18px}
 .cta-card .text-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;line-height:1.4;color:var(--ink);text-decoration:none;padding:0}
 .cta-card .text-link:hover{color:var(--muted);text-decoration:none}
