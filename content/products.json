@@ -3,7 +3,7 @@
     "title": "AI-асистент для стоматології",
     "url": "/products/dental-assistant/",
     "category": "Стоматології · демо готове",
-    "description": "Відповідає пацієнтам за 30 секунд, консультує за послугами, допомагає обрати час і передає заявку адміністратору.",
+    "description": "Відповідає на запитання про послуги та ціни, уточнює запит пацієнта й передає заявку адміністратору.",
     "image": "/assets/img/clinic-reception.jpg",
     "order": 2
   },
@@ -11,7 +11,7 @@
     "title": "Передзамовлення для Shopify",
     "url": "/products/shopify-preorder/",
     "category": "E-commerce · власне впровадження",
-    "description": "Зберігає запит на товар у Shopify та миттєво сповіщає менеджерів у Telegram, не втрачаючи клієнтів.",
+    "description": "Зберігає запит на товар у Shopify та сповіщає менеджерів у Telegram, не втрачаючи клієнтів.",
     "image": "/assets/img/digital-studio.jpg",
     "order": 1
   }
