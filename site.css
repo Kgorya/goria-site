@@ -328,10 +328,11 @@ h3{font-size:24px}
 .cta-intro h2{font-size:32px;line-height:1.2;margin-bottom:14px}
 .cta-intro p{font-size:16px;line-height:1.65;max-width:40ch;margin:0}
 .cta-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.cta-card{background:#fff;border-radius:6px;padding:26px 22px;display:flex;flex-direction:column;justify-content:space-between;min-height:190px}
+.cta-card{background:#fff;border-radius:6px;padding:24px 22px;display:flex;flex-direction:column;justify-content:space-between;min-height:160px}
 .cta-card h3{font-family:var(--sans);font-size:18px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px;line-height:1.35}
-.cta-card p{font-size:14px;line-height:1.55;color:var(--muted);margin:0 0 20px}
-.cta-card .text-link{font-size:15px;font-weight:500;padding-block:4px;display:inline-flex;align-items:center}
+.cta-card p{font-size:14px;line-height:1.55;color:var(--muted);margin:0 0 18px}
+.cta-card .text-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:500;line-height:1.4;color:var(--ink);text-decoration:none;padding:0}
+.cta-card .text-link:hover{color:var(--muted);text-decoration:none}
 .contact-panel p{font-size:15px;max-width:46ch}
 .author{max-width:600px;margin-top:40px;padding-top:24px;grid-template-columns:64px minmax(0,1fr);gap:18px;align-items:center}
 .author img{width:64px;height:64px;border-radius:50%;object-position:50% 30%}
