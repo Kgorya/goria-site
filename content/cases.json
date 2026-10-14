@@ -1,0 +1,13 @@
+[
+  {
+    "type": "own",
+    "process": "Автоматизація",
+    "status": "Робоча система",
+    "title": "Передзамовлення у Baraka Store та LUX-A-PORTER",
+    "description": "Покупець залишає запит на товар. У Shopify створюється заявка, а команда отримує сповіщення в Telegram для подальшого зв’язку.",
+    "url": "/blog/shopify-preorder/",
+    "image": "/assets/img/digital-studio.jpg",
+    "imageAlt": "Робочий простір із ноутбуком та монітором",
+    "order": 1
+  }
+]

@@ -341,18 +341,27 @@ h3{font-size:24px}
 .resource-card h2,.start-panel h2{font-size:28px}.resource-card p{font-size:15px;max-width:42ch}
 .start-links a{font-size:22px}.start-links{gap:24px}
 .prose{font-size:16px;line-height:1.75}.prose h2{font-size:28px}.prose h3{font-size:24px}
-.case-feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center}
-.case-image{display:block;border-radius:5px;overflow:hidden}.case-image img{aspect-ratio:16/10;object-fit:cover}.case-feature p{max-width:42ch}
+.cases-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px}
+.case-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+.case-card-image{display:block;width:100%;margin-bottom:18px;border-radius:5px;overflow:hidden;background:var(--surface)}
+.case-card-image img{aspect-ratio:16/10;object-fit:cover;width:100%;display:block}
+.case-card .card-meta{font-size:14px;color:var(--muted);margin-bottom:10px}
+.case-card h3{font-size:26px;line-height:1.2;margin-bottom:12px}
+.case-card h3 a:hover{text-decoration:underline;text-decoration-thickness:1px}
+.case-card p{font-size:15px;line-height:1.65;margin-bottom:18px;color:var(--body);max-width:54ch}
+.case-card-notice{font-size:13px;line-height:1.5;color:var(--muted);margin-top:-6px;margin-bottom:14px}
+.case-card .text-link{margin-top:auto}
+.cases-empty{font-size:15px;line-height:1.6;color:var(--muted);margin:0;max-width:60ch}
 .principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:32px}.principles p{font-size:15px}
 .contact-dialog h2{font-size:28px}.contact-dialog p{font-size:15px}
-@media(max-width:1023px){.desktop-nav{gap:18px}.header-inner{gap:18px}.work-layout{gap:36px}.case-feature{gap:28px}.cta-layout{grid-template-columns:1fr;gap:32px}}
+@media(max-width:1023px){.desktop-nav{gap:18px}.header-inner{gap:18px}.work-layout{gap:36px}.cta-layout{grid-template-columns:1fr;gap:32px}}
 @media(max-width:767px){
  body{font-size:15px}.header-inner{min-height:60px}.mobile-nav{max-height:calc(100dvh - 60px)}
  h1,.hero-copy h1,.page-intro h1,.product-hero h1,.article-header h1{font-size:32px;line-height:1.16;max-width:24ch}
  h2,.about-layout h2{font-size:28px}h3{font-size:23px}
  .hero{padding-block:28px 36px;gap:24px}.hero-portrait img{aspect-ratio:1.5}.lead,.hero .lead,.article-header .lead{font-size:16px}
  .section{padding-block:38px}.section-tight{padding-top:10px}.section-heading p{font-size:15px}
- .latest-grid,.product-grid,.journal-grid,.work-layout,.delivery-grid,.case-feature,.principles{grid-template-columns:1fr;gap:28px}
+ .latest-grid,.product-grid,.journal-grid,.work-layout,.delivery-grid,.cases-grid,.principles{grid-template-columns:1fr;gap:28px}
  .cta-cards{grid-template-columns:1fr;gap:16px}.cta-card{min-height:auto;padding:20px 18px}
  .product-card h3,.journal-card h3,.latest-grid h3{font-size:25px}.product-card p,.journal-card p{font-size:15px}
  .work-steps h3{font-size:23px}.work-layout{gap:30px}.work-steps{gap:20px}.work-steps li+li{padding-top:20px}
@@ -362,7 +371,7 @@ h3{font-size:24px}
  .prose{font-size:16px}.prose h2{font-size:27px}.prose h3{font-size:23px}
  .author{grid-template-columns:52px minmax(0,1fr);gap:14px}.author img{width:52px;height:52px}.author h2{font-size:15px}.author p{font-size:14px}
  .resource-card h2{font-size:27px}.resource-card p{font-size:15px}.contact-dialog h2{font-size:27px}
- .principles{gap:24px}.delivery-grid{gap:10px}.case-feature h2{font-size:28px}
+ .principles{gap:24px}.delivery-grid{gap:10px}
 }
 @media(max-width:359px){h1,.hero-copy h1,.page-intro h1,.product-hero h1,.article-header h1{font-size:30px}.button{padding-inline:14px}}
 
