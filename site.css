@@ -450,71 +450,32 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
  .analytics-consent{inset:auto 12px 12px;padding:18px}
 }
 
-/* Audit landing page. All changes are scoped to this landing. */
-.audit-landing{padding-bottom:16px}
-.audit-hero{padding-top:30px;padding-bottom:40px}
-.audit-hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.85fr);gap:clamp(36px,5vw,72px);align-items:center}
-.audit-hero-copy{min-width:0}
+/* Audit landing. Uses the same heading, lead and button sizes as home. */
+.audit-hero{padding-block:48px 38px;text-align:center}
+.audit-hero .hero-copy{max-width:44rem;margin-inline:auto}
 .audit-hero .intro-copy{max-width:none}
-.audit-hero h1{font-size:clamp(38px,4.1vw,54px);line-height:1.08;max-width:18ch;margin-bottom:22px}
-.audit-hero .lead{font-size:18px;line-height:1.65;max-width:47ch;margin-bottom:24px;text-wrap:pretty}
-.audit-hero .actions{margin-top:0}
-.audit-hero .note{font-size:14px;margin:10px 0 0}
-.audit-preview{background:#f6f5f1;border:1px solid #e5e2d9;padding:30px 30px 24px;border-radius:3px;min-width:0}
-.audit-preview-label{font-size:13px;color:var(--muted);margin:0 0 24px}
-.audit-preview h2{font-size:29px;line-height:1.16;margin:0 0 16px;max-width:20ch}
-.audit-preview>p:not(.audit-preview-label):not(.audit-preview-caption){font-size:15px;line-height:1.65;margin-bottom:20px}
-.audit-preview-list{list-style:none;margin:0;padding:0;border-top:1px solid #dcd9d0}
-.audit-preview-list li{font-size:13px;line-height:1.5;padding:10px 0;border-bottom:1px solid #dcd9d0;display:flex;align-items:center;gap:12px;color:var(--body)}
-.audit-preview-list li::before{content:"";display:block;width:10px;height:10px;flex:0 0 10px;border:1px solid #a8a69d}
-.audit-preview .audit-preview-caption{font-size:12px;line-height:1.55;color:var(--muted);margin:18px 0 0}
-.audit-situations{padding-block:0 36px}
-.audit-situations-panel{background:var(--surface);padding:30px 32px 32px;border-radius:3px}
-.audit-situations .section-heading{margin-bottom:26px;max-width:36rem}
-.audit-situations .section-heading h2{font-size:32px;line-height:1.2;margin:0}
+.audit-hero .lead{margin-inline:auto;text-wrap:pretty}
+.audit-landing .actions{justify-content:center}
+.audit-hero .note{margin:12px 0 0}
+.audit-situations{padding-bottom:32px}
+.audit-situations-panel{background:var(--surface);padding:28px 32px 30px;border-radius:3px}
+.audit-situations-panel>h2{text-align:center;margin-bottom:28px}
 .audit-situations .principles{margin:0;gap:24px}
-.audit-situations .principles>div+div{border-left:1px solid #dcdcdc;padding-left:24px}
-.audit-situations .principles h3{font-size:23px;line-height:1.22;margin-bottom:12px;text-wrap:pretty}
-.audit-situations .principles p{font-size:15px;line-height:1.65;margin:0;text-wrap:pretty}
-.audit-final{padding-block:0 28px}
-.audit-final-copy{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:64px;max-width:none;align-items:start}
-.audit-final-copy h2{font-size:34px;line-height:1.16;margin-bottom:14px;max-width:27ch;grid-column:1}
-.audit-result-text{font-size:16px;line-height:1.65;max-width:62ch;margin:0 0 8px;grid-column:1}
-.audit-timing{font-size:14px;color:var(--muted);margin:0 0 8px;grid-column:1}
-.audit-disclaimer{font-size:13px;color:var(--muted);margin:0;grid-column:1}
-.audit-final-action{grid-column:2;grid-row:1 / 5;align-self:center}
-.audit-final .actions{margin:0}
-.audit-final .note{font-size:14px;margin:10px 0 0;text-align:center}
-.audit-author{grid-column:1 / -1;margin-top:26px;max-width:44rem}
-.audit-author p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}
+.audit-situations .principles>div+div{border-left:1px solid var(--line);padding-left:24px}
+.audit-situations .principles h3{font-size:23px;line-height:1.22;margin-bottom:10px;text-wrap:pretty}
+.audit-situations .principles p{font-size:16px;line-height:1.65;margin:0;text-wrap:pretty}
+.audit-final{text-align:center;padding-bottom:38px}
+.audit-final h2{margin-bottom:12px}
+.audit-final>p{max-width:43ch;margin-inline:auto;text-wrap:pretty}
+.audit-final .actions{margin-top:22px}
 @media(max-width:860px){
- .audit-hero-grid{gap:28px;grid-template-columns:minmax(0,1fr) minmax(0,.85fr)}
- .audit-hero h1{font-size:38px}
- .audit-hero .lead{font-size:16px}
- .audit-preview{padding:24px}
- .audit-preview h2{font-size:25px}
- .audit-situations-panel{padding:26px}
- .audit-situations .principles{grid-template-columns:1fr;gap:20px}
- .audit-situations .principles>div+div{border-left:0;border-top:1px solid #dcdcdc;padding:20px 0 0}
- .audit-final-copy{column-gap:28px}
+ .audit-situations .principles{grid-template-columns:1fr;gap:18px}
+ .audit-situations .principles>div+div{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}
 }
-@media(max-width:600px){
- .audit-hero{padding-top:22px;padding-bottom:28px}
- .audit-hero-grid{grid-template-columns:1fr;gap:28px}
- .audit-hero h1{font-size:38px;margin-bottom:18px;max-width:17ch}
- .audit-hero .lead{font-size:16px;margin-bottom:22px}
- .audit-preview{padding:24px}
- .audit-preview-label{margin-bottom:18px}
- .audit-preview h2{font-size:27px;max-width:22ch}
+@media(max-width:767px){
+ .audit-hero{padding-block:30px 28px}
  .audit-situations{padding-bottom:28px}
  .audit-situations-panel{padding:24px}
- .audit-situations .section-heading{margin-bottom:24px}
- .audit-situations .section-heading h2{font-size:28px}
- .audit-situations .principles h3{font-size:23px;margin-bottom:8px}
- .audit-final{padding-bottom:20px}
- .audit-final-copy{display:block}
- .audit-final-copy h2{font-size:30px}
- .audit-final .actions{margin-top:22px}
- .audit-final .note{text-align:left;margin-top:10px}
- .audit-author{margin-top:22px}
+ .audit-situations-panel>h2{margin-bottom:22px}
+ .audit-final{padding-bottom:30px}
 }
