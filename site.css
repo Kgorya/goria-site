@@ -451,28 +451,33 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
 }
 
 /* Audit page. Hero and result panel reuse existing home and case components. */
-.audit-hero .note{margin:12px 0 0;font-size:14px}
-.audit-situations{padding-block:36px}
+.audit-situations{padding-block:64px}
 .audit-situations-panel>h2{max-width:44rem;margin:0 auto 32px;text-align:center}
 .audit-situation-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));row-gap:16px}
-.audit-situation-list li{display:grid;grid-template-rows:subgrid;grid-row:span 2;padding-inline:28px;text-align:center}
+.audit-situation-list li{display:grid;grid-template-rows:subgrid;grid-row:span 2;padding-inline:24px;text-align:left}
 .audit-situation-list li+li{border-left:1px solid var(--line)}
-.audit-situation-list h3{font-size:24px;line-height:1.25;margin:0;text-wrap:balance}
+.audit-situation-list li:first-child{padding-left:0}
+.audit-situation-list li:last-child{padding-right:0}
+.audit-situation-list h3{font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.65;letter-spacing:normal;margin:0;text-wrap:pretty}
 .audit-situation-list p{font-size:15px;line-height:1.65;margin:0;text-wrap:pretty}
-.audit-final{padding-bottom:40px}
+.audit-final{padding-bottom:56px}
+.audit-final .contact-panel{max-width:780px;margin-inline:auto;padding:32px;text-align:center}
 .audit-final .contact-panel h2{margin-bottom:14px}
-.audit-final .contact-panel p{max-width:68ch;margin:0}
+.audit-result-list{list-style:none;margin:0;padding:0;font-size:16px;line-height:1.65;color:var(--body)}
+.audit-result-list li+li{margin-top:10px}
+.audit-result-list strong{font-weight:600}
 body:has(.audit-landing)>.skip-link:hover{color:#fff}
 @media(max-width:860px){
  .audit-situation-list{grid-template-columns:1fr;gap:24px}
  .audit-situation-list li{display:block;grid-row:auto;padding-inline:0}
  .audit-situation-list li+li{border-left:0;border-top:1px solid var(--line);padding-top:24px}
  .audit-situation-list h3{margin-bottom:12px}
- .audit-situation-list p{max-width:60ch;margin-inline:auto}
+ .audit-situation-list p{max-width:60ch}
 }
 @media(max-width:767px){
- .audit-situations{padding-block:28px}
+ .audit-situations{padding-block:40px}
  .audit-situations-panel>h2{margin-bottom:26px}
- .audit-situation-list h3{font-size:23px}
- .audit-final{padding-bottom:28px}
+ .audit-final{padding-bottom:40px}
+ .audit-final .contact-panel{padding:26px}
+ .audit-result-list{font-size:15px}
 }
