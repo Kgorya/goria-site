@@ -89,6 +89,16 @@ p:last-child{margin-bottom:0}
 .contact-section{padding-top:32px}
 .contact-panel{padding:clamp(28px,5vw,64px);background:var(--surface);border:1px solid var(--line);border-radius:6px;max-width:100%;text-align:left}
 .contact-panel p{max-width:66ch;margin-bottom:28px}
+.contact-panel-split{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.contact-panel-split .contact-panel-copy{max-width:56ch}
+.contact-panel-split .contact-panel-copy h2{margin-bottom:12px}
+.contact-panel-split .contact-panel-copy p{margin-bottom:0;max-width:none}
+.contact-panel-split .contact-panel-action{flex-shrink:0}
+.contact-panel-split .button{white-space:nowrap}
+@media(max-width:860px){
+ .contact-panel-split{flex-direction:column;align-items:flex-start;gap:22px}
+ .contact-panel-split .contact-panel-action{width:100%}
+}
 .site-footer{border-top:1px solid var(--line);padding:48px 0 28px}
 .footer-main{display:grid;grid-template-columns:1.2fr .7fr 1fr;gap:32px}
 .footer-main p{font-size:16px;margin-top:18px}
