@@ -1,0 +1,7 @@
+{
+  "defaultLocale": "uk",
+  "locales": {
+    "uk": { "label": "Українська", "prefix": "", "htmlLang": "uk", "ogLocale": "uk_UA", "dateLocale": "uk-UA", "enabled": true },
+    "en": { "label": "English", "prefix": "/en", "htmlLang": "en", "ogLocale": "en_GB", "dateLocale": "en-GB", "enabled": false }
+  }
+}

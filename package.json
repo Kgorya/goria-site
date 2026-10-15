@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node build.js",
     "preview": "python3 scripts/preview.py",
-    "check": "python3 scripts/check_site.py"
+    "check": "python3 scripts/check_site.py",
+    "test:foundation": "node --test scripts/test_site_foundation.cjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

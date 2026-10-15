@@ -6,6 +6,24 @@ const { marked } = require('marked');
 marked.setOptions({ gfm: true, breaks: false });
 const ROOT = __dirname;
 const DOMAIN = 'https://goria.co';
+const OUTPUT = process.env.SITE_OUTPUT_DIR ? path.resolve(process.env.SITE_OUTPUT_DIR) : ROOT;
+const i18n = require('./lib/i18n');
+const {analyticsConfig, analyticsMarkup} = require('./lib/analytics');
+const analytics = analyticsConfig();
+const translations = i18n.loadTranslations(ROOT, process.env.SITE_TRANSLATIONS_DIR);
+const defaultLocale = i18n.config.defaultLocale;
+function shellText(html, locale) {
+  if (locale === defaultLocale) return html;
+  // Translate only the shared shell; editorial HTML is supplied by each locale.
+  const texts = ['Головна','Рішення','Кейси','Дослідження','Блог','До основного змісту','Goria, на головну','Основна навігація','Безкоштовний аудит','Меню','Мобільна навігація','Навігація в підвалі','Костянтин Горя','AI-системи для обробки звернень і заявок','Telegram-бот →','Telegram-канал →','Конфіденційність','Умови співпраці','Закрити','Обговоримо вашу задачу','Оберіть зручний формат зв’язку','Перевірити свої заявки →','Шість запитань. Бал з 10 і де губляться заявки','Написати Костянтину напряму →','Для швидких запитань або особистого обговорення','Без Telegram · написати на email'];
+  const pattern = new RegExp(texts.sort((a,b)=>b.length-a.length).map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'g');
+  return i18n.rewriteLinks(html.replace(pattern, text => i18n.translate(text, locale)), locale, translations);
+}
+function languageLinks(baseUrl, locale) {
+  const pages = i18n.variants(baseUrl, translations);
+  if (pages.length < 2) return '';
+  return `<nav class="language-switch" aria-label="${esc(i18n.translate('Мова',locale))}">${pages.map(p=>`<a href="${p.url}" lang="${p.locale}" hreflang="${p.locale}"${p.locale===locale?' aria-current="page"':''}>${esc(i18n.localeConfig(p.locale).label)}</a>`).join('')}</nav>`;
+}
 const assetVersion = file => createHash('sha256').update(fs.readFileSync(path.join(ROOT, file))).digest('hex').slice(0, 12);
 const NAVIGATION = [['home', '/', 'Головна'], ['products', '/products/', 'Рішення'], ['cases', '/cases/', 'Кейси'], ['research', '/blog/research/', 'Дослідження'], ['blog', '/blog/', 'Блог']];
 const CONTACT = 'https://t.me/konstantin_goria_bot';
@@ -14,23 +32,25 @@ const CHANNEL_TG = 'https://t.me/konstantin_goria';
 const botUrl = source => `${CONTACT}?start=test_${source}`;
 const cleanHeading = value => String(value).replace(/[.:—]/g, ' ').replace(/\s+/g, ' ').trim();
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function write(file, value) { const target = path.join(ROOT, file); fs.mkdirSync(path.dirname(target), {recursive:true}); fs.writeFileSync(target,value); }
-function header(active = '') {
+function write(file, value) { const target = path.join(OUTPUT, file); fs.mkdirSync(path.dirname(target), {recursive:true}); fs.writeFileSync(target,value); }
+function header(active = '', locale = defaultLocale, baseUrl = '/') {
   const nav = NAVIGATION.map(([id, url, label]) => `<a href="${url}"${active === id ? ' aria-current="page"' : ''}>${label}</a>`).join('');
-  return `<a class="skip-link" href="#main">До основного змісту</a>
+  const html = `<a class="skip-link" href="#main">До основного змісту</a>
   <header class="site-header" id="top"><div class="shell header-inner">
     <a class="logo" href="/" aria-label="Goria, на головну">goria.</a>
     <nav class="desktop-nav" aria-label="Основна навігація">${nav}</nav>
     <a class="header-contact" href="${botUrl('header')}" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a>
     <button class="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="mobile-nav" hidden><span></span><span></span></button>
-  </div><nav class="mobile-nav shell" id="mobile-nav" aria-label="Мобільна навігація">${nav}<a href="${botUrl('menu')}" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a></nav></header>`;
+  </div><nav class="mobile-nav shell" id="mobile-nav" aria-label="Мобільна навігація">${nav}<a href="${botUrl('menu')}" target="_blank" rel="noopener noreferrer">Безкоштовний аудит</a></nav>${languageLinks(baseUrl,locale)}</header>`;
+  return shellText(html, locale);
 }
-function footer() {
-  return `<footer class="site-footer"><div class="shell"><div class="footer-main">
+function footer(locale = defaultLocale) {
+  const settings = analytics.enabled ? `<button class="analytics-settings" type="button" data-analytics-settings>${esc(i18n.translate('Налаштування аналітики',locale))}</button>` : '';
+  const html = `<footer class="site-footer"><div class="shell"><div class="footer-main">
   <div><a class="logo" href="/">goria.</a><p>Костянтин Горя<br>AI-системи для обробки звернень і заявок</p></div>
   <nav aria-label="Навігація в підвалі">${NAVIGATION.map(([,url,label]) => `<a href="${url}">${label}</a>`).join('')}</nav>
   <div class="footer-contacts"><a href="${botUrl('footer')}" target="_blank" rel="noopener noreferrer">Telegram-бот →</a><a href="${CHANNEL_TG}" target="_blank" rel="noopener noreferrer">Telegram-канал →</a><a href="mailto:kostya.gorya@gmail.com" target="_blank" rel="noopener noreferrer">kostya.gorya@gmail.com</a></div>
-  </div></div><div class="footer-bar"><div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Костянтин Горя</span><a href="/privacy.html">Конфіденційність</a><a href="/terms.html">Умови співпраці</a></div></div></footer>
+  </div></div><div class="footer-bar"><div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Костянтин Горя</span><a href="/privacy.html">Конфіденційність</a><a href="/terms.html">Умови співпраці</a>${settings}</div></div></footer>
   <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title"><div class="contact-dialog-inner">
     <button class="dialog-close" type="button" aria-label="Закрити">×</button>
     <h2 id="contact-dialog-title">Обговоримо вашу задачу</h2><p>Оберіть зручний формат зв’язку</p>
@@ -40,8 +60,9 @@ function footer() {
     <p class="note">Для швидких запитань або особистого обговорення</p>
     <a class="email-fallback" id="dialog-email" href="mailto:kostya.gorya@gmail.com" target="_blank" rel="noopener noreferrer">Без Telegram · написати на email</a>
   </div></dialog><script src="/site.js?v=${assetVersion('site.js')}" defer></script>`;
+  return shellText(html, locale);
 }
-function layout({title,description,url,active='',body,image='/assets/img/hero-1100.webp',type='website',schema=null}) {body = body.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>\s*<p class="lead">[\s\S]*?<\/p>)/g, '<div class="intro-copy">$1</div>'); body = body.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/g, (_, open, inner, close) => open + inner.replace(/(^|>)([^<]+)/g, (__, prefix, text) => prefix + cleanHeading(text)) + close).replace(/—/g, ','); body = body.replace(/<a\b([^>]*\bhref="(?:https?:\/\/|mailto:)[^>]+)>/g, (_, attrs) => '<a' + attrs.replace(/\s(?:target|rel)="[^"]*"/g, '') + ' target="_blank" rel="noopener noreferrer">'); return `<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} | Костянтин Горя · Goria</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index, follow"><link rel="canonical" href="${DOMAIN}${url}"><meta property="og:type" content="${type}"><meta property="og:locale" content="uk_UA"><meta property="og:site_name" content="Goria"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${DOMAIN}${url}"><meta property="og:image" content="${DOMAIN}${image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/site.css?v=${assetVersion('site.css')}">${schema ? `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}</head><body>${header(active)}<main id="main">${body}</main>${footer()}</body></html>`;}
+function layout({title,description,url,active='',body,image='/assets/img/hero-1100.webp',type='website',schema=null,locale=defaultLocale,baseUrl=url}) {const localeSettings=i18n.localeConfig(locale); const alternatives=i18n.variants(baseUrl,translations); const alternateMarkup=alternatives.length>1?alternatives.map(p=>`<link rel="alternate" hreflang="${p.locale}" href="${DOMAIN}${p.url}">`).join(''):''; body=i18n.rewriteLinks(body,locale,translations); body = body.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>\s*<p class="lead">[\s\S]*?<\/p>)/g, '<div class="intro-copy">$1</div>'); body = body.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/g, (_, open, inner, close) => open + inner.replace(/(^|>)([^<]+)/g, (__, prefix, text) => prefix + cleanHeading(text)) + close).replace(/—/g, ','); body = body.replace(/<a\b([^>]*\bhref="(?:https?:\/\/|mailto:)[^>]+)>/g, (_, attrs) => '<a' + attrs.replace(/\s(?:target|rel)="[^"]*"/g, '') + ' target="_blank" rel="noopener noreferrer">'); return `<!doctype html><html lang="${localeSettings.htmlLang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} | ${esc(i18n.translate('Костянтин Горя',locale))} · Goria</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index, follow"><link rel="canonical" href="${DOMAIN}${url}">${alternateMarkup}<meta property="og:type" content="${type}"><meta property="og:locale" content="${localeSettings.ogLocale}"><meta property="og:site_name" content="Goria"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${DOMAIN}${url}"><meta property="og:image" content="${DOMAIN}${image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/site.css?v=${assetVersion('site.css')}">${schema ? `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}</head><body data-page="${esc(baseUrl === '/blog/' ? 'blog-catalog' : active)}">${header(active,locale,baseUrl)}<main id="main">${body}</main>${footer(locale)}${analyticsMarkup(analytics)}</body></html>`;}
 function contactBlock(title = 'З чого почати', text = 'Пройдіть короткий аудит або напишіть мені про свою задачу.', source = 'contact') {
  return `<section class="section-surface" id="contact"><div class="section contact-section shell"><div class="cta-layout"><div class="cta-intro"><h2>${title}</h2><p class="lead">${text}</p></div><div class="cta-cards"><div class="cta-card"><div><h3>Швидкий аудит</h3><p>Кілька запитань про роботу зі зверненнями. За відповідями отримаєте підказки, що перевірити й що можна автоматизувати.</p></div><a class="text-link" href="${botUrl(source)}" target="_blank" rel="noopener noreferrer">Пройти аудит →</a></div><div class="cta-card"><div><h3>Написати мені</h3><p>Розкажіть, звідки приходять звернення та що забирає час команди. Обговоримо, чи допоможе автоматизація.</p></div><a class="text-link" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Написати мені →</a></div></div></div></div></section>`;
 }
@@ -99,6 +120,11 @@ const casesData = fs.existsSync(path.join(ROOT, 'content/cases.json')) ? JSON.pa
 const ownCases = casesData.filter(c => c.type === 'own');
 const externalCases = casesData.filter(c => c.type === 'external');
 const staticPages=[['about','about/index.html','/about/','Про мене','Костянтин Горя. Досвід у продажах, маркетингу й автоматизації бізнес-процесів.','about'],['cases','cases/index.html','/cases/','Як AI допомагає в роботі бізнесу','Мої впровадження та розбори досвіду інших підприємців. Показую, яку задачу вирішує система, як вона працює та що потрібно для схожого впровадження.','cases'],['ecommerce-agent','products/ecommerce-agent/index.html','/products/ecommerce-agent/','AI-агент для інтернет-магазину','Стежить за заявками в CRM, ставить нагадування й готує відповіді клієнтам. Менеджер перевіряє листи перед відправленням.','products'],['resources','resources/index.html','/resources/','Матеріали для роботи','Аудит роботи з клієнтами та шаблон перевірки вечірніх повідомлень. Практичні інструменти для першого кроку.','resources'],['audit','resources/automation-test/index.html','/resources/automation-test/','Що автоматизувати в роботі з клієнтами','Кілька запитань у Telegram про звернення та заявки. Короткий розбір і рекомендації за відповідями.','resources'],['evening','resources/evening-inquiries/index.html','/resources/evening-inquiries/','Як клініка відповідає ввечері','Інструкція й шаблон, щоб перевірити час першої відповіді та передачу повідомлення адміністратору.','resources'],['home','index.html','/','Швидка відповідь 24/7, жодної втраченої заявки з реклами','AI-асистенти для магазинів та сфери послуг. Швидка відповідь 24/7, підхоплення звернень клієнтів та доведення до замовлення або запису.','home'],['products','products/index.html','/products/','Готові рішення для бізнесу','Оберіть рішення за вашою задачею. Налаштування та технічний супровід беру на себе.','products'],['dental','products/dental-assistant/index.html','/products/dental-assistant/','AI-асистент для стоматології','Відповідає на запитання про послуги та ціни, з’ясовує потребу пацієнта й допомагає обрати час. Перевірте демо Goria Dental та обговоріть запуск для клініки.','products']];
+const baseRoutes = new Set([...staticPages.map(p=>p[2]), ...items.map(p=>p.url), '/blog/', '/blog/research/', '/privacy.html', '/terms.html']);
+for (const page of translations) {
+  if (!baseRoutes.has(page.baseUrl)) throw new Error(`Translation without original: ${page.baseUrl}`);
+  if (!['home','products','cases','research','blog','about','resources',''].includes(page.active || '')) throw new Error(`Invalid navigation key: ${page.active}`);
+}
 for (const [source,file,url,title,description,active] of staticPages) {let body=fs.readFileSync(path.join(ROOT,'pages',`${source}.html`),'utf8');body=body.replace('{{products}}',products.slice(0,2).map(productCard).join(''))
   .replace('{{productsMore}}', products.length > 2 ? '<a class="text-link section-link" href="/products/">Усі продукти →</a>' : '')
   .replace('{{allProducts}}',products.map(productCard).join(''))
@@ -177,6 +203,25 @@ for(const file of ['privacy.html','terms.html']) {
   }));
 }
 
+// Remove only translated HTML files recorded by a previous build, never source files.
+const localeOutputManifest = path.join(OUTPUT, '.generated-locales.json');
+const currentLocaleUrls = translations.map(page => page.url);
+if (fs.existsSync(localeOutputManifest)) {
+  for (const url of JSON.parse(fs.readFileSync(localeOutputManifest, 'utf8'))) {
+    if (currentLocaleUrls.includes(url)) continue;
+    if (typeof url !== 'string' || !/^\/[a-z]{2}(?:-[A-Z]{2})?\//.test(url) || url.includes('..')) throw new Error('Invalid previous locale output');
+    const target = path.resolve(OUTPUT, i18n.outputFile(url));
+    if (!target.startsWith(path.resolve(OUTPUT) + path.sep) || !target.endsWith('.html')) throw new Error('Unsafe previous locale output');
+    if (fs.existsSync(target)) fs.unlinkSync(target);
+  }
+}
+write('.generated-locales.json', JSON.stringify(currentLocaleUrls, null, 2) + '\n');
+
+for (const page of translations) {
+  const schema = page.schema ? {...page.schema, inLanguage:page.locale, url:DOMAIN+page.url} : null;
+  write(i18n.outputFile(page.url), layout({...page, schema}));
+}
+
 const urls = [
   '/',
   '/products/',
@@ -191,7 +236,8 @@ const urls = [
   '/resources/evening-inquiries/',
   '/privacy.html',
   '/terms.html',
-  ...items.map(i => i.url)
+  ...items.map(i => i.url),
+  ...translations.map(p => p.url)
 ];
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${DOMAIN}${url}</loc></url>`).join('\n')}\n</urlset>\n`);
 console.log(`Built ${staticPages.length} main pages, ${items.length} articles, blog catalog, research catalog and 2 legal pages.`);

@@ -2,11 +2,13 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 import re
+import json
 root=Path(__file__).resolve().parent.parent; errors=[]
 class Page(HTMLParser):
- def __init__(self):super().__init__();self.links=[];self.ids=[];self.headings=[];self.h=None;self.text=[];self.navs=[];self.nav=None;self.anchor=None;self.assets=[]
+ def __init__(self):super().__init__();self.links=[];self.ids=[];self.headings=[];self.h=None;self.text=[];self.navs=[];self.nav=None;self.anchor=None;self.assets=[];self.lang="uk"
  def handle_starttag(self,t,attrs):
   a=dict(attrs)
+  if t=='html':self.lang=a.get('lang','uk')
   if 'id' in a:self.ids.append(a['id'])
   if t=='nav':self.nav={'label':a.get('aria-label'), 'links':[]};self.navs.append(self.nav)
   if t=='a' and self.nav is not None:self.anchor=[a.get('href'), ''];self.nav['links'].append(self.anchor)
@@ -24,12 +26,20 @@ class Page(HTMLParser):
   if self.h:self.h[1]+=d
 pages={}
 for p in root.rglob('*.html'):
- if any(n in p.parts for n in ['node_modules','pages']):continue
+ if any(n in p.parts for n in ['node_modules','pages']) or p.is_relative_to(root/'content'):continue
  q=Page();q.feed(p.read_text());pages[p]=q
 for p,q in pages.items():
  if '<meta http-equiv="refresh"' in p.read_text():continue
  expected=[['/','Головна'],['/products/','Рішення'],['/cases/','Кейси'],['/blog/research/','Дослідження'],['/blog/','Блог']]
- for label in ['Основна навігація','Мобільна навігація','Навігація в підвалі']:
+ if q.lang != 'uk':
+  ui=json.loads((root/'content/locales'/q.lang/'ui.json').read_text())
+  settings=json.loads((root/'config/locales.json').read_text())['locales'][q.lang]
+  entries=json.loads((root/'content/locales'/q.lang/'pages.json').read_text())
+  published={entry['baseUrl'] for entry in entries if entry.get('published') is True}
+  expected=[[settings['prefix']+url if url in published else url,ui[label]] for url,label in expected]
+ else:ui={}
+ for base_label in ['Основна навігація','Мобільна навігація','Навігація в підвалі']:
+  label=ui.get(base_label,base_label)
   menus=[n for n in q.navs if n['label']==label]
   if len(menus)!=1 or menus[0]['links'][:5]!=expected:errors.append(f'Navigation {p}: {label}')
  for asset in q.assets:

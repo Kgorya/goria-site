@@ -47,3 +47,7 @@ Heading and introductory copy share a physical column, avoiding font-dependent `
 ## Release status
 
 The public resource page describes the prepared worksheet and links to the existing audit. Automatic worksheet delivery is explicitly marked as pending; no `resource_evening` delivery link is exposed until the production bot is updated. The earlier integration description documents the implemented local bot behavior, not the current production deployment.
+
+## Language and analytics foundation
+
+See [docs/LANGUAGES-AND-ANALYTICS.md](docs/LANGUAGES-AND-ANALYTICS.md) for publishing translated pages, activating GA4/Clarity, consent behavior and verification. Ukrainian URLs and approved homepage copy remain unchanged. Run `npm run test:foundation` for isolated translation and analytics checks.
