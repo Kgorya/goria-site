@@ -36,10 +36,12 @@ p:last-child{margin-bottom:0}
 .desktop-nav a[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:#b3b3b3}
 .header-contact{display:inline-flex;align-items:center;font-size:14px;font-weight:500;line-height:1.4;text-decoration:none;color:var(--ink);background:none;border:none;padding:0}
 .header-contact:hover{color:var(--muted)}
-.menu-toggle{display:none;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:46px;height:46px;background:#fff;border:1px solid var(--line);border-radius:5px}
-.menu-toggle span{display:block;width:20px;height:2px;background:var(--ink)}
-.menu-toggle[aria-expanded=true] span:first-child{transform:translateY(4px) rotate(45deg)}
-.menu-toggle[aria-expanded=true] span:last-child{transform:translateY(-4px) rotate(-45deg)}
+.menu-toggle{display:none;align-items:flex-end;justify-content:center;flex-direction:column;gap:7px;width:46px;height:46px;padding:9px;background:transparent;border:0;border-radius:0;-webkit-tap-highlight-color:transparent}
+.menu-toggle span{display:block;flex-shrink:0;width:26px;height:1.5px;background:var(--ink);transform-origin:center;transition:transform .24s cubic-bezier(.16,1,.3,1),width .24s cubic-bezier(.16,1,.3,1)}
+.menu-toggle span:last-child{width:18px}
+.menu-toggle[aria-expanded=true] span:first-child{transform:translateY(4.25px) rotate(45deg)}
+.menu-toggle[aria-expanded=true] span:last-child{width:26px;transform:translateY(-4.25px) rotate(-45deg)}
+@media(prefers-reduced-motion:reduce){.menu-toggle span{transition:none}}
 .mobile-nav{display:none}
 .skip-link{position:fixed;left:20px;top:12px;z-index:30;background:var(--ink);color:#fff;padding:12px 20px;transform:translateY(-180%);font-size:16px}
 .skip-link:focus{transform:none;color:#fff}
@@ -450,9 +452,21 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
  .analytics-consent{inset:auto 12px 12px;padding:18px}
 }
 
-/* Audit page. Hero and result panel reuse existing home and case components. */
-.audit-situations{padding-block:64px}
-.audit-situations-panel>h2{max-width:44rem;margin:0 auto 32px;text-align:center}
+/* Audit page only. Chat is native markup, so text remains accessible and responsive. */
+.audit-hero{background:#fff}
+.audit-hero .intro-copy>.lead{max-width:48ch}
+.audit-chat{width:100%;margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);align-self:center}
+.audit-chat-messages{list-style:none;margin:0;padding:22px;display:flex;flex-direction:column;gap:16px}
+.audit-chat-messages li{max-width:85%;padding:12px 15px;border-radius:14px}
+.audit-chat-messages .audit-chat-client{align-self:flex-start;background:#fff;border-bottom-left-radius:4px}
+.audit-chat-messages .audit-chat-admin{align-self:flex-end;background:#e6ece7;border-bottom-right-radius:4px}
+.audit-chat-speaker{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:11px;font-weight:600;line-height:1.5;margin-bottom:5px;color:#4a554d}
+.audit-chat-speaker time{font-size:10px;font-weight:400;white-space:nowrap;color:#59645c;font-variant-numeric:tabular-nums}
+.audit-chat-messages p{font-size:15px;line-height:1.55;color:var(--ink);margin:0;text-wrap:pretty}
+.audit-chat figcaption{padding:0 22px 22px;margin-top:4px;font-size:12px;line-height:1.5;color:var(--muted)}
+.audit-situations{padding-block:64px;background:var(--surface)}
+.audit-mobile-action{display:none}
+.audit-situations-panel>h2{max-width:44rem;margin:0 auto 48px;text-align:center}
 .audit-situation-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));row-gap:16px}
 .audit-situation-list li{display:grid;grid-template-rows:subgrid;grid-row:span 2;padding-inline:24px;text-align:left}
 .audit-situation-list li+li{border-left:1px solid var(--line)}
@@ -460,12 +474,6 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
 .audit-situation-list li:last-child{padding-right:0}
 .audit-situation-list h3{font-family:var(--sans);font-size:15px;font-weight:600;line-height:1.65;letter-spacing:normal;margin:0;text-wrap:pretty}
 .audit-situation-list p{font-size:15px;line-height:1.65;margin:0;text-wrap:pretty}
-.audit-final{padding-bottom:56px}
-.audit-final .contact-panel{max-width:780px;margin-inline:auto;padding:32px;text-align:center}
-.audit-final .contact-panel h2{margin-bottom:14px}
-.audit-result-list{list-style:none;margin:0;padding:0;font-size:16px;line-height:1.65;color:var(--body)}
-.audit-result-list li+li{margin-top:10px}
-.audit-result-list strong{font-weight:600}
 body:has(.audit-landing)>.skip-link:hover{color:#fff}
 @media(max-width:860px){
  .audit-situation-list{grid-template-columns:1fr;gap:24px}
@@ -475,9 +483,23 @@ body:has(.audit-landing)>.skip-link:hover{color:#fff}
  .audit-situation-list p{max-width:60ch}
 }
 @media(max-width:767px){
+ .audit-chat-messages{padding:18px;gap:14px}
+ .audit-chat-messages li{max-width:90%}
+ .audit-chat figcaption{padding:0 18px 18px}
  .audit-situations{padding-block:40px}
- .audit-situations-panel>h2{margin-bottom:26px}
- .audit-final{padding-bottom:40px}
- .audit-final .contact-panel{padding:26px}
- .audit-result-list{font-size:15px}
+ .audit-mobile-action{display:block;margin-top:28px}
+ .audit-mobile-action .text-link{min-height:44px;align-items:center}
+ .audit-situations-panel>h2{margin-bottom:36px}
+}
+
+/* First message is always present. Later replies fade in without moving the layout. */
+@keyframes audit-message-arrive{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:no-preference){
+ .audit-chat[data-motion="waiting"] .audit-chat-messages li:not(:first-child),
+ .audit-chat[data-motion="waiting"] figcaption{opacity:0}
+ .audit-chat[data-motion="playing"] .audit-chat-messages li:not(:first-child){animation:audit-message-arrive .8s ease-in-out both}
+ .audit-chat[data-motion="playing"] .audit-chat-messages li:nth-child(2){animation-delay:1.2s}
+ .audit-chat[data-motion="playing"] .audit-chat-messages li:nth-child(3){animation-delay:3s}
+ .audit-chat[data-motion="playing"] .audit-chat-messages li:nth-child(4){animation-delay:4.6s}
+ .audit-chat[data-motion="playing"] figcaption{animation:audit-message-arrive .7s ease-in-out 6.1s both}
 }

@@ -12,8 +12,6 @@
   "Мобільна навігація": "Mobile navigation",
   "Навігація в підвалі": "Footer navigation",
   "Костянтин Горя": "Kostiantyn Horia",
-  "AI-системи для обробки звернень і заявок": "AI systems for customer enquiries and follow-ups",
-  "Telegram-бот →": "Telegram bot →",
   "Telegram-канал →": "Telegram channel →",
   "Конфіденційність": "Privacy",
   "Умови співпраці": "Terms",
@@ -21,10 +19,12 @@
   "Обговоримо вашу задачу": "Let’s discuss your task",
   "Оберіть зручний формат зв’язку": "Choose how to get in touch",
   "Пройти швидкий аудит →": "Take a quick audit →",
-  "Шість запитань. Бал з 10 і де губляться заявки": "Questions about how you handle enquiries",
   "Написати Костянтину напряму →": "Message Kostiantyn directly →",
   "Для швидких запитань або особистого обговорення": "For a question or a conversation about your task",
   "Без Telegram · написати на email": "No Telegram? Send an email",
   "Мова": "Language",
-  "Налаштування аналітики": "Analytics settings"
+  "Налаштування аналітики": "Analytics settings",
+  "AI-системи для обробки заявок": "AI systems for handling enquiries",
+  "Пройти аудит у Telegram →": "Take the audit in Telegram →",
+  "7 запитань про роботу із заявками та рекомендація за відповідями": "7 questions about handling enquiries, with a recommendation based on your answers"
 }

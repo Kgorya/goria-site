@@ -50,7 +50,7 @@ for p,q in pages.items():
  if len(q.ids)!=len(set(q.ids)):errors.append(f'IDs {p}')
  if any(re.search('[.:—]',v) for t,v in q.headings):errors.append(f'Heading punctuation {p}')
  # The audit landing explicitly uses the owner-approved term «тест».
- if not p.relative_to(root).as_posix().endswith('resources/automation-test/index.html') and re.search(r'\bтест\w*\b',' '.join(q.text),re.I):errors.append(f'Test terminology {p}')
+ if not p.relative_to(root).as_posix().endswith('free-audit/index.html') and re.search(r'\bтест\w*\b',' '.join(q.text),re.I):errors.append(f'Test terminology {p}')
  for a in q.links:
   u=urlsplit(a.get('href',''))
   if u.scheme in ['http','https']:
@@ -65,6 +65,6 @@ assert not errors, '\n'.join(errors)
 home=pages[root/'index.html']
 assert (root/'index.html').read_text().count('class="journal-card"')==2
 assert not (root/'resources/evening-inquiries/checklist.txt').exists()
-assert 'Видача в боті готується' in (root/'resources/index.html').read_text()
+assert 'Надсилання матеріалу в Telegram ще готую' in (root/'resources/index.html').read_text()
 assert 'start=resource_evening' not in (root/'resources/evening-inquiries/index.html').read_text()
 print(f'PASS: {len(pages)} HTML files, identical menus, headings, terminology, assets, external tabs, local links and anchors, two-card blocks, gated resource')

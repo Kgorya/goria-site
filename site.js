@@ -6,6 +6,7 @@
     button.hidden = false;
     const setOpen = open => {
       button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
       nav.hidden = !open;
     };
     button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
