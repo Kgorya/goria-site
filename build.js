@@ -7,7 +7,7 @@ marked.setOptions({ gfm: true, breaks: false });
 const ROOT = __dirname;
 const DOMAIN = 'https://goria.co';
 const assetVersion = file => createHash('sha256').update(fs.readFileSync(path.join(ROOT, file))).digest('hex').slice(0, 12);
-const NAVIGATION = [['home', '/', 'Головна'], ['products', '/products/', 'Рішення'], ['cases', '/cases/', 'Кейси'], ['blog', '/blog/', 'Блог']];
+const NAVIGATION = [['home', '/', 'Головна'], ['products', '/products/', 'Рішення'], ['cases', '/cases/', 'Кейси'], ['research', '/blog/research/', 'Дослідження'], ['blog', '/blog/', 'Блог']];
 const CONTACT = 'https://t.me/konstantin_goria_bot';
 const PERSONAL_TG = 'https://t.me/Goria_Konstantin';
 const CHANNEL_TG = 'https://t.me/konstantin_goria';
@@ -46,12 +46,27 @@ function contactBlock(title = 'З чого почати', text = 'Пройдіт
  return `<section class="section-surface" id="contact"><div class="section contact-section shell"><div class="cta-layout"><div class="cta-intro"><h2>${title}</h2><p class="lead">${text}</p></div><div class="cta-cards"><div class="cta-card"><div><h3>Швидкий аудит</h3><p>8 запитань про обробку звернень. Допоможе попередньо оцінити, де виникають затримки та що варто автоматизувати.</p></div><a class="text-link" href="${botUrl(source)}" target="_blank" rel="noopener noreferrer">Пройти аудит →</a></div><div class="cta-card"><div><h3>Особисте обговорення</h3><p>Розкажіть, звідки приходять звернення та що забирає час команди. Обговоримо, чи допоможе автоматизація.</p></div><a class="text-link" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Написати особисто →</a></div></div></div></div></section>`;
 }
 function card(item) {
+  const isResearch = item.group === 'research';
+  const linkLabel = isResearch ? 'Читати дослідження →' : 'Читати статтю →';
   return `<article class="journal-card">
     <a class="journal-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" alt="" width="1200" height="675" loading="lazy"></a>
-    
     <h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p>
-    <a class="text-link" href="${item.url}">Читати матеріал →</a>
+    <a class="text-link" href="${item.url}">${linkLabel}</a>
   </article>`;
+}
+function researchCard(item) {
+  const metaParts = [];
+  if (item.format) metaParts.push(item.format);
+  if (item.period) metaParts.push(item.period);
+  const metaHtml = metaParts.length > 0 ? `<div class="card-meta">${esc(metaParts.join(' · '))}</div>` : '';
+  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="675" alt="${esc(item.image_alt || item.title)}" loading="lazy"></a>` : '';
+  return `<article class="case-card">${imageHtml}${metaHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p><a class="text-link" href="${item.url}">Читати дослідження →</a></article>`;
+}
+function blogCard(item) {
+  const dateFormatted = item.date ? new Intl.DateTimeFormat('uk-UA', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'}).format(new Date(item.date)) : '';
+  const dateHtml = dateFormatted ? `<div class="card-meta"><time datetime="${esc(item.date)}">${dateFormatted}</time></div>` : '';
+  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="675" alt="${esc(item.image_alt || item.title)}" loading="lazy"></a>` : '';
+  return `<article class="case-card">${imageHtml}${dateHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p><a class="text-link" href="${item.url}">Читати статтю →</a></article>`;
 }
 function productCard(product) {
   return `<article class="product-card"><a class="product-card-image" href="${product.url}" tabindex="-1" aria-hidden="true"><img src="${product.image}" width="1200" height="675" alt="" loading="lazy"></a>
@@ -90,10 +105,92 @@ for (const [source,file,url,title,description,active] of staticPages) {let body=
   .replace('{{research}}',items.filter(i=>i.group==='research').slice(0,2).map(card).join(''))
   .replace('{{latest}}',items.filter(i=>i.group!=='research').slice(0,2).map(card).join(''))
   .replace('{{contact}}', source === 'products' ? contactBlock('Не знайшли рішення для свого бізнесу?', 'Пройдіть короткий аудит або напишіть мені. Обговоримо ваші звернення та перевіримо, чи можна адаптувати одне з рішень під вашу задачу.', 'products') : contactBlock(undefined, undefined, source));write(file,layout({title,description,url,active,body}));}
-for(const item of items) {const author=`<aside class="author"><img src="/assets/img/about-750.webp" alt="Костянтин Горя" width="80" height="80" loading="lazy"><div><h2>Костянтин Горя</h2><p>Пишу про власні впровадження та дослідження роботи бізнесу.</p><a class="text-link" href="/#about">Про мене →</a></div></aside>`;const body=`<header class="article-header prose-shell"><nav class="breadcrumbs" aria-label="Шлях до сторінки"><a href="/blog/">Блог</a><span aria-hidden="true">/</span><span>${esc(item.kind)}</span></nav><h1>${esc(item.title)}</h1><p class="lead">${esc(item.description)}</p><div class="article-meta">${item.date ? `<time datetime="${esc(item.date)}">${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date))}</time><span aria-hidden="true">·</span>`:''}<span>${esc(item.readTime)} читання</span></div></header><article class="prose-shell"><div class="prose"><figure class="article-image"><img src="${item.image}" alt="${esc(item.image_alt || 'Тематична ілюстрація до матеріалу')}" width="1200" height="675" loading="eager"><figcaption>Ілюстрація до матеріалу</figcaption></figure>${item.bodyHtml}</div>${author}</article>${blogOffer(item)}<section class="section shell"><h2>Ще у блозі</h2><div class="journal-grid">${items.filter(i=>i.slug!==item.slug).slice(0,2).map(card).join('')}</div></section>`;write(`blog/${item.slug}/index.html`,layout({title:item.title,description:item.description,url:item.url,active:'blog',body,image:item.image,type:'article',schema:{'@context':'https://schema.org','@type':'Article',headline:item.title,description:item.description,datePublished:item.date,inLanguage:'uk',url:DOMAIN+item.url,author:{'@type':'Person',name:'Костянтин Горя',url:DOMAIN+'/#about'}}}));redirect(`${item.section}/${item.slug}/index.html`,item.url);}
-for(const [filter,title,description] of [['all','AI та системи для бізнесу','Власні дослідження, досвід впровадження та практичні нотатки про автоматизацію.'],['research','Дослідження','Власні спостереження за роботою бізнесу, методика та межі висновків.'],['practice','Практика','Розбори процесів, власний досвід і сценарії впровадження.'],['tools','Інструменти','Як обирати технології під задачу, перевіряти якість і рахувати повну вартість роботи системи.']]) {const filtered=filter==='all'?items:items.filter(i=>i.group===filter);const url=filter==='all'?'/blog/':`/blog/${filter}/`;const body=`<header class="page-intro shell"><h1>${title}</h1><p class="lead">${description}</p>${filters(filter)}</header>${filter==='all' ? `<section class="section section-tight shell"><div class="start-panel"><h2>З чого почати</h2><p>Три матеріали, щоб познайомитися з моїм підходом</p><div class="start-links">${[['kyiv-dentistry','Як відповідають клініки','Дослідження 10 стоматологій'],['shopify-preorder','Як працює впровадження','Кейс власних Shopify-магазинів'],['ai-models-pricing-drop-2026','Що входить у бюджет','Витрати на запуск і супровід']].map(([slug,label,description])=>{const i=items.find(i=>i.slug===slug);return i ? `<a href="${i.url}"><strong>${label} →</strong><span>${description}</span></a>` : '';}).join('')}</div></div></section>` : ''}<section class="section section-tight shell">${filter==='all'?'<h2>Останні матеріали</h2>':''}<div class="journal-grid">${filtered.map(card).join('')}</div></section>${contactBlock()}`;write(url.slice(1)+'index.html',layout({title,description,url,active:'blog',body}));}
-redirect('tools/index.html','/blog/tools/');redirect('news/index.html','/blog/');redirect('stomatology/index.html','/blog/kyiv-dentistry/');redirect('products/shopify-preorder/index.html','/products/ecommerce-agent/');
-for(const file of ['privacy.html','terms.html']) {const html=fs.readFileSync(path.join(ROOT,'pages',file),'utf8');const content=html.match(/<div class="legal__inner">([\s\S]*?)<\/div>\s*<\/div>\s*<\/main>/)[1];const title=file==='privacy.html'?'Політика конфіденційності':'Умови співпраці';write(file,layout({title,description:title+' Goria та Костянтина Горі.',url:'/'+file,body:`<article class="legal prose-shell"><div class="prose">${content}</div></article>`}));}
-const urls=['/about/','/cases/','/','/products/','/products/dental-assistant/','/products/ecommerce-agent/','/resources/','/resources/automation-test/','/resources/evening-inquiries/','/blog/','/blog/research/','/blog/practice/','/blog/tools/','/privacy.html','/terms.html',...items.map(i=>i.url)];
-write('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url=>`  <url><loc>${DOMAIN}${url}</loc></url>`).join('\n')}\n</urlset>\n`);
-console.log(`Built ${staticPages.length} main pages, ${items.length} articles, 4 blog catalogs and 2 legal pages.`);
+for(const item of items) {
+  const isResearch = item.group === 'research';
+  const author = `<aside class="author"><img src="/assets/img/about-750.webp" alt="Костянтин Горя" width="80" height="80" loading="lazy"><div><h2>Костянтин Горя</h2><p>Пишу про власні впровадження та дослідження роботи бізнесу.</p><a class="text-link" href="/#about">Про мене →</a></div></aside>`;
+  const breadcrumbs = isResearch
+    ? `<nav class="breadcrumbs" aria-label="Шлях до сторінки"><a href="/blog/research/">Дослідження</a><span aria-hidden="true">/</span><span>${esc(cleanHeading(item.title))}</span></nav>`
+    : `<nav class="breadcrumbs" aria-label="Шлях до сторінки"><a href="/blog/">Блог</a><span aria-hidden="true">/</span><span>${esc(cleanHeading(item.title))}</span></nav>`;
+  const relatedSection = isResearch
+    ? `<section class="section shell"><h2>Інші дослідження</h2><div class="cases-grid">${items.filter(i => i.group === 'research' && i.slug !== item.slug).map(researchCard).join('')}</div></section>`
+    : `<section class="section shell"><h2>Ще у блозі</h2><div class="cases-grid">${items.filter(i => i.group !== 'research' && i.slug !== item.slug).slice(0, 2).map(blogCard).join('')}</div></section>`;
+  const body = `<header class="article-header prose-shell">${breadcrumbs}<h1>${esc(item.title)}</h1><p class="lead">${esc(item.description)}</p><div class="article-meta">${item.date ? `<time datetime="${esc(item.date)}">${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date))}</time><span aria-hidden="true">·</span>`:''}<span>${esc(item.readTime)} читання</span></div></header><article class="prose-shell"><div class="prose"><figure class="article-image"><img src="${item.image}" alt="${esc(item.image_alt || 'Тематична ілюстрація до матеріалу')}" width="1200" height="675" loading="eager"><figcaption>Ілюстрація до матеріалу</figcaption></figure>${item.bodyHtml}</div>${author}</article>${blogOffer(item)}${relatedSection}`;
+  write(`blog/${item.slug}/index.html`, layout({
+    title: item.title,
+    description: item.description,
+    url: item.url,
+    active: isResearch ? 'research' : 'blog',
+    body,
+    image: item.image,
+    type: 'article',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: item.title,
+      description: item.description,
+      datePublished: item.date,
+      inLanguage: 'uk',
+      url: DOMAIN + item.url,
+      author: { '@type': 'Person', name: 'Костянтин Горя', url: DOMAIN + '/#about' }
+    }
+  }));
+  redirect(`${item.section}/${item.slug}/index.html`, item.url);
+}
+
+const researchItems = items.filter(i => i.group === 'research');
+const researchBody = `<header class="page-intro shell"><h1>Дослідження</h1><p class="lead">Перевіряю, як бізнес відповідає клієнтам і працює зі зверненнями. Публікую методику, результати та висновки, щоб ви могли зіставити їх зі своєю практикою.</p></header><section class="section section-tight shell"><div class="cases-grid">${researchItems.map(researchCard).join('')}</div></section><section class="section section-tight shell"><a class="text-link" href="/products/">Подивитися рішення для бізнесу →</a></section>`;
+write('blog/research/index.html', layout({
+  title: 'Дослідження',
+  description: 'Перевіряю, як бізнес відповідає клієнтам і працює зі зверненнями. Публікую методику, результати та висновки, щоб ви могли зіставити їх зі своєю практикою.',
+  url: '/blog/research/',
+  active: 'research',
+  body: researchBody
+}));
+
+const blogItems = items.filter(i => i.group !== 'research');
+const blogBody = `<header class="page-intro shell"><h1>Про звернення, продажі та AI</h1><p class="lead">Практичні статті про відповіді клієнтам, повторні контакти та організацію роботи із заявками. Пояснюю, де допомагає автоматизація і що варто залишити людині.</p></header><section class="section section-tight shell"><div class="cases-grid">${blogItems.map(blogCard).join('')}</div></section><section class="section section-rule shell"><div class="contact-panel contact-panel-split"><div class="contact-panel-copy"><h2>Хочете застосувати це у своєму бізнесі?</h2><p>Напишіть про свою задачу. Обговоримо, що можна автоматизувати та з чого варто почати.</p></div><div class="contact-panel-action"><a class="button" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Обговорити задачу →</a></div></div></section>`;
+write('blog/index.html', layout({
+  title: 'Про звернення, продажі та AI',
+  description: 'Практичні статті про відповіді клієнтам, повторні контакти та організацію роботи із заявками. Пояснюю, де допомагає автоматизація і що варто залишити людині.',
+  url: '/blog/',
+  active: 'blog',
+  body: blogBody
+}));
+
+redirect('blog/practice/index.html', '/blog/');
+redirect('blog/tools/index.html', '/blog/');
+redirect('tools/index.html', '/blog/');
+redirect('news/index.html', '/blog/');
+redirect('stomatology/index.html', '/blog/kyiv-dentistry/');
+redirect('products/shopify-preorder/index.html', '/products/ecommerce-agent/');
+
+for(const file of ['privacy.html','terms.html']) {
+  const html = fs.readFileSync(path.join(ROOT, 'pages', file), 'utf8');
+  const content = html.match(/<div class="legal__inner">([\s\S]*?)<\/div>\s*<\/div>\s*<\/main>/)[1];
+  const title = file === 'privacy.html' ? 'Політика конфіденційності' : 'Умови співпраці';
+  write(file, layout({
+    title,
+    description: title + ' Goria та Костянтина Горі.',
+    url: '/' + file,
+    body: `<article class="legal prose-shell"><div class="prose">${content}</div></article>`
+  }));
+}
+
+const urls = [
+  '/',
+  '/products/',
+  '/products/dental-assistant/',
+  '/products/ecommerce-agent/',
+  '/cases/',
+  '/blog/research/',
+  '/blog/',
+  '/about/',
+  '/resources/',
+  '/resources/automation-test/',
+  '/resources/evening-inquiries/',
+  '/privacy.html',
+  '/terms.html',
+  ...items.map(i => i.url)
+];
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${DOMAIN}${url}</loc></url>`).join('\n')}\n</urlset>\n`);
+console.log(`Built ${staticPages.length} main pages, ${items.length} articles, blog catalog, research catalog and 2 legal pages.`);

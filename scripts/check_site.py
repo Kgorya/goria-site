@@ -28,10 +28,10 @@ for p in root.rglob('*.html'):
  q=Page();q.feed(p.read_text());pages[p]=q
 for p,q in pages.items():
  if '<meta http-equiv="refresh"' in p.read_text():continue
- expected=[['/','Головна'],['/products/','Рішення'],['/cases/','Кейси'],['/blog/','Блог']]
+ expected=[['/','Головна'],['/products/','Рішення'],['/cases/','Кейси'],['/blog/research/','Дослідження'],['/blog/','Блог']]
  for label in ['Основна навігація','Мобільна навігація','Навігація в підвалі']:
   menus=[n for n in q.navs if n['label']==label]
-  if len(menus)!=1 or menus[0]['links'][:4]!=expected:errors.append(f'Navigation {p}: {label}')
+  if len(menus)!=1 or menus[0]['links'][:5]!=expected:errors.append(f'Navigation {p}: {label}')
  for asset in q.assets:
   u=urlsplit(asset)
   dest=root/unquote(u.path).lstrip('/') if u.path.startswith('/') else p.parent/unquote(u.path)
