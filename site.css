@@ -449,3 +449,20 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
  body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:28px;padding-bottom:28px}
  .analytics-consent{inset:auto 12px 12px;padding:18px}
 }
+
+/* Audit lead magnet showcase and simulated bot card */
+.audit-showcase{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px;align-items:start}
+.audit-points .plain-list{margin-top:0}
+.audit-card-label{font-size:14px;font-weight:500;color:var(--muted);margin-bottom:10px}
+.audit-card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 28px}
+.audit-card-title{font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:20px;color:var(--ink)}
+.audit-card-zones{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.audit-zone-item{display:flex;align-items:baseline;gap:10px;font-size:15px;line-height:1.6;color:var(--body)}
+.audit-zone-item strong{color:var(--ink);font-weight:600}
+.zone-badge{font-size:14px;flex-shrink:0}
+.audit-card-calc{padding-top:18px;border-top:1px solid var(--line);font-size:15px;line-height:1.6;color:var(--ink)}
+.audit-calc-note{font-size:13px;line-height:1.5;color:var(--muted);margin-top:10px}
+@media(max-width:860px){
+ .audit-showcase{grid-template-columns:1fr;gap:32px}
+ .audit-card{padding:20px 18px}
+}
