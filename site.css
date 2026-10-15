@@ -460,15 +460,15 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
 .audit-landing .actions{justify-content:center}
 .audit-landing .note{margin:12px auto 0;font-size:14px}
 .audit-situations{padding-bottom:30px}
-.audit-situations-panel{background:var(--surface);padding:32px 36px;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:36px;border-radius:4px}
-.audit-situations-panel>h2{margin:0;max-width:12ch}
-.audit-situation-list{list-style:none;margin:0;padding:0}
-.audit-situation-list li+li{margin-top:20px;padding-top:20px;border-top:1px solid var(--line)}
-.audit-situation-list h3{font-size:24px;line-height:1.25;margin-bottom:8px;text-wrap:pretty}
+.audit-situations-panel{max-width:840px;margin-inline:auto}
+.audit-situations-panel>h2{margin:0 0 24px;text-align:center}
+.audit-situation-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.audit-situation-list li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:32px;align-items:baseline;padding-block:20px;border-bottom:1px solid var(--line)}
+
+.audit-situation-list h3{font-size:24px;line-height:1.25;margin-bottom:0;text-wrap:pretty}
 .audit-situation-list p{font-size:15px;line-height:1.65;margin:0;text-wrap:pretty}
 .audit-final{text-align:center;padding-bottom:36px}
 .audit-final>p:first-child{max-width:49ch;margin:0 auto;text-wrap:pretty;font-size:18px;line-height:1.55;color:var(--ink)}
-.audit-final .actions{margin-top:20px}
 .audit-site-footer{border-top:1px solid var(--line)}
 .audit-footer-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px;font-size:12px;color:var(--muted)}
 .audit-footer-inner>div{display:flex;gap:8px 24px;flex-wrap:wrap}
@@ -478,12 +478,11 @@ body:has(.audit-landing)>.skip-link:hover{color:#fff}
  .audit-site-header .header-inner{min-height:60px}
  .audit-hero{padding-block:26px 28px}
  .audit-situations{padding-bottom:28px}
- .audit-situations-panel{padding:24px;grid-template-columns:1fr;gap:24px}
- .audit-situations-panel>h2{max-width:none}
+ .audit-situations-panel>h2{margin-bottom:18px}
+ .audit-situation-list li{grid-template-columns:1fr;gap:8px;padding-block:18px}
  .audit-situation-list h3{font-size:23px}
  .audit-final{padding-bottom:28px}
  .audit-final>p:first-child{font-size:17px}
- .audit-final .note{font-size:13px}
  .audit-footer-inner{align-items:flex-start;flex-direction:column;gap:4px;padding-block:16px}
  .audit-footer-inner>div{gap:0 24px}
 }
