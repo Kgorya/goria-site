@@ -29,8 +29,6 @@
     link.addEventListener('click', event => {
       event.preventDefault();
       trigger = link;
-      const source = (link.dataset.source || 'contact').replace(/[^a-z0-9_]/g, '').slice(0,48);
-      testLink.href = `https://t.me/konstantin_goria_bot?start=test_${source}`;
       const topic = link.dataset.topic || 'Моя задача для бізнесу';
       emailLink.href = `mailto:kostya.gorya@gmail.com?subject=${encodeURIComponent(topic)}`;
       document.querySelector('#contact-dialog-title').textContent = topic;
