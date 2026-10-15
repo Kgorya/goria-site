@@ -49,7 +49,8 @@ for p,q in pages.items():
  if sum(t=='h1' for t,v in q.headings)!=1:errors.append(f'H1 {p}')
  if len(q.ids)!=len(set(q.ids)):errors.append(f'IDs {p}')
  if any(re.search('[.:—]',v) for t,v in q.headings):errors.append(f'Heading punctuation {p}')
- if re.search(r'\bтест\w*\b',' '.join(q.text),re.I):errors.append(f'Test terminology {p}')
+ # The audit landing explicitly uses the owner-approved term «тест».
+ if not p.relative_to(root).as_posix().endswith('resources/automation-test/index.html') and re.search(r'\bтест\w*\b',' '.join(q.text),re.I):errors.append(f'Test terminology {p}')
  for a in q.links:
   u=urlsplit(a.get('href',''))
   if u.scheme in ['http','https']:

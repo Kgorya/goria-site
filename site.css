@@ -469,7 +469,8 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
 .audit-situation-list h3{font-size:24px;line-height:1.25;margin:0;text-wrap:pretty}
 .audit-situation-list p{font-size:15px;line-height:1.65;margin:0;text-wrap:pretty}
 .audit-final{text-align:center;padding-bottom:36px}
-.audit-final>p:first-child{max-width:49ch;margin:0 auto;text-wrap:pretty;font-size:18px;line-height:1.55;color:var(--ink)}
+.audit-final h2{margin:0 0 14px}
+.audit-final>p{max-width:49ch;margin:0 auto;text-wrap:pretty;font-size:18px;line-height:1.55;color:var(--ink)}
 body:has(.audit-landing)>.skip-link:hover{color:#fff}
 @media(max-width:860px){
  .audit-situation-list{grid-template-columns:1fr;gap:22px}
@@ -483,5 +484,5 @@ body:has(.audit-landing)>.skip-link:hover{color:#fff}
  .audit-situations-panel>h2{margin-bottom:24px}
  .audit-situation-list h3{font-size:23px}
  .audit-final{padding-bottom:28px}
- .audit-final>p:first-child{font-size:17px}
+ .audit-final>p{font-size:17px}
 }
