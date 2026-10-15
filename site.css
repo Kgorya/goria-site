@@ -104,7 +104,8 @@ p:last-child{margin-bottom:0}
 .footer-main p{font-size:16px;margin-top:18px}
 .footer-main nav,.footer-contacts{display:flex;flex-direction:column;align-items:flex-start;gap:12px;font-size:16px}
 .footer-contacts a{overflow-wrap:anywhere}
-.footer-bottom{display:flex;flex-wrap:wrap;gap:14px 28px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.footer-bar{border-top:1px solid var(--line);margin-top:44px;width:100%}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:14px 28px;padding-top:24px;font-size:15px;color:var(--muted)}
 .footer-bottom span{margin-right:auto}
 .page-intro{padding-top:clamp(48px,6vw,80px);padding-bottom:32px;max-width:1200px}
 .page-intro h1{max-width:20ch}
@@ -355,7 +356,8 @@ h3{font-size:24px}
 .case-card{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
 .case-card-image{display:block;width:100%;margin-bottom:18px;border-radius:5px;overflow:hidden;background:var(--surface)}
 .case-card-image img{aspect-ratio:16/10;object-fit:cover;width:100%;display:block}
-.case-card .card-meta{font-size:14px;color:var(--muted);margin-bottom:10px}
+.case-card .card-origin{font-size:14px;color:var(--body);font-weight:500;margin-bottom:2px}
+.case-card .card-meta{font-size:14px;color:var(--muted);margin-bottom:12px}
 .case-card h3{font-size:26px;line-height:1.2;margin-bottom:12px}
 .case-card h3 a:hover{text-decoration:underline;text-decoration-thickness:1px}
 .case-card p{font-size:15px;line-height:1.65;margin-bottom:18px;color:var(--body);max-width:54ch}

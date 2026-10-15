@@ -30,7 +30,7 @@ function footer() {
   <div><a class="logo" href="/">goria.</a><p>Костянтин Горя<br>AI-системи для обробки звернень і заявок</p></div>
   <nav aria-label="Навігація в підвалі">${NAVIGATION.map(([,url,label]) => `<a href="${url}">${label}</a>`).join('')}</nav>
   <div class="footer-contacts"><a href="${botUrl('footer')}" target="_blank" rel="noopener noreferrer">Telegram-бот →</a><a href="${CHANNEL_TG}" target="_blank" rel="noopener noreferrer">Telegram-канал →</a><a href="mailto:kostya.gorya@gmail.com" target="_blank" rel="noopener noreferrer">kostya.gorya@gmail.com</a></div>
-  </div><div class="footer-bottom"><span>© ${new Date().getFullYear()} Костянтин Горя</span><a href="/privacy.html">Конфіденційність</a><a href="/terms.html">Умови співпраці</a></div></div></footer>
+  </div></div><div class="footer-bar"><div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Костянтин Горя</span><a href="/privacy.html">Конфіденційність</a><a href="/terms.html">Умови співпраці</a></div></div></footer>
   <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title"><div class="contact-dialog-inner">
     <button class="dialog-close" type="button" aria-label="Закрити">×</button>
     <h2 id="contact-dialog-title">Обговоримо вашу задачу</h2><p>Оберіть зручний формат зв’язку</p>
@@ -74,6 +74,8 @@ function productCard(product) {
 }
 function caseCard(item) {
   const isExternal = item.type === 'external';
+  const originLabel = isExternal ? 'Досвід інших підприємців' : 'Мій досвід';
+  const originHtml = `<div class="card-origin">${originLabel}</div>`;
   const linkLabel = item.linkLabel || (isExternal ? 'Читати розбір →' : 'Читати кейс →');
   const metaParts = [];
   if (item.process) metaParts.push(item.process);
@@ -82,7 +84,7 @@ function caseCard(item) {
   const metaHtml = metaParts.length > 0 ? `<div class="card-meta">${esc(metaParts.join(' · '))}</div>` : '';
   const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="675" alt="${esc(item.imageAlt || '')}" loading="lazy"></a>` : '';
   const noticeHtml = isExternal && item.unverifiedNotice ? `<p class="case-card-notice">${esc(item.unverifiedNotice)}</p>` : '';
-  return `<article class="case-card">${imageHtml}${metaHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p>${noticeHtml}<a class="text-link" href="${item.url}">${linkLabel}</a></article>`;
+  return `<article class="case-card">${imageHtml}${originHtml}${metaHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p>${noticeHtml}<a class="text-link" href="${item.url}">${linkLabel}</a></article>`;
 }
 function blogOffer(item) {
  if (item.slug === 'kyiv-dentistry') return `<section class="section contact-section shell"><div class="audit-strip"><div><h2>Як ваша клініка відповідає ввечері</h2><p>Шаблон допоможе перевірити час відповіді й передачу діалогу ранковій зміні.</p></div><a class="button" href="/resources/evening-inquiries/">Про шаблон →</a></div></section>`;
@@ -100,8 +102,7 @@ const staticPages=[['about','about/index.html','/about/','Про мене','Ко
 for (const [source,file,url,title,description,active] of staticPages) {let body=fs.readFileSync(path.join(ROOT,'pages',`${source}.html`),'utf8');body=body.replace('{{products}}',products.slice(0,2).map(productCard).join(''))
   .replace('{{productsMore}}', products.length > 2 ? '<a class="text-link section-link" href="/products/">Усі продукти →</a>' : '')
   .replace('{{allProducts}}',products.map(productCard).join(''))
-  .replace('{{ownCases}}', ownCases.length > 0 ? ownCases.map(caseCard).join('') : '<p class="cases-empty">Тут з’являтимуться власні впровадження та сценарії автоматизації.</p>')
-  .replace('{{externalCases}}', externalCases.length > 0 ? `<div class="cases-grid">${externalCases.map(caseCard).join('')}</div>` : '<p class="cases-empty">Тут з’являтимуться розбори застосування AI у бізнесі з посиланнями на першоджерела.</p>')
+  .replace('{{cases}}', casesData.length > 0 ? casesData.map(caseCard).join('') : '<p class="cases-empty">Тут з’являтимуться впровадження та розбори досвіду.</p>')
   .replace('{{research}}',items.filter(i=>i.group==='research').slice(0,2).map(card).join(''))
   .replace('{{latest}}',items.filter(i=>i.group!=='research').slice(0,2).map(card).join(''))
   .replace('{{contact}}', source === 'products' ? contactBlock('Не знайшли рішення для свого бізнесу?', 'Пройдіть короткий аудит або напишіть мені. Розберемо, як ви зараз відповідаєте клієнтам, і перевіримо, чи можна адаптувати одне з рішень під вашу задачу.', 'products') : contactBlock(undefined, undefined, source));write(file,layout({title,description,url,active,body}));}
@@ -138,7 +139,7 @@ for(const item of items) {
 }
 
 const researchItems = items.filter(i => i.group === 'research');
-const researchBody = `<header class="page-intro shell"><h1>Дослідження</h1><p class="lead">Перевіряю, як бізнес відповідає клієнтам і працює зі зверненнями. Публікую методику, результати та висновки, щоб ви могли перевірити схожі ситуації у своєму бізнесі.</p></header><section class="section section-tight shell"><div class="cases-grid">${researchItems.map(researchCard).join('')}</div></section><section class="section section-tight shell"><a class="text-link" href="/products/">Подивитися рішення для бізнесу →</a></section>`;
+const researchBody = `<header class="page-intro shell"><h1>Дослідження</h1><p class="lead">Перевіряю, як бізнес відповідає клієнтам і працює зі зверненнями. Публікую методику, результати та висновки, щоб ви могли перевірити схожі ситуації у своєму бізнесі.</p></header><section class="section section-tight shell"><div class="cases-grid">${researchItems.map(researchCard).join('')}</div></section>`;
 write('blog/research/index.html', layout({
   title: 'Дослідження',
   description: 'Перевіряю, як бізнес відповідає клієнтам і працює зі зверненнями. Публікую методику, результати та висновки, щоб ви могли перевірити схожі ситуації у своєму бізнесі.',
@@ -148,7 +149,7 @@ write('blog/research/index.html', layout({
 }));
 
 const blogItems = items.filter(i => i.group !== 'research');
-const blogBody = `<header class="page-intro shell"><h1>Про звернення, продажі та AI</h1><p class="lead">Практичні статті про відповіді клієнтам, повторні контакти та організацію роботи із заявками. Пояснюю, де допомагає автоматизація і що варто залишити людині.</p></header><section class="section section-tight shell"><div class="cases-grid">${blogItems.map(blogCard).join('')}</div></section><section class="section section-rule shell"><div class="contact-panel contact-panel-split"><div class="contact-panel-copy"><h2>Хочете застосувати це у своєму бізнесі?</h2><p>Напишіть про свою задачу. Обговоримо, що можна автоматизувати та з чого варто почати.</p></div><div class="contact-panel-action"><a class="button" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Обговорити задачу →</a></div></div></section>`;
+const blogBody = `<header class="page-intro shell"><h1>Про звернення, продажі та AI</h1><p class="lead">Практичні статті про відповіді клієнтам, повторні контакти та організацію роботи із заявками. Пояснюю, де допомагає автоматизація і що варто залишити людині.</p></header><section class="section section-tight shell"><div class="cases-grid">${blogItems.map(blogCard).join('')}</div></section><section class="section shell"><div class="contact-panel contact-panel-split"><div class="contact-panel-copy"><h2>Хочете застосувати це у своєму бізнесі?</h2><p>Напишіть про свою задачу. Обговоримо, що можна автоматизувати та з чого варто почати.</p></div><div class="contact-panel-action"><a class="button" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Обговорити задачу →</a></div></div></section>`;
 write('blog/index.html', layout({
   title: 'Про звернення, продажі та AI',
   description: 'Практичні статті про відповіді клієнтам, повторні контакти та організацію роботи із заявками. Пояснюю, де допомагає автоматизація і що варто залишити людині.',
