@@ -455,6 +455,10 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
 .audit-hero .hero-copy{max-width:42rem;margin-inline:auto}
 .audit-hero .intro-copy{max-width:none}
 .audit-hero .lead{margin-inline:auto;text-wrap:pretty}
+.audit-hero-illustration{max-width:560px;margin:12px auto 18px}
+.audit-hero-illustration img{width:100%;height:auto}
+.audit-hero-illustration figcaption{font-size:12px;line-height:1.5;color:var(--muted);margin-top:4px}
+.audit-hero .actions{margin-top:0}
 .audit-landing .actions{justify-content:center}
 .audit-landing .note{margin:12px auto 0;font-size:14px}
 .audit-situations{padding-bottom:30px}
