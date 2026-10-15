@@ -450,19 +450,46 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
  .analytics-consent{inset:auto 12px 12px;padding:18px}
 }
 
-/* Audit lead magnet showcase and simulated bot card */
-.audit-showcase{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:48px;align-items:start}
-.audit-points .plain-list{margin-top:0}
-.audit-card-label{font-size:14px;font-weight:500;color:var(--muted);margin-bottom:10px}
-.audit-card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:26px 28px}
-.audit-card-title{font-size:20px;font-weight:600;letter-spacing:-.015em;margin-bottom:20px;color:var(--ink)}
-.audit-card-zones{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
-.audit-zone-item{display:flex;align-items:baseline;gap:10px;font-size:15px;line-height:1.6;color:var(--body)}
-.audit-zone-item strong{color:var(--ink);font-weight:600}
-.zone-badge{font-size:14px;flex-shrink:0}
-.audit-card-calc{padding-top:18px;border-top:1px solid var(--line);font-size:15px;line-height:1.6;color:var(--ink)}
-.audit-calc-note{font-size:13px;line-height:1.5;color:var(--muted);margin-top:10px}
+/* Audit landing page */
+.audit-landing{padding-bottom:24px}
+.audit-hero{padding-top:clamp(32px,4vw,48px);padding-bottom:22px}
+.audit-hero h1{margin-bottom:14px;max-width:22ch}
+.audit-hero .lead{margin-bottom:20px;max-width:48ch}
+.audit-hero .actions{margin-top:0}
+.audit-hero .note{margin-top:10px;margin-bottom:0}
+
+.audit-situations{padding-top:22px;padding-bottom:22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.audit-situations .section-heading{margin-bottom:24px;max-width:44ch}
+.audit-situations .section-heading h2{margin-bottom:10px}
+.audit-situations .section-heading p{font-size:16px;line-height:1.55;color:var(--muted);max-width:none}
+.audit-situations .principles{margin-top:0;gap:32px}
+.audit-situations .principles h3{font-size:22px;line-height:1.25;margin-bottom:8px}
+.audit-situations .principles p{font-size:15px;line-height:1.55;color:var(--body);margin:0}
+
+.audit-final{padding-top:24px;padding-bottom:24px}
+.audit-final-copy{max-width:40rem}
+.audit-final-copy h2{margin-bottom:12px;font-size:32px;line-height:1.2}
+.audit-result-text{font-size:16px;line-height:1.55;color:var(--ink);margin:0 0 6px}
+.audit-timing{font-size:15px;line-height:1.55;color:var(--muted);margin:0 0 20px}
+.audit-final .actions{margin-top:0}
+.audit-final .note{margin-top:10px;margin-bottom:0}
+.audit-reminder{font-size:13px;line-height:1.5;color:var(--muted);margin:8px 0 0}
+.audit-disclaimer{font-size:13px;line-height:1.5;color:var(--muted);margin:12px 0 0}
+.audit-author{margin-top:22px;padding-top:16px;border-top:1px solid var(--line);max-width:36rem}
+.audit-author p{font-size:14px;line-height:1.6;color:var(--body);margin:0}
+
 @media(max-width:860px){
- .audit-showcase{grid-template-columns:1fr;gap:32px}
- .audit-card{padding:20px 18px}
+ .audit-hero{padding-top:24px;padding-bottom:15px}
+ .audit-hero h1{font-size:30px;line-height:1.18}
+ .audit-hero .lead{font-size:16px;margin-bottom:16px}
+ .audit-situations{padding-top:15px;padding-bottom:15px}
+ .audit-situations .section-heading{margin-bottom:18px}
+ .audit-situations .section-heading h2{font-size:25px}
+ .audit-situations .principles{gap:18px}
+ .audit-situations .principles h3{font-size:19px}
+ .audit-final{padding-top:16px;padding-bottom:16px}
+ .audit-final-copy h2{font-size:25px}
+ .audit-result-text{font-size:15px}
+ .audit-timing{font-size:14px;margin-bottom:16px}
+ .audit-author{margin-top:18px;padding-top:14px}
 }
