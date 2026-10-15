@@ -450,39 +450,29 @@ body[data-page="blog-catalog"] main>.section-tight+.section{padding-top:40px;pad
  .analytics-consent{inset:auto 12px 12px;padding:18px}
 }
 
-/* Audit landing only. Shared site navigation, typography and buttons. */
-.audit-hero{padding-block:36px 38px;text-align:center}
-.audit-hero .hero-copy{max-width:42rem;margin-inline:auto}
-.audit-hero .intro-copy{max-width:none}
-.audit-hero .lead{margin-inline:auto;text-wrap:pretty}
-.audit-hero-illustration{max-width:560px;margin:12px auto 18px}
-.audit-hero-illustration img{width:100%;height:auto}
-.audit-hero-illustration figcaption{font-size:12px;line-height:1.5;color:var(--muted);margin-top:4px}
-.audit-hero .actions{margin-top:0}
-.audit-landing .actions{justify-content:center}
-.audit-landing .note{margin:12px auto 0;font-size:14px}
-.audit-situations{padding-bottom:30px}
-.audit-situations-panel{background:var(--surface);padding:30px 32px 32px;border-radius:4px}
-.audit-situations-panel>h2{margin:0 0 28px;text-align:left}
-.audit-situation-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px;row-gap:12px}
-.audit-situation-list li{display:grid;grid-template-rows:subgrid;grid-row:span 2;border-left:1px solid var(--line);padding-left:20px}
-.audit-situation-list h3{font-size:24px;line-height:1.25;margin:0;text-wrap:pretty}
+/* Audit page. Hero and result panel reuse existing home and case components. */
+.audit-hero .note{margin:12px 0 0;font-size:14px}
+.audit-situations{padding-block:36px}
+.audit-situations-panel>h2{max-width:44rem;margin:0 auto 32px;text-align:center}
+.audit-situation-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));row-gap:16px}
+.audit-situation-list li{display:grid;grid-template-rows:subgrid;grid-row:span 2;padding-inline:28px;text-align:center}
+.audit-situation-list li+li{border-left:1px solid var(--line)}
+.audit-situation-list h3{font-size:24px;line-height:1.25;margin:0;text-wrap:balance}
 .audit-situation-list p{font-size:15px;line-height:1.65;margin:0;text-wrap:pretty}
-.audit-final{text-align:center;padding-bottom:36px}
-.audit-final h2{margin:0 0 14px}
-.audit-final>p{max-width:49ch;margin:0 auto;text-wrap:pretty;font-size:18px;line-height:1.55;color:var(--ink)}
+.audit-final{padding-bottom:40px}
+.audit-final .contact-panel h2{margin-bottom:14px}
+.audit-final .contact-panel p{max-width:68ch;margin:0}
 body:has(.audit-landing)>.skip-link:hover{color:#fff}
 @media(max-width:860px){
- .audit-situation-list{grid-template-columns:1fr;gap:22px}
- .audit-situation-list li{display:block;grid-row:auto}
- .audit-situation-list h3{margin-bottom:8px}
+ .audit-situation-list{grid-template-columns:1fr;gap:24px}
+ .audit-situation-list li{display:block;grid-row:auto;padding-inline:0}
+ .audit-situation-list li+li{border-left:0;border-top:1px solid var(--line);padding-top:24px}
+ .audit-situation-list h3{margin-bottom:12px}
+ .audit-situation-list p{max-width:60ch;margin-inline:auto}
 }
 @media(max-width:767px){
- .audit-hero{padding-block:26px 28px}
- .audit-situations{padding-bottom:28px}
- .audit-situations-panel{padding:24px}
- .audit-situations-panel>h2{margin-bottom:24px}
+ .audit-situations{padding-block:28px}
+ .audit-situations-panel>h2{margin-bottom:26px}
  .audit-situation-list h3{font-size:23px}
  .audit-final{padding-bottom:28px}
- .audit-final>p{font-size:17px}
 }
