@@ -38,12 +38,7 @@ for p,q in pages.items():
   published={entry['baseUrl'] for entry in entries if entry.get('published') is True}
   expected=[[settings['prefix']+url if url in published else url,ui[label]] for url,label in expected]
  else:ui={}
- is_audit=p.relative_to(root).as_posix().endswith('resources/automation-test/index.html')
- if is_audit:
-  if any(n['label'] in [ui.get(x,x) for x in ['Основна навігація','Мобільна навігація','Навігація в підвалі']] for n in q.navs):errors.append(f'Audit landing must use compact shell: {p}')
-  for href in ['/','/privacy.html','/terms.html']:
-   if not any(urlsplit(a.get('href','')).path==href for a in q.links):errors.append(f'Audit shell missing {href}: {p}')
- for base_label in ([] if is_audit else ['Основна навігація','Мобільна навігація','Навігація в підвалі']):
+ for base_label in ['Основна навігація','Мобільна навігація','Навігація в підвалі']:
   label=ui.get(base_label,base_label)
   menus=[n for n in q.navs if n['label']==label]
   if len(menus)!=1 or menus[0]['links'][:5]!=expected:errors.append(f'Navigation {p}: {label}')
@@ -71,4 +66,4 @@ assert (root/'index.html').read_text().count('class="journal-card"')==2
 assert not (root/'resources/evening-inquiries/checklist.txt').exists()
 assert 'Видача в боті готується' in (root/'resources/index.html').read_text()
 assert 'start=resource_evening' not in (root/'resources/evening-inquiries/index.html').read_text()
-print(f'PASS: {len(pages)} HTML files, consistent site menus and compact audit shell, headings, terminology, assets, external tabs, local links and anchors, two-card blocks, gated resource')
+print(f'PASS: {len(pages)} HTML files, identical menus, headings, terminology, assets, external tabs, local links and anchors, two-card blocks, gated resource')
