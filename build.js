@@ -26,7 +26,7 @@ function languageLinks(baseUrl, locale) {
 }
 const assetVersion = file => createHash('sha256').update(fs.readFileSync(path.join(ROOT, file))).digest('hex').slice(0, 12);
 const NAVIGATION = [['home', '/', 'Головна'], ['products', '/products/', 'Рішення'], ['cases', '/cases/', 'Кейси'], ['research', '/blog/research/', 'Дослідження'], ['blog', '/blog/', 'Блог']];
-const CONTACT = 'https://t.me/konstantin_goria_bot';
+const CONTACT = 'https://t.me/GoriaCo_bot';
 const PERSONAL_TG = 'https://t.me/Goria_Konstantin';
 const CHANNEL_TG = 'https://t.me/konstantin_goria';
 const botUrl = source => `${CONTACT}?start=test_${source}`;
