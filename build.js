@@ -76,10 +76,8 @@ function card(item) {
   </article>`;
 }
 function researchCard(item) {
-  const metaParts = [];
-  if (item.format) metaParts.push(item.format);
-  if (item.period) metaParts.push(item.period);
-  const metaHtml = metaParts.length > 0 ? `<div class="card-meta">${esc(metaParts.join(' · '))}</div>` : '';
+  const dateLabel = item.date ? new Intl.DateTimeFormat('uk-UA', {day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date)) : '';
+  const metaHtml = dateLabel ? `<div class="card-meta"><time datetime="${esc(item.date)}">${dateLabel}</time></div>` : '';
   const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="675" alt="${esc(item.image_alt || item.title)}" loading="lazy"></a>` : '';
   return `<article class="case-card">${imageHtml}${metaHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p><a class="text-link" href="${item.url}">Читати дослідження →</a></article>`;
 }
@@ -174,10 +172,10 @@ for(const item of items) {
 }
 
 const researchItems = items.filter(i => i.group === 'research');
-const researchBody = `<header class="page-intro shell"><h1>Дослідження</h1><p class="lead">Досліджую, як бізнес обробляє заявки. Публікую методику, результати та висновки.</p></header><section class="section section-tight shell"><div class="cases-grid">${researchItems.map(researchCard).join('')}</div></section>`;
+const researchBody = `<header class="page-intro shell"><h1>Дослідження</h1><p class="lead">Що допомагає бізнесу відповідати швидше й доводити заявки до продажу. Власні перевірки та розбори досліджень про продажі, маркетинг і роботу з клієнтами.</p></header><section class="section section-tight shell"><div class="cases-grid">${researchItems.map(researchCard).join('')}</div></section>`;
 write('blog/research/index.html', layout({
   title: 'Дослідження',
-  description: 'Досліджую, як бізнес обробляє заявки. Публікую методику, результати та висновки.',
+  description: 'Що допомагає бізнесу відповідати швидше й доводити заявки до продажу. Власні перевірки та розбори досліджень про продажі, маркетинг і роботу з клієнтами.',
   url: '/blog/research/',
   active: 'research',
   body: researchBody
