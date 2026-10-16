@@ -28,7 +28,7 @@ const assetVersion = file => createHash('sha256').update(fs.readFileSync(path.jo
 const NAVIGATION = [['home', '/', 'Головна'], ['products', '/products/', 'Рішення'], ['cases', '/cases/', 'Кейси'], ['research', '/blog/research/', 'Дослідження'], ['blog', '/blog/', 'Блог']];
 const PERSONAL_TG = 'https://t.me/Goria_Konstantin';
 const CHANNEL_TG = 'https://t.me/konstantin_goria';
-const cleanHeading = value => String(value).replace(/[.:—]/g, ' ').replace(/\s+/g, ' ').trim();
+const cleanHeading = value => String(value).replace(/[.:—]/g, (mark, index, text) => mark === ':' && /\d/.test(text[index-1] || '') && /\d/.test(text[index+1] || '') ? ':' : ' ').replace(/\s+/g, ' ').trim();
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function write(file, value) { const target = path.join(OUTPUT, file); fs.mkdirSync(path.dirname(target), {recursive:true}); fs.writeFileSync(target,value); }
 function header(active = '', locale = defaultLocale, baseUrl = '/') {
@@ -62,7 +62,27 @@ function footer(locale = defaultLocale, active = '') {
   </div></dialog><script src="/site.js?v=${assetVersion('site.js')}" defer></script>`;
   return shellText(html, locale);
 }
-function layout({title,description,url,active='',body,image='/assets/img/hero-1100.webp',type='website',schema=null,locale=defaultLocale,baseUrl=url}) {const localeSettings=i18n.localeConfig(locale); const alternatives=i18n.variants(baseUrl,translations); const alternateMarkup=alternatives.length>1?alternatives.map(p=>`<link rel="alternate" hreflang="${p.locale}" href="${DOMAIN}${p.url}">`).join(''):''; body=i18n.rewriteLinks(body,locale,translations); body = body.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>\s*<p class="lead">[\s\S]*?<\/p>)/g, '<div class="intro-copy">$1</div>'); body = body.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/g, (_, open, inner, close) => open + inner.replace(/(^|>)([^<]+)/g, (__, prefix, text) => prefix + cleanHeading(text)) + close).replace(/—/g, ','); body = body.replace(/<a\b([^>]*\bhref="(?:https?:\/\/|mailto:)[^>]+)>/g, (_, attrs) => '<a' + attrs.replace(/\s(?:target|rel)="[^"]*"/g, '') + ' target="_blank" rel="noopener noreferrer">'); return `<!doctype html><html lang="${localeSettings.htmlLang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} | ${esc(i18n.translate('Костянтин Горя',locale))} · Goria</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index, follow"><link rel="canonical" href="${DOMAIN}${url}">${alternateMarkup}<meta property="og:type" content="${type}"><meta property="og:locale" content="${localeSettings.ogLocale}"><meta property="og:site_name" content="Goria"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${DOMAIN}${url}"><meta property="og:image" content="${DOMAIN}${image}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/favicon.svg?v=${assetVersion('favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="/site.css?v=${assetVersion('site.css')}">${schema ? `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g,'\\u003c')}</script>`:''}</head><body data-page="${esc(baseUrl === '/blog/' ? 'blog-catalog' : active)}">${header(active,locale,baseUrl)}<main id="main">${body}</main>${footer(locale,active)}${baseUrl === '/free-audit/' ? `<script src="/audit-chat.js?v=${assetVersion('audit-chat.js')}" defer></script>` : ''}${analyticsMarkup(analytics)}</body></html>`;}
+function pageSchemas({title,description,url,image,schema,locale,body}) {
+  const absoluteUrl = DOMAIN + url;
+  const records = [{
+    '@context':'https://schema.org', '@type':'WebPage', '@id':absoluteUrl+'#webpage',
+    url:absoluteUrl, name:title, description, inLanguage:i18n.localeConfig(locale).htmlLang,
+    primaryImageOfPage:{'@type':'ImageObject',url:DOMAIN+image},
+    isPartOf:{'@type':'WebSite','@id':DOMAIN+'/#website',url:DOMAIN+'/',name:'Goria'}
+  }];
+  if (url === '/') records.push({'@context':'https://schema.org','@type':'WebSite','@id':DOMAIN+'/#website',url:DOMAIN+'/',name:'Goria',inLanguage:i18n.localeConfig(locale).htmlLang});
+  if (schema) records.push(schema);
+  // Describe only the breadcrumb trail that visitors can actually see.
+  const trail = body.match(/<nav class="breadcrumbs"[^>]*>([\s\S]*?)<\/nav>/);
+  if (trail) {
+    const links = [...trail[1].matchAll(/<a[^>]*href="([^"#]+)"[^>]*>([^<]+)<\/a>/g)];
+    const entities = links.map((m,i)=>({'@type':'ListItem',position:i+1,name:m[2],item:m[1].startsWith('/')?DOMAIN+m[1]:m[1]}));
+    entities.push({'@type':'ListItem',position:entities.length+1,name:title,item:absoluteUrl});
+    if (entities.length >= 2) records.push({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:entities});
+  }
+  return records.map(record=>`<script type="application/ld+json">${JSON.stringify(record).replace(/</g,'\\u003c')}</script>`).join('');
+}
+function layout({title,description,url,active='',body,image='/assets/img/hero-1100.webp',type='website',schema=null,locale=defaultLocale,baseUrl=url}) {const localeSettings=i18n.localeConfig(locale); const alternatives=i18n.variants(baseUrl,translations); const alternateMarkup=alternatives.length>1?alternatives.map(p=>`<link rel="alternate" hreflang="${p.locale}" href="${DOMAIN}${p.url}">`).join(''):''; body=i18n.rewriteLinks(body,locale,translations); body = body.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>\s*<p class="lead">[\s\S]*?<\/p>)/g, '<div class="intro-copy">$1</div>'); body = body.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/g, (_, open, inner, close) => open + inner.replace(/(^|>)([^<]+)/g, (__, prefix, text) => prefix + cleanHeading(text)) + close).replace(/—/g, ','); body = body.replace(/<a\b([^>]*\bhref="(?:https?:\/\/|mailto:)[^>]+)>/g, (_, attrs) => '<a' + attrs.replace(/\s(?:target|rel)="[^"]*"/g, '') + ' target="_blank" rel="noopener noreferrer">'); return `<!doctype html><html lang="${localeSettings.htmlLang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} | Goria</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index, follow, max-image-preview:large"><link rel="canonical" href="${DOMAIN}${url}">${alternateMarkup}<meta property="og:type" content="${type}"><meta property="og:locale" content="${localeSettings.ogLocale}"><meta property="og:site_name" content="Goria"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${DOMAIN}${url}"><meta property="og:image" content="${DOMAIN}${image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${DOMAIN}${image}"><link rel="icon" href="/favicon.svg?v=${assetVersion('favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="/site.css?v=${assetVersion('site.css')}">${pageSchemas({title,description,url,image,schema,locale,body})}</head><body data-page="${esc(baseUrl === '/blog/' ? 'blog-catalog' : active)}">${header(active,locale,baseUrl)}<main id="main">${body}</main>${footer(locale,active)}${baseUrl === '/free-audit/' ? `<script src="/audit-chat.js?v=${assetVersion('audit-chat.js')}" defer></script>` : ''}${baseUrl === '/products/dental-assistant/' ? `<script src="/dental-viewer.js?v=${assetVersion('dental-viewer.js')}" defer></script>` : ''}${analyticsMarkup(analytics)}</body></html>`;}
 function contactBlock(title = 'З чого почати', text = 'Пройдіть короткий аудит або напишіть мені про свою задачу.', source = 'contact') {
   return `<section class="section-surface" id="contact"><div class="section contact-section shell"><div class="cta-layout"><div class="cta-intro"><h2>${title}</h2><p class="lead">${text}</p></div><div class="cta-cards"><div class="cta-card"><div><h3>Швидкий аудит</h3><p>7 запитань про роботу із заявками. Отримаєте оцінку та рекомендацію, з чого почати.</p></div><a class="text-link" href="/free-audit/">Пройти аудит →</a></div><div class="cta-card"><div><h3>Написати мені</h3><p>Розкажіть, звідки надходять заявки та що забирає час команди. Обговоримо, чи допоможе автоматизація.</p></div><a class="text-link" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Написати мені →</a></div></div></div></div></section>`;
 }
@@ -160,6 +180,8 @@ for(const item of items) {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: item.title,
+      image: [DOMAIN + item.image],
+      mainEntityOfPage: DOMAIN + item.url,
       description: item.description,
       datePublished: item.date,
       ...(item.updated ? {dateModified: item.updated} : {}),
@@ -247,5 +269,5 @@ const urls = [
   ...items.map(i => i.url),
   ...translations.map(p => p.url)
 ];
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${DOMAIN}${url}</loc></url>`).join('\n')}\n</urlset>\n`);
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => { const article = items.find(item => item.url === url); const modified = article && (article.updated || article.date); return `  <url><loc>${DOMAIN}${url}</loc>${modified ? `<lastmod>${esc(modified)}</lastmod>` : ''}</url>`; }).join('\n')}\n</urlset>\n`);
 console.log(`Built ${staticPages.length} main pages, ${items.length} articles, blog catalog, research catalog and 2 legal pages.`);

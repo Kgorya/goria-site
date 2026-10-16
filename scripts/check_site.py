@@ -48,7 +48,7 @@ for p,q in pages.items():
   if not u.scheme and not dest.exists():errors.append(f'Missing asset {p}: {asset}')
  if sum(t=='h1' for t,v in q.headings)!=1:errors.append(f'H1 {p}')
  if len(q.ids)!=len(set(q.ids)):errors.append(f'IDs {p}')
- if any(re.search('[.:—]',v) for t,v in q.headings):errors.append(f'Heading punctuation {p}')
+ if any(re.search('[.:—]',re.sub(r'\b\d{1,2}:\d{2}\b','',v)) for t,v in q.headings):errors.append(f'Heading punctuation {p}')
  # The audit landing explicitly uses the owner-approved term «тест».
  if not p.relative_to(root).as_posix().endswith('free-audit/index.html') and re.search(r'\bтест\w*\b',' '.join(q.text),re.I):errors.append(f'Test terminology {p}')
  for a in q.links:
