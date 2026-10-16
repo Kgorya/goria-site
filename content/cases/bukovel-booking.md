@@ -1,6 +1,7 @@
 ---
 title: "Коли на запит про котедж не відповідають три дні"
 slug: "bukovel-booking"
+published: false
 date: "2026-10-13"
 kind: "Спостереження"
 group: "research"

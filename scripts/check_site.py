@@ -63,7 +63,9 @@ for p,q in pages.items():
   if u.fragment and dest in pages and u.fragment not in pages[dest].ids:errors.append(f'Anchor {p}: {a}')
 assert not errors, '\n'.join(errors)
 home=pages[root/'index.html']
-assert (root/'index.html').read_text().count('class="journal-card"')==2
+assert (root/'index.html').read_text().count('class="journal-card"')>=1
+assert '/blog/bukovel-booking/' not in (root/'sitemap.xml').read_text()
+assert '/blog/bukovel-booking/' not in (root/'blog/research/index.html').read_text()
 assert not (root/'resources/evening-inquiries/checklist.txt').exists()
 assert 'Надсилання матеріалу в Telegram ще готую' in (root/'resources/index.html').read_text()
 assert 'start=resource_evening' not in (root/'resources/evening-inquiries/index.html').read_text()

@@ -10,11 +10,11 @@
   const maxAge = 180 * 86400000;
   const english = document.documentElement.lang.startsWith('en');
   const copy = english ? {
-    title:'Website analytics', text:'With your permission, Google Analytics measures visits and Microsoft Clarity records page interactions. This helps me improve the website.',
-    accept:'Allow analytics', reject:'Decline', privacy:'Privacy policy'
+    title:'Cookies and analytics', text:'This website uses cookies to analyze visits and improve usability. You can accept analytics or decline.',
+    accept:'Accept', reject:'Decline', privacy:'Privacy policy'
   } : {
-    title:'Аналітика сайту', text:'З вашого дозволу Google Analytics збирає статистику відвідувань, а Microsoft Clarity записує взаємодію зі сторінками. Це допомагає мені покращувати сайт.',
-    accept:'Дозволити аналітику', reject:'Відмовитися', privacy:'Політика конфіденційності'
+    title:'Файли cookie та аналітика', text:'Цей сайт використовує cookie для аналізу відвідувань та зручності роботи. Ви можете дозволити аналітику або відмовитися.',
+    accept:'Прийняти', reject:'Відмовитися', privacy:'Політика конфіденційності'
   };
   let loaded = false;
   let consent = null;
