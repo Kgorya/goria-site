@@ -4,10 +4,24 @@
   if (button && nav) {
     nav.hidden = true;
     button.hidden = false;
+    let closeTimer = null;
     const setOpen = open => {
+      clearTimeout(closeTimer);
       button.setAttribute('aria-expanded', String(open));
       button.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
-      nav.hidden = !open;
+      if (open) {
+        nav.hidden = false;
+        void nav.offsetWidth;
+        nav.classList.add('is-open');
+      } else {
+        nav.classList.remove('is-open');
+        const duration = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 300;
+        closeTimer = setTimeout(() => {
+          if (button.getAttribute('aria-expanded') !== 'true') {
+            nav.hidden = true;
+          }
+        }, duration);
+      }
     };
     button.addEventListener('click', () => setOpen(button.getAttribute('aria-expanded') !== 'true'));
     nav.addEventListener('click', event => { if (event.target.closest('a')) setOpen(false); });
