@@ -973,3 +973,7 @@ body:has(.audit-landing)>.skip-link:hover{color:#fff}
 @media(min-width:768px) and (max-width:1023px){
  .dental-hero-copy{width:calc((100% - var(--gutter) * 2 - 28px) / 2)}
 }
+/* Author block: photo aligned with the name, breathing room before the contact band */
+.author{align-items:start;margin-bottom:72px}
+.author h2{margin-top:6px}
+.author p:last-of-type{margin-bottom:10px}
