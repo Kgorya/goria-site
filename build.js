@@ -72,13 +72,6 @@ function pageSchemas({title,description,url,image,schema,locale,body}) {
   }];
   if (url === '/') records.push({'@context':'https://schema.org','@type':'WebSite','@id':DOMAIN+'/#website',url:DOMAIN+'/',name:'Goria',inLanguage:i18n.localeConfig(locale).htmlLang});
   if (schema) records.push(schema);
-  // FAQPage mirrors the visible «Питання й відповіді» section: bold question, answer in the same paragraph.
-  const faq = body.match(/<h2[^>]*>Питання й відповіді<\/h2>([\s\S]*?)(?=<h2|<\/article>|$)/);
-  if (faq) {
-    const strip = html => html.replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
-    const qa = [...faq[1].matchAll(/<p><strong>([\s\S]*?)<\/strong>([\s\S]*?)<\/p>/g)].map(m => ({q: strip(m[1]), a: strip(m[2])})).filter(x => x.q && x.a);
-    if (qa.length) records.push({'@context':'https://schema.org','@type':'FAQPage',mainEntity:qa.map(x => ({'@type':'Question',name:x.q,acceptedAnswer:{'@type':'Answer',text:x.a}}))});
-  }
   // Describe only the breadcrumb trail that visitors can actually see.
   const trail = body.match(/<nav class="breadcrumbs"[^>]*>([\s\S]*?)<\/nav>/);
   if (trail) {
