@@ -1,4 +1,5 @@
 ---
+published: false
 title: "Які дрібні правки на сайті можна передати AI"
 slug: "agency-client-edits"
 date: "2026-10-02"
