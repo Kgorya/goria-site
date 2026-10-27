@@ -3,7 +3,7 @@
     "type": "own",
     "process": "Автоматизація",
     "status": "Робоча система",
-    "title": "Передзамовлення в моїх інтернет-магазинах",
+    "title": "Передзамовлення в Shopify",
     "description": "Покупець залишає запит на товар. У Shopify створюється заявка, а команда отримує сповіщення в Telegram для подальшого зв’язку.",
     "url": "/blog/shopify-preorder/",
     "image": "/assets/img/blog/shopify-preorder.jpg",
