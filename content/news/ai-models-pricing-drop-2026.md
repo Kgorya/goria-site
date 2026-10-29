@@ -4,11 +4,12 @@ slug: "ai-models-pricing-drop-2026"
 date: "2026-10-08"
 kind: "Практична нотатка"
 group: "practice"
-image: "/assets/img/covers/ai-models-pricing-drop-2026.jpg"
-image_alt: "Обкладинка: З чого складається вартість AI-системи"
+image: "/assets/img/covers/ai-models-pricing-drop-2026-editorial-v1.webp"
+image_alt: "Невелика червона деталь усередині більшої робочої системи"
 read_time: "3 хв"
 description: "Крім використання моделі, потрібно оплатити налаштування, підключення сервісів і підтримку. Пояснюю, що врахувати в бюджеті."
 featured: false
+og_image: "/assets/img/covers/ai-models-pricing-drop-2026-editorial-v1-og.jpg"
 ---
 
 Вартість виклику мовної моделі не дорівнює вартості системи, яка виконує задачу бізнесу. Система має отримати повідомлення, зрозуміти запит, перевірити дані, виконати дію та показати результат команді.

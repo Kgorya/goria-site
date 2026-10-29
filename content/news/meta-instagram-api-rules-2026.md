@@ -4,11 +4,12 @@ slug: "meta-instagram-api-rules-2026"
 date: "2026-10-11"
 kind: "Практична нотатка"
 group: "tools"
-image: "/assets/img/covers/meta-instagram-api-rules-2026.jpg"
-image_alt: "Обкладинка: Що перевірити перед підключенням асистента"
+image: "/assets/img/covers/meta-instagram-api-rules-2026-editorial-v1.webp"
+image_alt: "Повідомлення проходить через керований шлюз із ручним важелем"
 read_time: "3 хв"
 description: "Доступи, правила каналу та передача діалогу людині. Чому Telegram-демо ще не підтверджує готовність інтеграції з Direct."
 featured: false
+og_image: "/assets/img/covers/meta-instagram-api-rules-2026-editorial-v1-og.jpg"
 ---
 
 Робота асистента в Telegram не доводить, що той самий сценарій уже готовий для Instagram. До підключення потрібно перевірити можливості конкретного акаунта, доступи й правила потрібного типу повідомлень.

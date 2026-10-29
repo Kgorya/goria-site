@@ -5,11 +5,12 @@ date: "2026-10-13"
 updated: "2026-10-27"
 kind: "Власний проєкт"
 group: "practice"
-image: "/assets/img/covers/shopify-preorder.jpg"
-image_alt: "Обкладинка: Передзамовлення замість «Sold out»"
+image: "/assets/img/covers/shopify-preorder-editorial-v1.webp"
+image_alt: "Запит на передзамовлення проходить крізь порожню коробку до наступного кроку"
 read_time: "3 хв"
 description: "Форма на сторінці товару, заявка у Shopify та повідомлення в Telegram. Як працює сценарій і що він дав за сім тижнів."
 featured: false
+og_image: "/assets/img/covers/shopify-preorder-editorial-v1-og.jpg"
 ---
 
 Зібрав у Shopify сценарій для товарів, які можна привезти під замовлення. Покупець залишає запит, а команда погоджує наявність, строк та оплату.

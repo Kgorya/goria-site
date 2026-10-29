@@ -1,38 +1,74 @@
 {
   "kyiv-dentistry": {
-    "theme": "light",
-    "label": "Дослідження",
-    "title": "Вечірні повідомлення у 20 стоматологій Києва",
-    "facts": [["0 з 20", "відповіли того ж вечора"], ["9–17 год", "до першої відповіді"]]
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/kyiv-dentistry-editorial-v1.webp",
+    "og_image": "/assets/img/covers/kyiv-dentistry-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Порожнє стоматологічне крісло й вечірнє повідомлення без відповіді"
   },
   "shopify-preorder": {
-    "theme": "light",
-    "label": "Кейс · Shopify",
-    "title": "Передзамовлення замість «Sold out»",
-    "facts": [["41", "заявка за 7 тижнів"], ["8 590 €", "дійшли до замовлення"]]
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/shopify-preorder-editorial-v1.webp",
+    "og_image": "/assets/img/covers/shopify-preorder-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Запит на передзамовлення проходить крізь порожню коробку до наступного кроку"
   },
   "deepseek-vs-claude-costs": {
-    "theme": "dark",
-    "label": "Блог",
-    "title": "Як я обираю модель для кожного агента",
-    "facts": [["×100", "різниця в ціні між моделями"], ["×12", "економія від одного правила"]]
-  },
-  "ai-models-pricing-drop-2026": {
-    "theme": "dark",
-    "label": "Блог",
-    "title": "З чого складається вартість AI-системи",
-    "facts": [["1", "модель"], ["2", "налаштування"], ["3", "підтримка"]]
-  },
-  "meta-instagram-api-rules-2026": {
-    "theme": "dark",
-    "label": "Блог · Instagram",
-    "title": "Що перевірити перед підключенням асистента",
-    "facts": [["1", "доступи"], ["2", "правила каналу"], ["3", "передача людині"]]
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/deepseek-vs-claude-costs-editorial-v1.webp",
+    "og_image": "/assets/img/covers/deepseek-vs-claude-costs-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Проста задача проходить через менший інструмент, більші залишаються вільними"
   },
   "n8n-self-hosted-vs-cloud": {
-    "theme": "dark",
-    "label": "Блог · n8n",
-    "title": "Власний сервер чи хмара для автоматизації",
-    "facts": [["1", "оновлення"], ["2", "резервні копії"], ["3", "відновлення"]]
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/n8n-self-hosted-vs-cloud-editorial-v1.webp",
+    "og_image": "/assets/img/covers/n8n-self-hosted-vs-cloud-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Власний сервер з інструментом обслуговування та сервери на підвісній платформі"
+  },
+  "meta-instagram-api-rules-2026": {
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/meta-instagram-api-rules-2026-editorial-v1.webp",
+    "og_image": "/assets/img/covers/meta-instagram-api-rules-2026-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Повідомлення проходить через керований шлюз із ручним важелем"
+  },
+  "ai-models-pricing-drop-2026": {
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/ai-models-pricing-drop-2026-editorial-v1.webp",
+    "og_image": "/assets/img/covers/ai-models-pricing-drop-2026-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Невелика червона деталь усередині більшої робочої системи"
+  },
+  "dental-assistant": {
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/dental-assistant-editorial-v1.webp",
+    "og_image": "/assets/img/covers/dental-assistant-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Повідомлення й календар запису поруч зі стоматологічним кріслом"
+  },
+  "ecommerce-agent": {
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/ecommerce-agent-editorial-v1.webp",
+    "og_image": "/assets/img/covers/ecommerce-agent-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Чернетка відповіді, ручка для перевірки менеджером і посилка"
+  },
+  "goria-site": {
+    "style": "goria-editorial-v1",
+    "image": "/assets/img/covers/goria-site-editorial-v1.webp",
+    "og_image": "/assets/img/covers/goria-site-editorial-v1-og.jpg",
+    "width": 1200,
+    "height": 750,
+    "alt": "Повідомлення проходить через напрямний механізм і стає відповіддю"
   }
 }

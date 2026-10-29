@@ -1,4 +1,4 @@
-"""Render typographic article covers from content/covers.json into assets/img/covers/<slug>.jpg.
+"""Validate editorial cover assets; render legacy typographic covers only for old specifications.
 
 Usage: python3 scripts/covers.py [slug ...]   (no slugs = all)
 Needs Google Chrome for headless rendering and macOS sips for jpg conversion.
@@ -30,6 +30,14 @@ def main(slugs):
     out.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         for slug in slugs or specs:
+            spec = specs[slug]
+            if spec.get('style') == 'goria-editorial-v1':
+                for key in ['image', 'og_image']:
+                    asset = ROOT / spec[key].lstrip('/')
+                    if not asset.is_file():
+                        raise FileNotFoundError(asset)
+                print('retained editorial cover', slug)
+                continue
             src, png = Path(tmp) / f'{slug}.html', Path(tmp) / f'{slug}.png'
             src.write_text(page(specs[slug]))
             subprocess.run([CHROME, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files',

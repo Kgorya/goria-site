@@ -4,11 +4,12 @@ slug: "n8n-self-hosted-vs-cloud"
 date: "2026-10-12"
 kind: "Інструменти"
 group: "tools"
-image: "/assets/img/covers/n8n-self-hosted-vs-cloud.jpg"
-image_alt: "Обкладинка: Власний сервер чи хмара для автоматизації"
+image: "/assets/img/covers/n8n-self-hosted-vs-cloud-editorial-v1.webp"
+image_alt: "Власний сервер з інструментом обслуговування та сервери на підвісній платформі"
 read_time: "3 хв"
 description: "Що врахувати, крім ціни: налаштування, оновлення, резервні копії та відновлення після збоїв."
 featured: false
+og_image: "/assets/img/covers/n8n-self-hosted-vs-cloud-editorial-v1-og.jpg"
 ---
 
 Ціна сервера є лише однією частиною бюджету автоматизації. Після запуску систему потрібно оновлювати, перевіряти, відновлювати після помилок і змінювати разом із процесом бізнесу.

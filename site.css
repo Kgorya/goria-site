@@ -246,7 +246,7 @@ h3{font-size:26px;line-height:1.2;letter-spacing:-.015em;margin-bottom:12px}
 .latest-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
 .latest-grid h3{font-size:25px}
 .article-image{margin:0 0 30px}
-.article-image img{aspect-ratio:16/9;object-fit:cover;border-radius:5px}
+.article-image img{aspect-ratio:16/10;object-fit:contain;border-radius:5px}
 .article-image figcaption{font:400 13px/1.5 var(--sans);color:var(--muted);margin-top:8px}
 .author h2{font-size:26px}
 .author p{font-size:15px}
@@ -977,3 +977,6 @@ body:has(.audit-landing)>.skip-link:hover{color:#fff}
 .author{align-items:start;margin-bottom:72px}
 .author h2{margin-top:6px}
 .author p:last-of-type{margin-bottom:10px}
+
+/* Editorial cover artwork keeps its complete composition. */
+.product-hero img.editorial-cover{aspect-ratio:16/10;object-fit:contain;background:#f2efe5}

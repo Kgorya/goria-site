@@ -6,8 +6,9 @@
     "title": "Передзамовлення в Shopify",
     "description": "Покупець залишає запит на товар. У Shopify створюється заявка, а команда отримує сповіщення в Telegram для подальшого зв’язку.",
     "url": "/blog/shopify-preorder/",
-    "image": "/assets/img/covers/shopify-preorder.jpg",
-    "imageAlt": "Обкладинка: Передзамовлення замість «Sold out»",
-    "order": 1
+    "image": "/assets/img/covers/shopify-preorder-editorial-v1.webp",
+    "imageAlt": "Запит на передзамовлення проходить крізь порожню коробку до наступного кроку",
+    "order": 1,
+    "og_image": "/assets/img/covers/shopify-preorder-editorial-v1-og.jpg"
   }
 ]

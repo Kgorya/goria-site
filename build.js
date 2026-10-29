@@ -82,7 +82,7 @@ function pageSchemas({title,description,url,image,schema,locale,body}) {
   }
   return records.map(record=>`<script type="application/ld+json">${JSON.stringify(record).replace(/</g,'\\u003c')}</script>`).join('');
 }
-function layout({title,description,url,active='',body,image='/assets/img/hero-1100.webp',type='website',schema=null,locale=defaultLocale,baseUrl=url}) {const localeSettings=i18n.localeConfig(locale); const alternatives=i18n.variants(baseUrl,translations); const alternateMarkup=alternatives.length>1?alternatives.map(p=>`<link rel="alternate" hreflang="${p.locale}" href="${DOMAIN}${p.url}">`).join(''):''; body=i18n.rewriteLinks(body,locale,translations); body = body.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>\s*<p class="lead">[\s\S]*?<\/p>)/g, '<div class="intro-copy">$1</div>'); body = body.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/g, (_, open, inner, close) => open + inner.replace(/(^|>)([^<]+)/g, (__, prefix, text) => prefix + cleanHeading(text)) + close).replace(/—/g, ','); body = body.replace(/<a\b([^>]*\bhref="(?:https?:\/\/|mailto:)[^>]+)>/g, (_, attrs) => '<a' + attrs.replace(/\s(?:target|rel)="[^"]*"/g, '') + ' target="_blank" rel="noopener noreferrer">'); return `<!doctype html><html lang="${localeSettings.htmlLang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} | Goria</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index, follow, max-image-preview:large"><link rel="canonical" href="${DOMAIN}${url}">${alternateMarkup}<meta property="og:type" content="${type}"><meta property="og:locale" content="${localeSettings.ogLocale}"><meta property="og:site_name" content="Goria"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${DOMAIN}${url}"><meta property="og:image" content="${DOMAIN}${image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${DOMAIN}${image}"><link rel="icon" href="/favicon.svg?v=${assetVersion('favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="/site.css?v=${assetVersion('site.css')}">${pageSchemas({title,description,url,image,schema,locale,body})}</head><body data-page="${esc(baseUrl === '/blog/' ? 'blog-catalog' : active)}">${header(active,locale,baseUrl)}<main id="main">${body}</main>${footer(locale,active)}${baseUrl === '/free-audit/' ? `<script src="/audit-chat.js?v=${assetVersion('audit-chat.js')}" defer></script>` : ''}${baseUrl === '/products/dental-assistant/' ? `<script src="/dental-viewer.js?v=${assetVersion('dental-viewer.js')}" defer></script>` : ''}${analyticsMarkup(analytics)}</body></html>`;}
+function layout({title,description,url,active='',body,image='/assets/img/covers/goria-site-editorial-v1-og.jpg',type='website',schema=null,locale=defaultLocale,baseUrl=url}) {const localeSettings=i18n.localeConfig(locale); const alternatives=i18n.variants(baseUrl,translations); const alternateMarkup=alternatives.length>1?alternatives.map(p=>`<link rel="alternate" hreflang="${p.locale}" href="${DOMAIN}${p.url}">`).join(''):''; body=i18n.rewriteLinks(body,locale,translations); body = body.replace(/(<h1\b[^>]*>[\s\S]*?<\/h1>\s*<p class="lead">[\s\S]*?<\/p>)/g, '<div class="intro-copy">$1</div>'); body = body.replace(/(<h[1-6]\b[^>]*>)([\s\S]*?)(<\/h[1-6]>)/g, (_, open, inner, close) => open + inner.replace(/(^|>)([^<]+)/g, (__, prefix, text) => prefix + cleanHeading(text)) + close).replace(/—/g, ','); body = body.replace(/<a\b([^>]*\bhref="(?:https?:\/\/|mailto:)[^>]+)>/g, (_, attrs) => '<a' + attrs.replace(/\s(?:target|rel)="[^"]*"/g, '') + ' target="_blank" rel="noopener noreferrer">'); return `<!doctype html><html lang="${localeSettings.htmlLang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)} | Goria</title><meta name="description" content="${esc(description)}"><meta name="theme-color" content="#ffffff"><meta name="robots" content="index, follow, max-image-preview:large"><link rel="canonical" href="${DOMAIN}${url}">${alternateMarkup}<meta property="og:type" content="${type}"><meta property="og:locale" content="${localeSettings.ogLocale}"><meta property="og:site_name" content="Goria"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${DOMAIN}${url}"><meta property="og:image" content="${DOMAIN}${image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(title)}"><meta name="twitter:description" content="${esc(description)}"><meta name="twitter:image" content="${DOMAIN}${image}"><link rel="icon" href="/favicon.svg?v=${assetVersion('favicon.svg')}" type="image/svg+xml"><link rel="stylesheet" href="/site.css?v=${assetVersion('site.css')}">${pageSchemas({title,description,url,image,schema,locale,body})}</head><body data-page="${esc(baseUrl === '/blog/' ? 'blog-catalog' : active)}">${header(active,locale,baseUrl)}<main id="main">${body}</main>${footer(locale,active)}${baseUrl === '/free-audit/' ? `<script src="/audit-chat.js?v=${assetVersion('audit-chat.js')}" defer></script>` : ''}${baseUrl === '/products/dental-assistant/' ? `<script src="/dental-viewer.js?v=${assetVersion('dental-viewer.js')}" defer></script>` : ''}${analyticsMarkup(analytics)}</body></html>`;}
 function contactBlock(title = 'З чого почати', text = 'Пройдіть короткий аудит або напишіть мені про свою задачу.', source = 'contact') {
   return `<section class="section-surface" id="contact"><div class="section contact-section shell"><div class="cta-layout"><div class="cta-intro"><h2>${title}</h2><p class="lead">${text}</p></div><div class="cta-cards"><div class="cta-card"><div><h3>Швидкий аудит</h3><p>7 запитань про роботу із заявками. Отримаєте оцінку та рекомендацію, з чого почати.</p></div><a class="text-link" href="/free-audit/">Пройти аудит →</a></div><div class="cta-card"><div><h3>Написати мені</h3><p>Розкажіть, звідки надходять заявки та що забирає час команди. Обговоримо, чи допоможе автоматизація.</p></div><a class="text-link" href="${PERSONAL_TG}" target="_blank" rel="noopener noreferrer">Написати мені →</a></div></div></div></div></section>`;
 }
@@ -90,7 +90,7 @@ function card(item) {
   const isResearch = item.group === 'research';
   const linkLabel = isResearch ? 'Читати дослідження →' : 'Читати статтю →';
   return `<article class="journal-card">
-    <a class="journal-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" alt="" width="1200" height="675" loading="lazy"></a>
+    <a class="journal-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" alt="" width="1200" height="750" loading="lazy"></a>
     <h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p>
     <a class="text-link" href="${item.url}">${linkLabel}</a>
   </article>`;
@@ -98,17 +98,17 @@ function card(item) {
 function researchCard(item) {
   const dateLabel = item.date ? new Intl.DateTimeFormat('uk-UA', {day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date)) : '';
   const metaHtml = dateLabel ? `<div class="card-meta"><time datetime="${esc(item.date)}">${dateLabel}</time></div>` : '';
-  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="675" alt="${esc(item.image_alt || item.title)}" loading="lazy"></a>` : '';
+  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="750" alt="${esc(item.image_alt || item.title)}" loading="lazy"></a>` : '';
   return `<article class="case-card">${imageHtml}${metaHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p><a class="text-link" href="${item.url}">Читати дослідження →</a></article>`;
 }
 function blogCard(item) {
   const dateFormatted = item.date ? new Intl.DateTimeFormat('uk-UA', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'}).format(new Date(item.date)) : '';
   const dateHtml = dateFormatted ? `<div class="card-meta"><time datetime="${esc(item.date)}">${dateFormatted}</time></div>` : '';
-  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="675" alt="${esc(item.image_alt || item.title)}" loading="lazy"></a>` : '';
+  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="750" alt="${esc(item.image_alt || item.title)}" loading="lazy"></a>` : '';
   return `<article class="case-card">${imageHtml}${dateHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p><a class="text-link" href="${item.url}">Читати статтю →</a></article>`;
 }
 function productCard(product) {
-  return `<article class="product-card"><a class="product-card-image" href="${product.url}" tabindex="-1" aria-hidden="true"><img src="${product.image}" width="1200" height="675" alt="" loading="lazy"></a>
+  return `<article class="product-card"><a class="product-card-image" href="${product.url}" tabindex="-1" aria-hidden="true"><img src="${product.image}" width="1200" height="750" alt="" loading="lazy"></a>
     <h3><a href="${product.url}">${esc(product.title)}</a></h3><p>${esc(product.description)}</p><a class="text-link" href="${product.url}">Подивитися рішення →</a></article>`;
 }
 function caseCard(item) {
@@ -121,7 +121,7 @@ function caseCard(item) {
   if (item.status) metaParts.push(item.status);
   if (item.sourceLabel) metaParts.push(item.sourceLabel);
   const metaHtml = metaParts.length > 0 ? `<div class="card-meta">${esc(metaParts.join(' · '))}</div>` : '';
-  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="675" alt="${esc(item.imageAlt || '')}" loading="lazy"></a>` : '';
+  const imageHtml = item.image ? `<a class="case-card-image" href="${item.url}" tabindex="-1" aria-hidden="true"><img src="${item.image}" width="1200" height="750" alt="${esc(item.imageAlt || '')}" loading="lazy"></a>` : '';
   const noticeHtml = isExternal && item.unverifiedNotice ? `<p class="case-card-notice">${esc(item.unverifiedNotice)}</p>` : '';
   return `<article class="case-card">${imageHtml}${originHtml}${metaHtml}<h3><a href="${item.url}">${esc(cleanHeading(item.title))}</a></h3><p>${esc(item.description)}</p>${noticeHtml}<a class="text-link" href="${item.url}">${linkLabel}</a></article>`;
 }
@@ -156,7 +156,7 @@ for (const [source,file,url,title,description,active] of staticPages) {let body=
   .replace('{{cases}}', casesData.length > 0 ? casesData.map(caseCard).join('') : '<p class="cases-empty">Тут з’являтимуться впровадження та розбори досвіду.</p>')
   .replace('{{research}}',items.filter(i=>i.group==='research').slice(0,2).map(card).join(''))
   .replace('{{latest}}',items.filter(i=>i.group!=='research').slice(0,2).map(card).join(''))
-  .replace('{{contact}}', source === 'products' ? contactBlock('Не знайшли рішення для свого бізнесу?', 'Пройдіть короткий аудит або напишіть мені. Розберемо, як ви зараз відповідаєте клієнтам, і перевіримо, чи можна адаптувати одне з рішень під вашу задачу.', 'products') : contactBlock(undefined, undefined, source));write(file,layout({title,description,url,active,body}));}
+  .replace('{{contact}}', source === 'products' ? contactBlock('Не знайшли рішення для свого бізнесу?', 'Пройдіть короткий аудит або напишіть мені. Розберемо, як ви зараз відповідаєте клієнтам, і перевіримо, чи можна адаптувати одне з рішень під вашу задачу.', 'products') : contactBlock(undefined, undefined, source));write(file,layout({title,description,url,active,body,image: products.find(p => p.url === url)?.og_image || '/assets/img/covers/goria-site-editorial-v1-og.jpg'}));}
 for(const item of items) {
   const isResearch = item.group === 'research';
   const author = isResearch ? `<aside class="research-author" aria-label="Автор дослідження"><span class="research-author-portrait"><img src="/assets/img/about-750.webp" alt="" width="120" height="136" loading="lazy"></span><div><h2>Костянтин Горя</h2><p>Допомагаю бізнесу не втрачати заявки, повертати і доводити клієнтів до оплати.</p></div></aside>` : `<aside class="author"><img src="/assets/img/about-750.webp" alt="Костянтин Горя" width="80" height="80" loading="lazy"><div><h2>Костянтин Горя</h2><p>Пишу про власні впровадження та дослідження роботи бізнесу.</p><a class="text-link" href="/#about">Про мене →</a></div></aside>`;
@@ -167,20 +167,20 @@ for(const item of items) {
   const relatedSection = isResearch && !otherResearch.length ? '' : isResearch
     ? `<section class="section shell"><h2>Інші дослідження</h2><div class="cases-grid">${items.filter(i => i.group === 'research' && i.slug !== item.slug).map(researchCard).join('')}</div></section>`
     : `<section class="section shell"><h2>Ще у блозі</h2><div class="cases-grid">${items.filter(i => i.group !== 'research' && i.slug !== item.slug).slice(0, 2).map(blogCard).join('')}</div></section>`;
-  const body = `<header class="article-header prose-shell${isResearch ? ' research-header' : ''}">${breadcrumbs}<h1>${esc(item.title)}</h1><p class="lead">${esc(item.description)}</p>${isResearch ? (item.date ? `<div class="article-meta"><time datetime="${esc(item.date)}">${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date))}</time></div>` : '') : `<div class="article-meta">${item.date ? `<time datetime="${esc(item.date)}">${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date))}</time><span aria-hidden="true">·</span>`:''}<span>${esc(item.readTime)} читання</span>${item.updated ? `<span>Оновлено ${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.updated))}</span>` : ''}</div>`}</header><article class="prose-shell${isResearch ? ' research-article' : ''}"><div class="prose">${item.show_cover === false ? '' : `<figure class="article-image"><img src="${item.image}" alt="${esc(item.image_alt || 'Тематична ілюстрація до матеріалу')}" width="1200" height="675" loading="eager">${isResearch ? '' : '<figcaption>Ілюстрація до матеріалу</figcaption>'}</figure>`}${item.bodyHtml}</div>${author}</article>${blogOffer(item)}${relatedSection}`;
+  const body = `<header class="article-header prose-shell${isResearch ? ' research-header' : ''}">${breadcrumbs}<h1>${esc(item.title)}</h1><p class="lead">${esc(item.description)}</p>${isResearch ? (item.date ? `<div class="article-meta"><time datetime="${esc(item.date)}">${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date))}</time></div>` : '') : `<div class="article-meta">${item.date ? `<time datetime="${esc(item.date)}">${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.date))}</time><span aria-hidden="true">·</span>`:''}<span>${esc(item.readTime)} читання</span>${item.updated ? `<span>Оновлено ${new Intl.DateTimeFormat('uk-UA',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(item.updated))}</span>` : ''}</div>`}</header><article class="prose-shell${isResearch ? ' research-article' : ''}"><div class="prose">${item.show_cover === false ? '' : `<figure class="article-image"><img src="${item.image}" alt="${esc(item.image_alt || 'Тематична ілюстрація до матеріалу')}" width="1200" height="750" loading="eager">${isResearch ? '' : '<figcaption>Ілюстрація до матеріалу</figcaption>'}</figure>`}${item.bodyHtml}</div>${author}</article>${blogOffer(item)}${relatedSection}`;
   write(`blog/${item.slug}/index.html`, layout({
     title: item.title,
     description: item.description,
     url: item.url,
     active: isResearch ? 'research' : 'blog',
     body,
-    image: item.image,
+    image: item.og_image || item.image,
     type: 'article',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: item.title,
-      image: [DOMAIN + item.image],
+      image: [DOMAIN + (item.og_image || item.image)],
       mainEntityOfPage: DOMAIN + item.url,
       description: item.description,
       datePublished: item.date,
@@ -199,6 +199,7 @@ write('blog/research/index.html', layout({
   title: 'Дослідження',
   description: 'Що допомагає бізнесу відповідати швидше й доводити заявки до продажу. Власні перевірки та розбори досліджень про продажі, маркетинг і роботу з клієнтами.',
   url: '/blog/research/',
+  image: '/assets/img/covers/kyiv-dentistry-editorial-v1-og.jpg',
   active: 'research',
   body: researchBody
 }));

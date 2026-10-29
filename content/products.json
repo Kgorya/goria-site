@@ -4,15 +4,19 @@
     "url": "/products/dental-assistant/",
     "category": "Стоматології · демо готове",
     "description": "Відповідає пацієнтам у неробочий час, допомагає записатися й повторно пише тим, хто відклав запис.",
-    "image": "/assets/img/dental/solution-after-hours-premium.webp",
-    "order": 2
+    "image": "/assets/img/covers/dental-assistant-editorial-v1.webp",
+    "order": 2,
+    "og_image": "/assets/img/covers/dental-assistant-editorial-v1-og.jpg",
+    "imageAlt": "Повідомлення й календар запису поруч зі стоматологічним кріслом"
   },
   {
     "title": "AI-агент для інтернет-магазину",
     "url": "/products/ecommerce-agent/",
     "category": "E-commerce · власне впровадження",
     "description": "Стежить за заявками в CRM, ставить нагадування й готує відповіді клієнтам. Менеджер перевіряє листи перед відправленням.",
-    "image": "/assets/img/digital-studio.jpg",
-    "order": 1
+    "image": "/assets/img/covers/ecommerce-agent-editorial-v1.webp",
+    "order": 1,
+    "og_image": "/assets/img/covers/ecommerce-agent-editorial-v1-og.jpg",
+    "imageAlt": "Чернетка відповіді, ручка для перевірки менеджером і посилка"
   }
 ]
